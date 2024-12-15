@@ -1,0 +1,7 @@
+files:
+  - Sources/**/*.swift
+  - Tests/**/*.swift
+  - Package.swift
+  - README.md
+ignoreWords:
+  - xcprivacy
