@@ -5,3 +5,10 @@ files:
   - README.md
 ignoreWords:
   - xcprivacy
+  - preconcurrency
+  - Retryable
+  - NSURL
+  - HTTPURL
+  - PAYG
+  - searchads
+  - searchadsorg

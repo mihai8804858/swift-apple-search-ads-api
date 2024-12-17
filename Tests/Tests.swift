@@ -1,1 +1,2 @@
 import XCTest
+import AppleSearchAds
