@@ -19,10 +19,10 @@ actor Provider: Sendable {
         self.retryBehavior = retryBehavior
     }
 
-    func requestData<R: RequestType>(from request: R) async throws -> APIResponse<Data> {
+    func requestData<R: RequestType>(from request: R) async throws -> Response<Data> {
         try await withExponentialBackoff {
             try await withRetryBehavior(retryBehavior) {
-                try await sendRequest(request.urlRequest(baseURL: baseURL))
+                try await performRequest(request)
             }
         }
     }
@@ -30,8 +30,8 @@ actor Provider: Sendable {
     func requestModel<R: RequestType, Model: Decodable, Decoder: TopLevelDecoder>(
         from request: R,
         type: Model.Type = Model.self,
-        decoder: Decoder
-    ) async throws -> APIResponse<Model> where Decoder.Input == Data {
+        decoder: Decoder = JSONDecoder.default
+    ) async throws -> Response<Model> where Decoder.Input == Data {
         do {
             let response = try await requestData(from: request)
             return try response.decoding(Model.self, decoder: decoder)
@@ -40,15 +40,31 @@ actor Provider: Sendable {
         }
     }
 
+    func requestDataModel<R: RequestType, Model: Decodable, Decoder: TopLevelDecoder>(
+        from request: R,
+        type: Model.Type = Model.self,
+        decoder: Decoder = JSONDecoder.default
+    ) async throws -> Response<Model> where Decoder.Input == Data {
+        try await requestModel(from: request, type: DataResponse<Model>.self).map(\.data)
+    }
+
+    func requestPaginatedModel<R: RequestType, Model: Decodable, Decoder: TopLevelDecoder>(
+        from request: R,
+        type: Model.Type = Model.self,
+        decoder: Decoder = JSONDecoder.default
+    ) async throws -> Response<Paginated<Model>> where Decoder.Input == Data {
+        try await requestModel(from: request, type: Paginated<Model>.self)
+    }
+
     // MARK: - Private
 
-    private func sendRequest(_ request: URLRequest) async throws -> APIResponse<Data> {
+    private func performRequest<R: RequestType>(_ request: R) async throws -> Response<Data> {
         do {
-            let request = try await prepare(request: request)
-            let (data, response) = try await urlSession.data(for: request)
-            let statusCode = (response as? HTTPURLResponse)?.statusCode ?? ResponseStatus.success.code
-            let apiResponse = APIResponse(model: data, statusCode: statusCode)
-            return try apiResponse.validatingStatusCode()
+            let request = try await prepare(request: request.urlRequest(baseURL: baseURL))
+            let (data, urlResponse) = try await urlSession.data(for: request)
+            let statusCode = (urlResponse as? HTTPURLResponse)?.statusCode ?? ResponseStatus.success.code
+            let response = Response(model: data, statusCode: statusCode)
+            return try response.validatingStatusCode()
         } catch {
             throw APIError(error: error)
         }

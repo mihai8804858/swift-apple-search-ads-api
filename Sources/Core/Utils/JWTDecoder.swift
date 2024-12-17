@@ -1,7 +1,7 @@
 import Foundation
 
-extension JWT.Token {
-    var isExpired: Bool {
+extension String {
+    var isJWTExpired: Bool {
         do {
             let expiryDate = try JWTDecoder.decode(self).expiryDate
             let threshold = Date().addingTimeInterval(-10)
@@ -22,7 +22,7 @@ enum JWTDecoder: Sendable {
         case invalidJSON(String)
         case invalidPartCount(String, Int)
 
-        public var localizedDescription: String {
+        var localizedDescription: String {
             switch self {
             case .invalidJSON(let value): "Malformed JWT, failed to parse JSON value from base64URL \(value)"
             case .invalidPartCount(_, let parts): "Malformed JWT, has \(parts) parts when it should have 3 parts"
@@ -31,7 +31,7 @@ enum JWTDecoder: Sendable {
         }
     }
 
-    static func decode(_ token: JWT.Token) throws -> DecodedJWT {
+    static func decode(_ token: String) throws -> DecodedJWT {
         let parts = token.components(separatedBy: ".")
         guard parts.count == 3 else { throw DecodeError.invalidPartCount(token, parts.count) }
         let tokenBody = try decodeJWTPart(parts[1])

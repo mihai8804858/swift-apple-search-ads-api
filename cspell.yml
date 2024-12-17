@@ -6,9 +6,18 @@ files:
 ignoreWords:
   - xcprivacy
   - preconcurrency
-  - Retryable
-  - NSURL
-  - HTTPURL
-  - PAYG
+  - retryable
+  - nsurl
+  - httpurl
+  - payg
   - searchads
   - searchadsorg
+  - appstore
+  - endswith
+  - startswith
+  - swiftlint
+  - geoterritories
+  - nonlocalized
+  - daypart
+  - suborganization
+  - ortz

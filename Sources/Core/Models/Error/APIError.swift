@@ -1,10 +1,18 @@
 import Foundation
 
-public enum APIError: Swift.Error, Equatable, CustomDebugStringConvertible, Sendable {
+/// A container for errors throws by this library.
+public enum APIError: Swift.Error, Equatable, Sendable {
+    /// API request failed with "not connected to internet" status code.
     case noInternetConnection
+    /// API responded with an error response.
     case api(APIErrorResponse)
+    /// Other error encountered. Can be JWT encoding, response decoding, and others.
     case other(Error)
 
+    /// Create an instance of `APIError`.
+    ///
+    /// - Parameters:
+    ///     - error: Any `Swift.Error` instance.
     public init(error: Error) {
         if let apiError = error as? APIError {
             self = apiError
@@ -15,13 +23,18 @@ public enum APIError: Swift.Error, Equatable, CustomDebugStringConvertible, Send
         }
     }
 
-    public init(response: APIResponse<Data>) {
+    /// Create an instance of `APIError`.
+    ///
+    /// - Parameters:
+    ///     - response: An API data response. `APIErrorResponse` will be decoded from the raw response data.
+    public init(response: Response<Data>) {
         self = .api(APIErrorResponse(
             error: try? JSONDecoder.default.decode(ErrorResponse.self, from: response.model),
             statusCode: response.statusCode
         ))
     }
 
+    /// Error response status code.
     public var statusCode: Int {
         switch self {
         case .noInternetConnection: URLError.Code.notConnectedToInternet.rawValue
@@ -30,19 +43,23 @@ public enum APIError: Swift.Error, Equatable, CustomDebugStringConvertible, Send
         }
     }
 
+    /// Verify if API request failed with "not connected to internet" status code.
     public var isNotConnectedToInternet: Bool {
         guard case .noInternetConnection = self else { return false }
         return true
     }
 
+    /// Verify if API request failed with "forbidden" (403) status code.
     public var isForbidden: Bool {
         statusCode == ResponseStatus.forbidden.code
     }
 
+    /// Verify if API request failed with "unauthorized" (401) status code.
     public var isUnauthorized: Bool {
         statusCode == ResponseStatus.unauthorized.code
     }
 
+    /// Error response that was returned by the API.
     public var errorResponse: APIErrorResponse? {
         switch self {
         case .api(let response): response
@@ -56,14 +73,6 @@ public enum APIError: Swift.Error, Equatable, CustomDebugStringConvertible, Send
         case let (.api(lhsError), .api(rhsError)): lhsError == rhsError
         case let (.other(lhsError), .other(rhsError)): lhsError.localizedDescription == rhsError.localizedDescription
         default: false
-        }
-    }
-
-    public var debugDescription: String {
-        switch self {
-        case .noInternetConnection: "Missing internet connectivity"
-        case .api(let response): response.debugDescription
-        case .other(let error): "\(error)"
         }
     }
 }

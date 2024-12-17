@@ -3,7 +3,7 @@ import Foundation
 actor JWTStore: Sendable {
     private let configuration: APIConfiguration
     private let jwtSigner: JWT
-    private var cachedToken: JWT.Token?
+    private var cachedToken: String?
 
     init(configuration: APIConfiguration, audience: String) {
         self.configuration = configuration
@@ -16,8 +16,8 @@ actor JWTStore: Sendable {
         )
     }
 
-    func jwt() throws -> JWT.Token {
-        if let cachedToken, !cachedToken.isExpired { return cachedToken }
+    func jwt() throws -> String {
+        if let cachedToken, !cachedToken.isJWTExpired { return cachedToken }
         let token = try jwtSigner.signedToken(using: configuration.privateKey)
         cachedToken = token
 

@@ -1,4 +1,5 @@
-public enum ResponseStatus: Int, Sendable {
+/// HTTP response status code.
+enum ResponseStatus: Int, Equatable, Sendable {
     case success = 200
     case redirection = 300
     case clientError = 400
@@ -9,14 +10,17 @@ public enum ResponseStatus: Int, Sendable {
     case serverError = 500
     case networkConnectTimeoutError = 599
 
+    /// The success response status range: 200...299.
     public static var successRange: Range<Int> {
         return ResponseStatus.success.rawValue..<ResponseStatus.redirection.rawValue
     }
 
+    /// The server error response status range: 500...599.
     public static var serverErrorRange: ClosedRange<Int> {
         return ResponseStatus.serverError.rawValue...ResponseStatus.networkConnectTimeoutError.rawValue
     }
 
+    /// The HTTP response status.
     public var code: Int {
         return rawValue
     }

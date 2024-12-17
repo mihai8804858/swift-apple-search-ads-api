@@ -1,11 +1,16 @@
 import Foundation
 
+/// The main object used to interface with the Apple Search Ads API.
 public actor APIProvider: Sendable {
-    private let configuration: APIConfiguration
-    private let accessTokenStore: AccessTokenStore
-    private let contextStore: ContextStore
-    private let provider: Provider
+    let configuration: APIConfiguration
+    let accessTokenStore: AccessTokenStore
+    let contextStore: ContextStore
+    let provider: Provider
 
+    /// Create an instance of `APIProvider`.
+    ///
+    /// - Parameters:
+    ///     - configuration: API configuration parameters.
     public init(configuration: APIConfiguration) {
         let accessTokenStore = AccessTokenStore(configuration: configuration, jwtAudience: "https://appleid.apple.com")
         let contextStore = ContextStore { try await accessTokenStore.token().model }
@@ -14,11 +19,11 @@ public actor APIProvider: Sendable {
             plugins: [
                 HostInjector(),
                 DefaultHeadersInjector(),
-                ContextInjector { try await contextStore.userACL().model.data },
+                ContextInjector { try await contextStore.userACL().model },
                 AuthorizationInjector { try await accessTokenStore.token().model }
             ],
             retryBehavior: RetryBehavior(
-                maxAttempts: 5,
+                maxAttempts: 3,
                 errorPredicate: { $0.isUnauthorized || $0.isConnectionLost },
                 recovery: { error in
                     if error.isUnauthorized {
@@ -31,17 +36,5 @@ public actor APIProvider: Sendable {
         self.accessTokenStore = accessTokenStore
         self.contextStore = contextStore
         self.provider = provider
-    }
-
-    public func getAccessToken() async throws -> APIResponse<AccessToken> {
-        try await accessTokenStore.token()
-    }
-
-    public func getUserACL() async throws -> APIResponse<DataResponse<[UserACL]>> {
-        try await contextStore.userACL()
-    }
-
-    public func getMeDetail() async throws -> APIResponse<DataResponse<MeDetail>> {
-        try await contextStore.meDetail()
     }
 }

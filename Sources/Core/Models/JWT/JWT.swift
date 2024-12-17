@@ -1,11 +1,8 @@
 import Foundation
 @preconcurrency import Crypto
 
-struct JWT: Codable, Sendable {
-    typealias PrivateKey = P256.Signing.PrivateKey
-    typealias Token = String
-
-    struct Header: Codable, Sendable {
+struct JWT: Equatable, Codable, Sendable {
+    struct Header: Equatable, Codable, Sendable {
         enum CodingKeys: String, CodingKey {
             case algorithm = "alg"
             case keyIdentifier = "kid"
@@ -15,7 +12,7 @@ struct JWT: Codable, Sendable {
         let keyIdentifier: String
     }
 
-    struct Payload: Codable, Sendable {
+    struct Payload: Equatable, Codable, Sendable {
         enum CodingKeys: String, CodingKey {
             case subject = "sub"
             case issuer = "iss"
@@ -37,7 +34,7 @@ struct JWT: Codable, Sendable {
         case invalidExpirationDuration
         case invalidPrivateKey
 
-        public var localizedDescription: String {
+        var localizedDescription: String {
             switch self {
             case .invalidBase64EncodedPrivateKey: "The private key is not encoded in Base64 format"
             case .invalidDigest: "Failed to generate a digest"
@@ -67,7 +64,7 @@ struct JWT: Codable, Sendable {
         self.expireDuration = expireDuration
     }
 
-    func signedToken(using privateKey: JWT.PrivateKey) throws -> JWT.Token {
+    func signedToken(using privateKey: P256.Signing.PrivateKey) throws -> String {
         let rawDigest = try digest()
         guard let digest = rawDigest.data(using: .utf8) else { throw JWT.Error.invalidDigest }
         let signature = try privateKey.signature(for: digest)

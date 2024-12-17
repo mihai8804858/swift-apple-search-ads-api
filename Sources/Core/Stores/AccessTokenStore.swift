@@ -4,7 +4,7 @@ actor AccessTokenStore: Sendable {
     private let configuration: APIConfiguration
     private let provider: Provider
     private let jwtStore: JWTStore
-    private var cachedToken: APIResponse<AccessToken>?
+    private var cachedToken: Response<AccessToken>?
     private var creationDate: Date?
 
     init(configuration: APIConfiguration, jwtAudience: String) {
@@ -17,14 +17,14 @@ actor AccessTokenStore: Sendable {
                 DefaultHeadersInjector()
             ],
             retryBehavior: RetryBehavior(
-                maxAttempts: 5,
+                maxAttempts: 3,
                 errorPredicate: \.isConnectionLost,
                 recovery: { _ in }
             )
         )
     }
 
-    func token() async throws -> APIResponse<AccessToken> {
+    func token() async throws -> Response<AccessToken> {
         if let cachedToken,
            let creationDate,
            !cachedToken.model.isExpired(createdAt: creationDate) { return cachedToken }
@@ -44,26 +44,10 @@ actor AccessTokenStore: Sendable {
 
     // MARK: - Private
 
-    private func requestToken(jwt: String) async throws -> APIResponse<AccessToken> {
-        let request = AccessTokenRequest(clientIdentifier: configuration.clientIdentifier, clientSecret: jwt)
-        return try await provider.requestModel(from: request, decoder: JSONDecoder.default)
-    }
-}
-
-private struct AccessTokenRequest: RequestType {
-    let path = "/auth/oauth2/token"
-    let method = HTTPMethod.post
-    let task: RequestTask
-
-    init(clientIdentifier: String, clientSecret: String) {
-        self.task = .parameterized(EncodedParameters(
-            encoding: URLEncoding.queryString,
-            parameters: URLParameters([
-                "grant_type": "client_credentials",
-                "scope": "searchadsorg",
-                "client_id": clientIdentifier,
-                "client_secret": clientSecret
-            ])
+    private func requestToken(jwt: String) async throws -> Response<AccessToken> {
+        try await provider.requestModel(from: AccessTokenRequest(
+            clientIdentifier: configuration.clientIdentifier,
+            clientSecret: jwt
         ))
     }
 }
