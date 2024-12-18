@@ -10,6 +10,8 @@ ignoreWords:
   - nsurl
   - httpurl
   - payg
+  - ortz
+  - daypart
   - searchads
   - searchadsorg
   - appstore
@@ -17,7 +19,11 @@ ignoreWords:
   - startswith
   - swiftlint
   - geoterritories
+  - geolocations
+  - geoidentifier
+  - geoterritory
+  - geotargeting
+  - geosearch
   - nonlocalized
-  - daypart
   - suborganization
-  - ortz
+  - countrycode

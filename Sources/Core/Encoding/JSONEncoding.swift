@@ -7,7 +7,7 @@ struct JSONEncoding: ParameterEncoding {
 
     func encode(request: URLRequest, with parameters: URLParameters) throws -> URLRequest {
         var encodedRequest = request
-        encodedRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [.sortedKeys])
+        encodedRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters.parameters)
         encodedRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         return encodedRequest

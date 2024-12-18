@@ -37,8 +37,7 @@ struct URLEncoding: ParameterEncoding {
         var encodedRequest = request
         if let method = encodedRequest.httpMethod, encodesParametersInURL(with: HTTPMethod(rawValue: method) ?? .get) {
             guard let url = encodedRequest.url else { return encodedRequest }
-            if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
-               !parameters.parameters.isEmpty {
+            if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false), !parameters.isEmpty {
                 let percentEncodedQuery = urlComponents.percentEncodedQuery.map { $0 + "&" } ?? ""
                 let parametersQuery = query(from: parameters.parameters)
                 urlComponents.percentEncodedQuery = percentEncodedQuery + parametersQuery
@@ -78,6 +77,25 @@ struct URLEncoding: ParameterEncoding {
 
     private func escape(_ string: String) -> String {
         string.addingPercentEncoding(withAllowedCharacters: .queryAllowed) ?? string
+    }
+
+    private func query(from parameters: Any) -> String {
+        if let dictionary = parameters as? [String: Any] {
+            return query(from: dictionary)
+        } else if let array = parameters as? [Any] {
+            return query(from: array)
+        } else {
+            return escape("\(parameters)")
+        }
+    }
+
+    private func query(from parameters: [Any]) -> String {
+        var components: [String] = []
+        for value in parameters {
+            components += [query(from: value)]
+        }
+
+        return components.joined(separator: "&")
     }
 
     private func query(from parameters: [String: Any]) -> String {
