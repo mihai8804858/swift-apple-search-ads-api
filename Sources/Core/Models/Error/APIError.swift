@@ -9,10 +9,6 @@ public enum APIError: Swift.Error, Equatable, Sendable {
     /// Other error encountered. Can be JWT encoding, response decoding, and others.
     case other(Error)
 
-    /// Create an instance of `APIError`.
-    ///
-    /// - Parameters:
-    ///     - error: Any `Swift.Error` instance.
     public init(error: Error) {
         if let apiError = error as? APIError {
             self = apiError
@@ -23,10 +19,6 @@ public enum APIError: Swift.Error, Equatable, Sendable {
         }
     }
 
-    /// Create an instance of `APIError`.
-    ///
-    /// - Parameters:
-    ///     - response: An API data response. `APIErrorResponse` will be decoded from the raw response data.
     public init(response: Response<Data>) {
         self = .api(APIErrorResponse(
             error: try? JSONDecoder.default.decode(ErrorResponse.self, from: response.model),

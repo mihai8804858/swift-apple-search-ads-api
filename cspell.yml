@@ -18,6 +18,8 @@ ignoreWords:
   - endswith
   - startswith
   - swiftlint
+  - adgroup
+  - adgroups
   - geoterritories
   - geolocations
   - geoidentifier
@@ -28,3 +30,4 @@ ignoreWords:
   - nonlocalized
   - suborganization
   - countrycode
+  - downloaders

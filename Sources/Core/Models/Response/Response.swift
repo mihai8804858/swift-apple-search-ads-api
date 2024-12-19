@@ -7,11 +7,6 @@ public struct Response<T: Sendable>: Sendable {
     /// Response HTTP status code.
     public let statusCode: Int
 
-    /// Create an instance of `Response`.
-    ///
-    /// - Parameters:
-    ///     - model: Response model decoded from API response.
-    ///     - statusCode: Response HTTP status code.
     public init(model: T, statusCode: Int) {
         self.model = model
         self.statusCode = statusCode
