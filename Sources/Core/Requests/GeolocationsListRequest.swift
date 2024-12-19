@@ -1,4 +1,4 @@
-struct ListGeolocationsRequest: RequestType {
+struct GeolocationsListRequest: RequestType {
     let path = "/api/v5/search/geo"
     let method = HTTPMethod.post
     let task: RequestTask

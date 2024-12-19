@@ -21,3 +21,12 @@ nesting:
     warning: 3
   function_level:
     warning: 3
+identifier_name:
+  excluded: [
+    "^id$",
+    "^bo$"
+  ]
+type_name:
+  excluded: [
+    "^Bo$"
+  ]

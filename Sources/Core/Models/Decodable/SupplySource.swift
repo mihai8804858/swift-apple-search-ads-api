@@ -7,7 +7,7 @@
 /// | Display | APPSTORE_TODAY_TAB | Taps | CPC |
 /// | Display | APPSTORE_SEARCH_TAB | Taps | CPC |
 /// | Display | APPSTORE_PRODUCT_PAGES_BROWSE | Taps | CPC |
-public enum SupplySource: String, Decodable, Equatable, Sendable {
+public enum SupplySource: String, Codable, Equatable, Sendable {
     /// Reaches users when they’re browsing apps across the App Store.
     ///
     /// Your ad appears at the top of the You Might Also Like list when users scroll to the bottom of relevant pages

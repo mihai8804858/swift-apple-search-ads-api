@@ -24,6 +24,7 @@ ignoreWords:
   - geoterritory
   - geotargeting
   - geosearch
+  - budgetorders
   - nonlocalized
   - suborganization
   - countrycode

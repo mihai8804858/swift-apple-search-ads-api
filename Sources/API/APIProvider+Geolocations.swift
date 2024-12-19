@@ -18,7 +18,7 @@ public extension APIProvider {
         entity: GeolocationEntity? = nil,
         pagination: Pagination? = nil
     ) async throws -> Response<Paginated<[GeolocationSearchEntity]>> {
-        try await provider.requestPaginatedModel(from: SearchGeolocationsRequest(
+        try await provider.requestPaginatedModel(from: GeolocationsSearchRequest(
             query: query,
             countryCode: countryCode,
             entity: entity,
@@ -39,7 +39,7 @@ public extension APIProvider {
         requests: [GeolocationRequest],
         pagination: Pagination? = nil
     ) async throws -> Response<Paginated<[GeolocationSearchEntity]>> {
-        try await provider.requestPaginatedModel(from: ListGeolocationsRequest(
+        try await provider.requestPaginatedModel(from: GeolocationsListRequest(
             requests: requests,
             pagination: pagination
         ))
