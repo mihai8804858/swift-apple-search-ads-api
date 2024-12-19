@@ -60,12 +60,16 @@ public extension APIProvider {
     ///
     /// - Parameters:
     ///     - campaignId: The unique identifier for the campaign.
+    ///     - pagination: The offset and limit pagination that limits the number of records returned.
     ///
     /// - Returns: A paginated list of `AdGroup`.
     ///
     /// - Throws: An error of type `APIError`
-    func getAdGroups(campaignId: Int) async throws -> Response<Paginated<AdGroup>> {
-        try await provider.requestPaginatedModel(from: AdGroupListRequest(campaignId: campaignId))
+    func listAdGroups(campaignId: Int, pagination: Pagination? = nil) async throws -> Response<Paginated<AdGroup>> {
+        try await provider.requestPaginatedModel(from: AdGroupListRequest(
+            campaignId: campaignId,
+            pagination: pagination
+        ))
     }
 
     /// Fetches ad groups within a campaign or within an organization.
@@ -77,7 +81,7 @@ public extension APIProvider {
     /// - Returns: A object of type `AdGroup`.
     ///
     /// - Throws: An error of type `APIError`
-    func findAdGroup(campaignId: Int? = nil, selector: Selector? = nil) async throws -> Response<Paginated<AdGroup>> {
+    func findAdGroups(campaignId: Int? = nil, selector: Selector? = nil) async throws -> Response<Paginated<AdGroup>> {
         try await provider.requestPaginatedModel(from: AdGroupFindRequest(campaignId: campaignId, selector: selector))
     }
 }

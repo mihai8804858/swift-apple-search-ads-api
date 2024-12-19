@@ -11,6 +11,7 @@ ignoreWords:
   - httpurl
   - payg
   - ortz
+  - ttrs
   - daypart
   - searchads
   - searchadsorg
@@ -31,3 +32,5 @@ ignoreWords:
   - suborganization
   - countrycode
   - downloaders
+  - negativekeywords
+  - targetingkeywords

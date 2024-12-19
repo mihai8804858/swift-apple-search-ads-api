@@ -38,10 +38,13 @@ public extension APIProvider {
 
     /// Fetches all assigned budget orders for an organization.
     ///
+    /// - Parameters:
+    ///     - pagination: The offset and limit pagination that limits the number of records returned.
+    ///
     /// - Returns: A paginated list of `BudgetOrderInfo`.
     ///
     /// - Throws: An error of type `APIError`
-    func getBudgetOrders() async throws -> Response<Paginated<BudgetOrderInfo>> {
-        try await provider.requestPaginatedModel(from: BudgetOrderListRequest())
+    func listBudgetOrders(pagination: Pagination? = nil) async throws -> Response<Paginated<BudgetOrderInfo>> {
+        try await provider.requestPaginatedModel(from: BudgetOrderListRequest(pagination: pagination))
     }
 }
