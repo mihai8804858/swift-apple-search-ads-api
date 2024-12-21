@@ -34,3 +34,6 @@ ignoreWords:
   - downloaders
   - negativekeywords
   - targetingkeywords
+  - campaignid
+  - chargeback
+  - sapin

@@ -78,7 +78,7 @@ public extension APIProvider {
     ///     - campaignId: The unique identifier for the campaign. Pass `nil` to find within an organization.
     ///     - selector: Define what data the API returns when fetching resources.
     ///
-    /// - Returns: A object of type `AdGroup`.
+    /// - Returns: A paginated list of `AdGroup`.
     ///
     /// - Throws: An error of type `APIError`
     func findAdGroups(campaignId: Int? = nil, selector: Selector? = nil) async throws -> Response<Paginated<AdGroup>> {

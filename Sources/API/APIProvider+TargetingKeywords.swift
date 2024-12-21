@@ -125,7 +125,7 @@ public extension APIProvider {
     ///     - campaignId: The unique identifier for the campaign.
     ///     - selector: Define what data the API returns when fetching resources.
     ///
-    /// - Returns: A object of type `Keyword`.
+    /// - Returns: A paginated list of `Keyword`.
     ///
     /// - Throws: An error of type `APIError`
     func findTargetingKeywords(
