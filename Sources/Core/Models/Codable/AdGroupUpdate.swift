@@ -5,7 +5,7 @@ public struct AdGroupUpdate: Codable, Equatable, Sendable {
     /// The user-controlled status to enable or pause the ad group.
     ///
     /// This field is updatable.
-    public let status: AdGroupStatus
+    public let status: AdGroup.Status
     /// The unique name of the ad group. Responses don’t include deleted ad groups.
     public let name: String
     /// The default maximum cost-per-tap or cost-per-impression bid for the ad group.
@@ -36,7 +36,7 @@ public struct AdGroupUpdate: Codable, Equatable, Sendable {
     public let targetingDimensions: TargetingDimensions
 
     public init(
-        status: AdGroupStatus,
+        status: AdGroup.Status,
         name: String,
         defaultBidAmount: Money,
         cpaGoal: Money,

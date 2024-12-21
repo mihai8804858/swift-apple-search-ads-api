@@ -25,9 +25,11 @@ identifier_name:
   excluded: [
     "^id$",
     "^bo$",
+    "^ad$",
     "^targetedDeviceClassNotSupportedSupplySource$"
   ]
 type_name:
   excluded: [
-    "^Bo$"
+    "^Bo$",
+    "^Ad$"
   ]
