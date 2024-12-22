@@ -1,17 +1,14 @@
 struct AdGroupFindRequest: RequestType {
     let path: String
     let method = HTTPMethod.post
-    let task: RequestTask
+    let body: RequestBody?
 
-    init(campaignId: Int? = nil, selector: Selector? = nil) throws {
+    init(campaignId: Int?, selector: Selector?) {
+        body = .json(selector)
         if let campaignId {
             path = "/api/v5/campaigns/\(campaignId)/adgroups/find"
         } else {
             path = "/api/v5/adgroups/find"
         }
-        task = .parameterized(EncodedParameters(
-            encoding: JSONEncoding.default,
-            parameters: try URLParameters(encoding: selector)
-        ))
     }
 }

@@ -1,16 +1,10 @@
 struct AdGroupListRequest: RequestType {
     let path: String
     let method = HTTPMethod.get
-    let task: RequestTask
+    let query: RequestQuery?
 
-    init(campaignId: Int, pagination: Pagination? = nil) {
+    init(campaignId: Int, pagination: Pagination?) {
         path = "/api/v5/campaigns/\(campaignId)/adgroups"
-        task = .parameterized(EncodedParameters(
-            encoding: URLEncoding.queryString,
-            parameters: URLParameters([
-                "limit": pagination?.limit,
-                "offset": pagination?.offset
-            ])
-        ))
+        query = RequestQuery(pagination)
     }
 }

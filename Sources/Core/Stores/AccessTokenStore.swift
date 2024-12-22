@@ -45,9 +45,9 @@ actor AccessTokenStore: Sendable {
     // MARK: - Private
 
     private func requestToken(jwt: String) async throws -> Response<AccessToken> {
-        try await provider.requestModel(from: AccessTokenRequest(
-            clientIdentifier: configuration.clientIdentifier,
+        try await provider.requestModel(from: AccessTokenRequest(parameters: AccessTokenParameters(
+            clientID: configuration.clientIdentifier,
             clientSecret: jwt
-        ))
+        )))
     }
 }

@@ -1,13 +1,10 @@
 struct CampaignUpdateRequest: RequestType {
     let path: String
     let method = HTTPMethod.put
-    let task: RequestTask
+    let body: RequestBody?
 
-    init(campaignId: Int, campaign: CampaignUpdate) throws {
+    init(campaignId: Int, campaign: CampaignUpdate) {
         path = "/api/v5/campaigns/\(campaignId)"
-        task = .parameterized(EncodedParameters(
-            encoding: JSONEncoding.default,
-            parameters: try URLParameters(encoding: campaign)
-        ))
+        body = .json(campaign)
     }
 }

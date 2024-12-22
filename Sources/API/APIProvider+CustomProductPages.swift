@@ -3,22 +3,16 @@ public extension APIProvider {
     ///
     /// - Parameters:
     ///     - adamId: The unique identifier for the ad group.
-    ///     - name: Filters by name field. For example, the name of your custom product page on App Store Connect.
-    ///     - state: Filters by state, which indicates whether the product page is visible or not.
+    ///     - parameters: Product pages parameters.
     ///
     /// - Returns: A list of `ProductPageDetail`.
     ///
     /// - Throws: An error of type `APIError`.
     func getProductPages(
         adamId: Int,
-        name: String? = nil,
-        state: ProductPageDetail.State? = nil
+        parameters: ProductPagesParameters
     ) async throws -> Response<[ProductPageDetail]> {
-        try await provider.requestDataModel(from: ProductPagesRequest(
-            adamId: adamId,
-            name: name,
-            state: state
-        ))
+        try await provider.requestDataModel(from: ProductPagesRequest(adamId: adamId, parameters: parameters))
     }
 
     /// Fetches metadata for a specific product page.
@@ -41,11 +35,7 @@ public extension APIProvider {
     ///     - adamId: Your unique App Store app identifier.
     ///     Your adamId in the resource path must match the adamId in your campaign.
     ///     - productPageId: A unique string to identify a product page on App Store Connect.
-    ///     - deviceClasses: Filters by device type.
-    ///     - languages: Filters by ISO alpha-2 country code, such as `US`.
-    ///     - languageCodes: Filters by ISO 639-1 language code appended to the ISO alpha-2 country code.
-    ///     The languageCodes parameter can have multiple values such as `en-US`, `fr-CA`.
-    ///     - expand: Detailed app asset details of a device. Use `true` for expanded values in the API response.
+    ///     - parameters: Product page locales parameters.
     ///
     /// - Returns: An list of `ProductPageLocaleDetail`.
     ///
@@ -53,35 +43,27 @@ public extension APIProvider {
     func getProductPageLocales(
         adamId: Int,
         productPageId: String,
-        deviceClasses: DeviceClass? = nil,
-        languages: [String]? = nil,
-        languageCodes: [String]? = nil,
-        expand: Bool? = nil
+        parameters: ProductPageLocalesParameters
     ) async throws -> Response<[ProductPageLocaleDetail]> {
         try await provider.requestDataModel(from: ProductPageLocalesRequest(
             adamId: adamId,
             productPageId: productPageId,
-            deviceClasses: deviceClasses,
-            languages: languages,
-            languageCodes: languageCodes,
-            expand: expand
+            parameters: parameters
         ))
     }
 
     /// Fetches supported languages and language codes.
     ///
     /// - Parameters:
-    ///     - countriesOrRegions: Filters by ISO alpha-2 country codes using one or more comma-separated values.
+    ///     - parameters: Supported countries or regions parameters.
     ///
     /// - Returns: An list of `CountryOrRegion`.
     ///
     /// - Throws: An error of type `APIError`.
     func getSupportedCountriesOrRegions(
-        countriesOrRegions: [String]
+        parameters: SupportedCountriesOrRegionsParameters
     ) async throws -> Response<[CountryOrRegion]> {
-        try await provider.requestDataModel(from: SupportedCountriesOrRegionsRequest(
-            countriesOrRegions: countriesOrRegions
-        ))
+        try await provider.requestDataModel(from: SupportedCountriesOrRegionsRequest(parameters: parameters))
     }
 
     /// Fetches supported app preview device-size mappings.

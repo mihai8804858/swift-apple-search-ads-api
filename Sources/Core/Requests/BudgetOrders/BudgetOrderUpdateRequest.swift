@@ -1,13 +1,10 @@
 struct BudgetOrderUpdateRequest: RequestType {
     let path: String
     let method = HTTPMethod.put
-    let task: RequestTask
+    let body: RequestBody?
 
-    init(boID: Int, budgetOrder: BudgetOrderUpdate) throws {
+    init(boID: Int, budgetOrder: BudgetOrderUpdate) {
         path = "/api/v5/budgetorders/\(boID)"
-        task = .parameterized(EncodedParameters(
-            encoding: JSONEncoding.default,
-            parameters: try URLParameters(encoding: budgetOrder)
-        ))
+        body = .json(budgetOrder)
     }
 }

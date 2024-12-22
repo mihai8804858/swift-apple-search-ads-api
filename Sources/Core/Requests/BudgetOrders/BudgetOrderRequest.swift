@@ -1,9 +1,8 @@
 struct BudgetOrderRequest: RequestType {
     let path: String
     let method = HTTPMethod.get
-    let task = RequestTask.plain
 
-    init(boID: Int) throws {
+    init(boID: Int) {
         path = "/api/v5/budgetorders/\(boID)"
     }
 }

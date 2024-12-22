@@ -1,5 +1,5 @@
 {
-  "originHash" : "057750a24ee59d4955d643b7b89852377926695c845c87bed37d5e18b2d63db2",
+  "originHash" : "e7b07faa2df04d2efc7601bf071bb7abd8cdfec6a54b14b42f642d31bd7d8372",
   "pins" : [
     {
       "identity" : "swift-asn1",
@@ -35,6 +35,15 @@
       "state" : {
         "revision" : "df9d7b185d2e433147ec0083a73c257e665eea0d",
         "version" : "0.2.4"
+      }
+    },
+    {
+      "identity" : "urlqueryencoder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CreateAPI/URLQueryEncoder",
+      "state" : {
+        "revision" : "4ce950479707ea109f229d7230ec074a133b15d7",
+        "version" : "0.2.1"
       }
     }
   ],

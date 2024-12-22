@@ -16,15 +16,17 @@ let package = Package(
         .library(name: "AppleSearchAds", targets: ["AppleSearchAds"])
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-crypto.git", from: "3.10.0"),
-        .package(url: "https://github.com/fumoboy007/swift-retry.git", from: "0.2.4")
+        .package(url: "https://github.com/apple/swift-crypto", from: "3.10.0"),
+        .package(url: "https://github.com/fumoboy007/swift-retry", from: "0.2.4"),
+        .package(url: "https://github.com/CreateAPI/URLQueryEncoder", from: "0.2.1")
     ],
     targets: [
         .target(
             name: "AppleSearchAds",
             dependencies: [
                 .product(name: "Crypto", package: "swift-crypto"),
-                .product(name: "DMRetry", package: "swift-retry")
+                .product(name: "DMRetry", package: "swift-retry"),
+                .product(name: "URLQueryEncoder", package: "URLQueryEncoder")
             ],
             resources: [.copy("Resources/PrivacyInfo.xcprivacy")],
             swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]

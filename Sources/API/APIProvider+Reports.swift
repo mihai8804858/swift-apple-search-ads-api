@@ -148,8 +148,7 @@ public extension APIProvider {
     /// Fetches all Impression Share reports containing metrics and metadata.
     ///
     /// - Parameters:
-    ///     - sorting: The order of grouped results.
-    ///     - pagination: The offset and limit pagination that limits the number of records returned.
+    ///     - parameters: Impression share report list parameters.
     ///
     /// - Returns: A paginated list of `CustomReport`.
     ///
@@ -158,12 +157,8 @@ public extension APIProvider {
     /// Use this endpoint to return all Impression Share reports containing metrics and metadata.
     /// The rate limit for this endpoint is 150 reports within 15 minutes.
     func listImpressionShareReports(
-        sorting: Sorting? = nil,
-        pagination: Pagination? = nil
+        parameters: ImpressionShareReportListParameters
     ) async throws -> Response<Paginated<CustomReport>> {
-        try await provider.requestPaginatedModel(from: ImpressionShareReportListRequest(
-            sorting: sorting,
-            pagination: pagination
-        ))
+        try await provider.requestPaginatedModel(from: ImpressionShareReportListRequest(parameters: parameters))
     }
 }

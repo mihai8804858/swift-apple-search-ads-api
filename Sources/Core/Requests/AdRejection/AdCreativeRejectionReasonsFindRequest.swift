@@ -1,12 +1,9 @@
 struct AdCreativeRejectionReasonsFindRequest: RequestType {
     let path = "/api/v5/product-page-reasons/find"
     let method = HTTPMethod.post
-    let task: RequestTask
+    let body: RequestBody?
 
-    init(selector: Selector?) throws {
-        task = .parameterized(EncodedParameters(
-            encoding: JSONEncoding.default,
-            parameters: try URLParameters(encoding: selector)
-        ))
+    init(selector: Selector?) {
+        body = .json(selector)
     }
 }

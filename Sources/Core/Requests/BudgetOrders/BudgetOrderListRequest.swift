@@ -1,15 +1,9 @@
 struct BudgetOrderListRequest: RequestType {
     let path = "/api/v5/budgetorders"
     let method = HTTPMethod.get
-    let task: RequestTask
+    let query: RequestQuery?
 
-    init(pagination: Pagination? = nil) throws {
-        task = .parameterized(EncodedParameters(
-            encoding: URLEncoding.queryString,
-            parameters: URLParameters([
-                "limit": pagination?.limit,
-                "offset": pagination?.offset
-            ])
-        ))
+    init(pagination: Pagination?) {
+        query = RequestQuery(pagination)
     }
 }

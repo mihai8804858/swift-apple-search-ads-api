@@ -2,23 +2,13 @@ public extension APIProvider {
     /// Searches for iOS apps to promote in a campaign.
     ///
     /// - Parameters:
-    ///     - query: The query for a list of iOS apps using a matching prefix.
-    ///     - returnOwnedApps: The list of apps belonging to your organization.
-    ///     - pagination: The offset and limit pagination that limits the number of records returned.
+    ///     - parameters: Search parameters.
     ///
     /// - Returns: A paginated list of `AppInfo`.
     ///
     /// - Throws: An error of type `APIError`.
-    func searchApps(
-        query: String? = nil,
-        returnOwnedApps: Bool? = nil,
-        pagination: Pagination? = nil
-    ) async throws -> Response<Paginated<[AppInfo]>> {
-        try await provider.requestPaginatedModel(from: SearchAppsRequest(
-            query: query,
-            returnOwnedApps: returnOwnedApps,
-            pagination: pagination
-        ))
+    func searchApps(parameters: SearchAppsRequestParameters) async throws -> Response<Paginated<[AppInfo]>> {
+        try await provider.requestPaginatedModel(from: SearchAppsRequest(parameters: parameters))
     }
 
     /// Fetches app eligibility records by adam ID.

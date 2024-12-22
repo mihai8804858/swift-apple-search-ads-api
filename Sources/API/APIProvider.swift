@@ -12,8 +12,13 @@ public actor APIProvider: Sendable {
     /// - Parameters:
     ///     - configuration: API configuration parameters.
     public init(configuration: APIConfiguration) {
-        let accessTokenStore = AccessTokenStore(configuration: configuration, jwtAudience: "https://appleid.apple.com")
-        let contextStore = ContextStore { try await accessTokenStore.token().model }
+        let accessTokenStore = AccessTokenStore(
+            configuration: configuration,
+            jwtAudience: "https://appleid.apple.com"
+        )
+        let contextStore = ContextStore {
+            try await accessTokenStore.token().model
+        }
         let provider = Provider(
             baseURL: URL(string: "https://api.searchads.apple.com")!,
             plugins: [

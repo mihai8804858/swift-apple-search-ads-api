@@ -15,20 +15,16 @@ public extension APIProvider {
     ///
     /// - Parameters:
     ///     - creativeId: The unique identifier for a creative.
-    ///     - includeDeletedCreativeSetAssets: Include deleted assets in the response.
-    ///     By default deleted assets don’t return.
+    ///     - parameters: Creative parameters.
     ///
     /// - Returns: A object of type `CreativeCustomProductPage`.
     ///
     /// - Throws: An error of type `APIError`.
     func getCreative(
         creativeId: Int,
-        includeDeletedCreativeSetAssets: Bool? = nil
+        parameters: CreativeParameters
     ) async throws -> Response<CreativeCustomProductPage> {
-        try await provider.requestDataModel(from: CreativeRequest(
-            creativeId: creativeId,
-            includeDeletedCreativeSetAssets: includeDeletedCreativeSetAssets
-        ))
+        try await provider.requestDataModel(from: CreativeRequest(creativeId: creativeId, parameters: parameters))
     }
 
     /// Fetches all creatives within an organization.

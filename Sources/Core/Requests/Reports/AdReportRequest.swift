@@ -1,13 +1,10 @@
 struct AdReportRequest: RequestType {
     let path: String
     let method = HTTPMethod.post
-    let task: RequestTask
+    let body: RequestBody?
 
-    init(campaignId: Int, request: ReportingRequest) throws {
+    init(campaignId: Int, request: ReportingRequest) {
         path = "/api/v5/reports/campaigns/\(campaignId)/ads"
-        task = .parameterized(EncodedParameters(
-            encoding: JSONEncoding.default,
-            parameters: try URLParameters(encoding: request)
-        ))
+        body = .json(request)
     }
 }

@@ -31,8 +31,4 @@ extension URLRequest {
 
         return newRequest
     }
-
-    func encoded(with encodedParameters: EncodedParameters) throws -> URLRequest {
-        try encodedParameters.encoding.encode(request: self, with: encodedParameters.parameters)
-    }
 }

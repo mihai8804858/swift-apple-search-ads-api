@@ -1,16 +1,10 @@
 struct CampaignNegativeKeywordsListRequest: RequestType {
     let path: String
     let method = HTTPMethod.get
-    let task: RequestTask
+    let query: RequestQuery?
 
-    init(campaignId: Int, pagination: Pagination? = nil) throws {
+    init(campaignId: Int, pagination: Pagination?) {
         path = "/api/v5/campaigns/\(campaignId)/negativekeywords"
-        task = .parameterized(EncodedParameters(
-            encoding: URLEncoding.queryString,
-            parameters: URLParameters([
-                "limit": pagination?.limit,
-                "offset": pagination?.offset
-            ])
-        ))
+        query = RequestQuery(pagination)
     }
 }

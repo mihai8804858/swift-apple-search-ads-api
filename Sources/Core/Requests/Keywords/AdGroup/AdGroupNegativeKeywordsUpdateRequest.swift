@@ -1,13 +1,10 @@
 struct AdGroupNegativeKeywordsUpdateRequest: RequestType {
     let path: String
     let method = HTTPMethod.put
-    let task: RequestTask
+    let body: RequestBody?
 
-    init(campaignId: Int, adGroupId: Int, keywords: [NegativeKeyword]) throws {
+    init(campaignId: Int, adGroupId: Int, keywords: [NegativeKeyword]) {
         path = "/api/v5/campaigns/\(campaignId)/adgroups/\(adGroupId)/negativekeywords/bulk"
-        task = .parameterized(EncodedParameters(
-            encoding: JSONEncoding.default,
-            parameters: try URLParameters(encoding: keywords)
-        ))
+        body = .json(keywords)
     }
 }

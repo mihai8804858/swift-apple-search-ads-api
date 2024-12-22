@@ -1,25 +1,35 @@
+public struct ProductPageLocalesParameters: Equatable, Encodable, Sendable {
+    /// Filters by device type.
+    public let deviceClasses: DeviceClass?
+    /// Filters by ISO alpha-2 country code, such as `US`.
+    public let languages: [String]?
+    /// Filters by ISO 639-1 language code appended to the ISO alpha-2 country code.
+    ///
+    /// The languageCodes parameter can have multiple values such as `en-US`, `fr-CA`.
+    public let languageCodes: [String]?
+    /// Detailed app asset details of a device. Use `true` for expanded values in the API response.
+    public let expand: Bool?
+
+    public init(
+        deviceClasses: DeviceClass? = nil,
+        languages: [String]? = nil,
+        languageCodes: [String]? = nil,
+        expand: Bool? = nil
+    ) {
+        self.deviceClasses = deviceClasses
+        self.languages = languages
+        self.languageCodes = languageCodes
+        self.expand = expand
+    }
+}
+
 struct ProductPageLocalesRequest: RequestType {
     let path: String
     let method = HTTPMethod.get
-    let task: RequestTask
+    let query: RequestQuery?
 
-    init(
-        adamId: Int,
-        productPageId: String,
-        deviceClasses: DeviceClass?,
-        languages: [String]?,
-        languageCodes: [String]?,
-        expand: Bool?
-    ) {
+    init(adamId: Int, productPageId: String, parameters: ProductPageLocalesParameters) {
         path = "/api/v5/apps/\(adamId)/product-pages/\(productPageId)/locale-details"
-        task = .parameterized(EncodedParameters(
-            encoding: URLEncoding.queryString,
-            parameters: URLParameters([
-                "deviceClasses": deviceClasses?.rawValue,
-                "languages": languages,
-                "languageCodes": languageCodes,
-                "expand": expand
-            ])
-        ))
+        query = RequestQuery(parameters)
     }
 }

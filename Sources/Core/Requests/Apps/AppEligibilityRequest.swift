@@ -1,13 +1,10 @@
 struct AppEligibilityRequest: RequestType {
     let path: String
     let method = HTTPMethod.post
-    let task: RequestTask
+    let body: RequestBody?
 
-    init(adamId: Int, selector: Selector? = nil) throws {
+    init(adamId: Int, selector: Selector?) {
         path = "/api/v5/apps/\(adamId)/eligibilities/find"
-        task = .parameterized(EncodedParameters(
-            encoding: JSONEncoding.default,
-            parameters: try URLParameters(encoding: selector)
-        ))
+        body = .json(selector)
     }
 }
