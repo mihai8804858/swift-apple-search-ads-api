@@ -6,7 +6,7 @@ public extension APIProvider {
     ///
     /// - Returns: A object of type `BudgetOrderInfo`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func createBudgetOrder(budgetOrder: BudgetOrderCreate) async throws -> Response<BudgetOrderInfo> {
         try await provider.requestDataModel(from: BudgetOrderCreateRequest(budgetOrder: budgetOrder))
     }
@@ -19,7 +19,7 @@ public extension APIProvider {
     ///
     /// - Returns: A object of type `BudgetOrderInfo`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func updateBudgetOrder(boID: Int, budgetOrder: BudgetOrderUpdate) async throws -> Response<BudgetOrderInfo> {
         try await provider.requestDataModel(from: BudgetOrderUpdateRequest(boID: boID, budgetOrder: budgetOrder))
     }
@@ -31,7 +31,7 @@ public extension APIProvider {
     ///
     /// - Returns: A object of type `BudgetOrderInfo`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func getBudgetOrder(boID: Int) async throws -> Response<BudgetOrderInfo> {
         try await provider.requestDataModel(from: BudgetOrderRequest(boID: boID))
     }
@@ -43,7 +43,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `BudgetOrderInfo`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func listBudgetOrders(pagination: Pagination? = nil) async throws -> Response<Paginated<BudgetOrderInfo>> {
         try await provider.requestPaginatedModel(from: BudgetOrderListRequest(pagination: pagination))
     }

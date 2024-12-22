@@ -6,7 +6,7 @@ public extension APIProvider {
     ///
     /// - Returns: A object of type `Campaign`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     ///
     /// Essential points for creating campaigns are:
     /// - Use Search for iOS apps to retrieve your `adamId` to use in the request payload.
@@ -30,7 +30,7 @@ public extension APIProvider {
     ///
     /// - Returns: A object of type `Campaign`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     ///
     /// Use this endpoint to update countries or regions (App Store geolocations) where you promote your app,
     /// and to set your campaign budget.
@@ -48,7 +48,7 @@ public extension APIProvider {
     ///
     /// - Returns: Empty response.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func deleteCampaign(campaignId: Int) async throws -> Response<Empty> {
         try await provider.requestDataModel(from: CampaignDeleteRequest(campaignId: campaignId))
     }
@@ -60,7 +60,7 @@ public extension APIProvider {
     ///
     /// - Returns: A object of type `Campaign`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     ///
     /// Use this endpoint to return data for a specific campaign.
     func getCampaign(campaignId: Int) async throws -> Response<Campaign> {
@@ -74,7 +74,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `Campaign`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     ///
     /// This endpoint returns data for all of an organization’s assigned campaigns.
     func listCampaigns(pagination: Pagination? = nil) async throws -> Response<Paginated<Campaign>> {
@@ -88,7 +88,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `Campaign`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func findCampaigns(selector: Selector? = nil) async throws -> Response<Paginated<Campaign>> {
         try await provider.requestPaginatedModel(from: CampaignFindRequest(selector: selector))
     }

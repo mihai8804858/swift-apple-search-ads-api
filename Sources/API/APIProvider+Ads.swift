@@ -8,7 +8,7 @@ public extension APIProvider {
     ///
     /// - Returns: A object of type `Ad`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func createAd(campaignId: Int, adGroupId: Int, ad: AdCreate) async throws -> Response<Ad> {
         try await provider.requestDataModel(from: AdCreateRequest(
             campaignId: campaignId,
@@ -27,7 +27,7 @@ public extension APIProvider {
     ///
     /// - Returns: A object of type `Ad`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func updateAd(campaignId: Int, adGroupId: Int, adId: Int, ad: AdUpdate) async throws -> Response<Ad> {
         try await provider.requestDataModel(from: AdUpdateRequest(
             campaignId: campaignId,
@@ -46,7 +46,7 @@ public extension APIProvider {
     ///
     /// - Returns: An `Empty` response.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func deleteAd(campaignId: Int, adGroupId: Int, adId: Int, ad: AdUpdate) async throws -> Response<Empty> {
         try await provider.requestDataModel(from: AdDeleteRequest(
             campaignId: campaignId,
@@ -64,7 +64,7 @@ public extension APIProvider {
     ///
     /// - Returns: A object of type `Ad`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func getAd(campaignId: Int, adGroupId: Int, adId: Int) async throws -> Response<Ad> {
         try await provider.requestDataModel(from: AdRequest(
             campaignId: campaignId,
@@ -81,7 +81,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `Ad`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func listAds(campaignId: Int, adGroupId: Int) async throws -> Response<Paginated<Ad>> {
         try await provider.requestPaginatedModel(from: AdsListRequest(campaignId: campaignId, adGroupId: adGroupId))
     }
@@ -94,7 +94,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `Ad`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func findAds(campaignId: Int? = nil, selector: Selector? = nil) async throws -> Response<Paginated<Ad>> {
         try await provider.requestPaginatedModel(from: AdsFindRequest(
             campaignId: campaignId,

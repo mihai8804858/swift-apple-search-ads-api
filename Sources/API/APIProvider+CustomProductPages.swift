@@ -8,7 +8,7 @@ public extension APIProvider {
     ///
     /// - Returns: A list of `ProductPageDetail`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func getProductPages(
         adamId: Int,
         name: String? = nil,
@@ -30,7 +30,7 @@ public extension APIProvider {
     ///
     /// - Returns: An object of type `ProductPageDetail`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func getProductPage(adamId: Int, productPageId: String) async throws -> Response<ProductPageDetail> {
         try await provider.requestDataModel(from: ProductPageRequest(adamId: adamId, productPageId: productPageId))
     }
@@ -49,7 +49,7 @@ public extension APIProvider {
     ///
     /// - Returns: An list of `ProductPageLocaleDetail`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func getProductPageLocales(
         adamId: Int,
         productPageId: String,
@@ -75,7 +75,7 @@ public extension APIProvider {
     ///
     /// - Returns: An list of `CountryOrRegion`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func getSupportedCountriesOrRegions(
         countriesOrRegions: [String]
     ) async throws -> Response<[CountryOrRegion]> {
@@ -90,7 +90,7 @@ public extension APIProvider {
     /// The key is the identifier and the value is the display name.
     /// You can also use this to define the supported fallback devices if mapping isn’t available.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func getAppPreviewDeviceSizes() async throws -> Response<[String: String]> {
         try await provider.requestDataModel(from: AppPreviewDeviceSizesRequest())
     }

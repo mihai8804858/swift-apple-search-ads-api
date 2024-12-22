@@ -8,7 +8,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `NegativeKeyword`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func createAdGroupNegativeKeywords(
         campaignId: Int,
         adGroupId: Int,
@@ -30,7 +30,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `NegativeKeyword`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func updateAdGroupNegativeKeywords(
         campaignId: Int,
         adGroupId: Int,
@@ -52,7 +52,7 @@ public extension APIProvider {
     ///
     /// - Returns: Number of deleted campaign negative keywords.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func deleteAdGroupNegativeKeywords(
         campaignId: Int,
         adGroupId: Int,
@@ -74,7 +74,7 @@ public extension APIProvider {
     ///
     /// - Returns: A object of type `NegativeKeyword`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func getAdGroupNegativeKeyword(
         campaignId: Int,
         adGroupId: Int,
@@ -96,7 +96,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `NegativeKeyword`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func listAdGroupNegativeKeywords(
         campaignId: Int,
         adGroupId: Int,
@@ -117,7 +117,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `NegativeKeyword`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func findAdGroupNegativeKeywords(
         campaignId: Int,
         selector: Selector? = nil

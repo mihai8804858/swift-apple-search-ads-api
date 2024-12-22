@@ -24,6 +24,8 @@ public struct AdGroup: Codable, Equatable, Sendable {
         case running = "RUNNING"
         /// The adgroup is on hold.
         case onHold = "ON_HOLD"
+        /// The campaign is on hold.
+        case campaignOnHold = "CAMPAIGN_ON_HOLD"
         /// The adgroup is paused.
         case paused = "PAUSED"
         /// The adgroup has been deleted.

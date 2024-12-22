@@ -11,7 +11,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `GeolocationSearchEntity`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func searchGeolocations(
         query: String? = nil,
         countryCode: String? = nil,
@@ -34,7 +34,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `GeolocationSearchEntity`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func listGeolocations(
         requests: [GeolocationRequest],
         pagination: Pagination? = nil

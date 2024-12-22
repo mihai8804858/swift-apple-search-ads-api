@@ -8,7 +8,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `AppInfo`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func searchApps(
         query: String? = nil,
         returnOwnedApps: Bool? = nil,
@@ -29,7 +29,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `EligibilityRecord`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func appEligibility(
         adamId: Int,
         selector: Selector? = nil

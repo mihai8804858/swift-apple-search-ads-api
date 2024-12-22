@@ -8,7 +8,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `Keyword`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func createTargetingKeywords(
         campaignId: Int,
         adGroupId: Int,
@@ -30,7 +30,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `Keyword`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func updateTargetingKeywords(
         campaignId: Int,
         adGroupId: Int,
@@ -52,7 +52,7 @@ public extension APIProvider {
     ///
     /// - Returns: Number of deleted targeting keywords.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func deleteTargetingKeywords(campaignId: Int, adGroupId: Int, keywordIds: [Int]) async throws -> Response<Int> {
         try await provider.requestDataModel(from: TargetingKeywordsDeleteRequest(
             campaignId: campaignId,
@@ -70,7 +70,7 @@ public extension APIProvider {
     ///
     /// - Returns: Empty response.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func deleteTargetingKeyword(campaignId: Int, adGroupId: Int, keywordId: Int) async throws -> Response<Empty> {
         try await provider.requestDataModel(from: TargetingKeywordDeleteRequest(
             campaignId: campaignId,
@@ -88,7 +88,7 @@ public extension APIProvider {
     ///
     /// - Returns: A object of type `Keyword`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func getTargetingKeyword(campaignId: Int, adGroupId: Int, keywordId: Int) async throws -> Response<Keyword> {
         try await provider.requestDataModel(from: TargetingKeywordRequest(
             campaignId: campaignId,
@@ -106,7 +106,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `Keyword`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func listTargetingKeywords(
         campaignId: Int,
         adGroupId: Int,
@@ -127,7 +127,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `Keyword`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func findTargetingKeywords(
         campaignId: Int,
         selector: Selector? = nil

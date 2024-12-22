@@ -3,7 +3,7 @@ public extension APIProvider {
     ///
     /// - Returns: A list of `UserACL`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func userACL() async throws -> Response<[UserACL]> {
         try await contextStore.userACL()
     }
@@ -12,7 +12,7 @@ public extension APIProvider {
     ///
     /// - Returns: An object of type `MeDetail`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func meDetail() async throws -> Response<MeDetail> {
         try await contextStore.meDetail()
     }

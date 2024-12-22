@@ -6,7 +6,7 @@ public extension APIProvider {
     ///
     /// - Returns: A object of type `CreativeCustomProductPage`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func createCreative(creative: CreativeCustomProductPage) async throws -> Response<CreativeCustomProductPage> {
         try await provider.requestDataModel(from: CreativeCreateRequest(creative: creative))
     }
@@ -20,7 +20,7 @@ public extension APIProvider {
     ///
     /// - Returns: A object of type `CreativeCustomProductPage`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func getCreative(
         creativeId: Int,
         includeDeletedCreativeSetAssets: Bool? = nil
@@ -38,7 +38,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `CreativeCustomProductPage`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func listCreatives(pagination: Pagination? = nil) async throws -> Response<Paginated<CreativeCustomProductPage>> {
         try await provider.requestPaginatedModel(from: CreativesListRequest(pagination: pagination))
     }
@@ -50,7 +50,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `CreativeCustomProductPage`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func findCreatives(selector: Selector? = nil) async throws -> Response<Paginated<CreativeCustomProductPage>> {
         try await provider.requestPaginatedModel(from: CreativesFindRequest(selector: selector))
     }

@@ -9,6 +9,8 @@ public struct Creative: Codable, Equatable, Sendable {
         /// See section 4.1 in Apple Search Ads Campaign Management API 4
         /// for additional details on Creative Sets deprecation.
         case creativeSet = "CREATIVE_SET"
+        /// Default product page.
+        case defaultProductPage = "DEFAULT_PRODUCT_PAGE"
     }
 
     /// The system state of the creative.

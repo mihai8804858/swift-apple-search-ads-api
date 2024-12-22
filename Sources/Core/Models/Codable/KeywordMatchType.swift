@@ -1,5 +1,8 @@
 /// An automated keyword and bidding strategy.
 public enum KeywordMatchType: String, Codable, Equatable, Sendable {
+    /// Specifies the system serves impressions with optimized keywords,
+    /// in addition to those you explicitly add to the ad group.
+    case auto = "AUTO"
     /// Use this value to ensure your ads don’t run on relevant, close variants of a keyword,
     /// such as singulars, plurals, misspellings, synonyms, related searches, and phrases
     /// that include that term (fully or partially).

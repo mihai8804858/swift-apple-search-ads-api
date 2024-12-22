@@ -7,7 +7,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `NegativeKeyword`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func createCampaignNegativeKeywords(
         campaignId: Int,
         keywords: [NegativeKeyword]
@@ -26,7 +26,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `NegativeKeyword`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func updateCampaignNegativeKeywords(
         campaignId: Int,
         keywords: [NegativeKeyword]
@@ -45,7 +45,7 @@ public extension APIProvider {
     ///
     /// - Returns: Number of deleted campaign negative keywords.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func deleteCampaignNegativeKeywords(campaignId: Int, keywordIds: [Int]) async throws -> Response<Int> {
         try await provider.requestDataModel(from: CampaignNegativeKeywordsDeleteRequest(
             campaignId: campaignId,
@@ -61,7 +61,7 @@ public extension APIProvider {
     ///
     /// - Returns: A object of type `NegativeKeyword`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func getCampaignNegativeKeyword(campaignId: Int, keywordId: Int) async throws -> Response<NegativeKeyword> {
         try await provider.requestDataModel(from: CampaignNegativeKeywordRequest(
             campaignId: campaignId,
@@ -77,7 +77,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `NegativeKeyword`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func listCampaignNegativeKeywords(
         campaignId: Int,
         pagination: Pagination? = nil
@@ -96,7 +96,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `NegativeKeyword`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func findCampaignNegativeKeywords(
         campaignId: Int,
         selector: Selector? = nil

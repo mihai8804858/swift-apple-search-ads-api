@@ -10,6 +10,20 @@ public struct Ad: Codable, Equatable, Sendable {
         case paused = "PAUSED"
     }
 
+    /// The display status that derives from the ad’s serving status.
+    public enum DisplayStatus: String, Codable, Equatable, Sendable {
+        /// The ad is active.
+        case active = "ACTIVE"
+        /// The ad is invalid.
+        case invalid = "INVALID"
+        /// The ad is on hold.
+        case onHold = "ON_HOLD"
+        /// The ad is paused.
+        case paused = "PAUSED"
+        /// The ad is removed.
+        case removed = "REMOVED"
+    }
+
     /// The status of whether the ad is serving.
     public enum ServingStatus: String, Codable, Equatable, Sendable {
         /// The ad is running.

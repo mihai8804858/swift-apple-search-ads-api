@@ -24,6 +24,7 @@ nesting:
 identifier_name:
   excluded: [
     "^id$",
+    "^in$",
     "^bo$",
     "^ad$",
     "^targetedDeviceClassNotSupportedSupplySource$"

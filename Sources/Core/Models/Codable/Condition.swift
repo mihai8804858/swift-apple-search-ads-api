@@ -18,7 +18,7 @@ public struct Condition: Codable, Equatable, Sendable {
         /// The value is greater than the specified value. You can use this attribute with time parameters.
         case greaterThan = "GREATER_THAN"
         /// The attribute matches any value in a list of specified values.
-        case `in` = "IN" // swiftlint:disable:this identifier_name
+        case `in` = "IN"
         /// The value is less than the specified value. You can use this attribute with time parameters.
         case lessThan = "LESS_THAN"
         /// The attribute matches the prefix of a string.

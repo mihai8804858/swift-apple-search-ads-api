@@ -7,7 +7,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `AppAsset`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func getAppAssets(adamId: Int, selector: Selector? = nil) async throws -> Response<Paginated<AppAsset>> {
         try await provider.requestPaginatedModel(from: AppAssetsFindRequest(adamId: adamId, selector: selector))
     }
@@ -20,7 +20,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `ProductPageReason`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func getAdCreativeRejectionReasons(
         productPageReasonId: Int
     ) async throws -> Response<Paginated<ProductPageReason>> {
@@ -36,7 +36,7 @@ public extension APIProvider {
     ///
     /// - Returns: A paginated list of `ProductPageReason`.
     ///
-    /// - Throws: An error of type `APIError`
+    /// - Throws: An error of type `APIError`.
     func findAdCreativeRejectionReasons(
         selector: Selector? = nil
     ) async throws -> Response<Paginated<ProductPageReason>> {
