@@ -13,7 +13,7 @@ public extension APIProvider {
         campaignId: Int,
         adGroupId: Int,
         keywords: [NegativeKeyword]
-    ) async throws -> Response<Paginated<[NegativeKeyword]>> {
+    ) async throws -> Response<Paginated<NegativeKeyword>> {
         try await provider.requestPaginatedModel(from: AdGroupNegativeKeywordsCreateRequest(
             campaignId: campaignId,
             adGroupId: adGroupId,
@@ -35,7 +35,7 @@ public extension APIProvider {
         campaignId: Int,
         adGroupId: Int,
         keywords: [NegativeKeyword]
-    ) async throws -> Response<Paginated<[NegativeKeyword]>> {
+    ) async throws -> Response<Paginated<NegativeKeyword>> {
         try await provider.requestPaginatedModel(from: AdGroupNegativeKeywordsUpdateRequest(
             campaignId: campaignId,
             adGroupId: adGroupId,
@@ -114,14 +114,17 @@ public extension APIProvider {
     /// - Parameters:
     ///     - campaignId: The unique identifier for the campaign.
     ///     - selector: Define what data the API returns when fetching resources.
+    ///     - decoding: Custom model to decode when filtering the returned fields using `Selector.fields` property.
+    ///     Omit this if no fields are being filtered out, which will result in decoding `NegativeKeyword` type.
     ///
-    /// - Returns: A paginated list of `NegativeKeyword`.
+    /// - Returns: A paginated list of `Model`.
     ///
     /// - Throws: An error of type `APIError`.
-    func findAdGroupNegativeKeywords(
+    func findAdGroupNegativeKeywords<Model: Decodable & Sendable>(
         campaignId: Int,
-        selector: Selector? = nil
-    ) async throws -> Response<Paginated<NegativeKeyword>> {
+        selector: Selector? = nil,
+        decoding: Model.Type = NegativeKeyword.self
+    ) async throws -> Response<Paginated<Model>> {
         try await provider.requestPaginatedModel(from: AdGroupNegativeKeywordsFindRequest(
             campaignId: campaignId,
             selector: selector

@@ -1,7 +1,7 @@
 import Foundation
 
 extension Error {
-    var statusCode: Int {
+    var statusCode: ResponseStatus {
         APIError(error: self).statusCode
     }
 
@@ -30,7 +30,7 @@ extension Error {
     }
 
     var isRetryableWithBackoff: Bool {
-        let isTooManyRequests = statusCode == ResponseStatus.tooManyRequests.code
+        let isTooManyRequests = statusCode == ResponseStatus.tooManyRequests
         let isServerError = ResponseStatus.serverErrorRange.contains(statusCode)
 
         return isTooManyRequests || isServerError

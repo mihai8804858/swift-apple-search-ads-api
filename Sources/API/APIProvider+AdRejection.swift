@@ -4,11 +4,17 @@ public extension APIProvider {
     /// - Parameters:
     ///     - adamId: Your unique App Store app identifier.
     ///     - selector: Define what data the API returns when fetching resources.
+    ///     - decoding: Custom model to decode when filtering the returned fields using `Selector.fields` property.
+    ///     Omit this if no fields are being filtered out, which will result in decoding `AppAsset` type.
     ///
-    /// - Returns: A paginated list of `AppAsset`.
+    /// - Returns: A paginated list of `Model`.
     ///
     /// - Throws: An error of type `APIError`.
-    func getAppAssets(adamId: Int, selector: Selector? = nil) async throws -> Response<Paginated<AppAsset>> {
+    func getAppAssets<Model: Decodable & Sendable>(
+        adamId: Int,
+        selector: Selector? = nil,
+        decoding: Model.Type = AppAsset.self
+    ) async throws -> Response<Paginated<Model>> {
         try await provider.requestPaginatedModel(from: AppAssetsFindRequest(adamId: adamId, selector: selector))
     }
 
@@ -33,13 +39,16 @@ public extension APIProvider {
     ///
     /// - Parameters:
     ///     - selector: Define what data the API returns when fetching resources.
+    ///     - decoding: Custom model to decode when filtering the returned fields using `Selector.fields` property.
+    ///     Omit this if no fields are being filtered out, which will result in decoding `ProductPageReason` type.
     ///
-    /// - Returns: A paginated list of `ProductPageReason`.
+    /// - Returns: A paginated list of `Model`.
     ///
     /// - Throws: An error of type `APIError`.
-    func findAdCreativeRejectionReasons(
-        selector: Selector? = nil
-    ) async throws -> Response<Paginated<ProductPageReason>> {
+    func findAdCreativeRejectionReasons<Model: Decodable & Sendable>(
+        selector: Selector? = nil,
+        decoding: Model.Type = ProductPageReason.self
+    ) async throws -> Response<Paginated<Model>> {
         try await provider.requestPaginatedModel(from: AdCreativeRejectionReasonsFindRequest(
             selector: selector
         ))

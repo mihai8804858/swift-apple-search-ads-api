@@ -11,7 +11,7 @@ struct AuthorizationInjector: PluginType {
 
     func prepare(request: inout URLRequest) async throws {
         let token = try await provider()
-        let header = ["Authorization": "\(token.tokenType) \(token.token)"]
-        request.add(headers: header, replace: true)
+        let value = "\(token.tokenType) \(token.token)"
+        request.add(header: "Authorization", value: value, replace: true)
     }
 }

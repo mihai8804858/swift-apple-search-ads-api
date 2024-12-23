@@ -1,23 +1,14 @@
 import Foundation
 
-struct HeadersInjector: PluginType {
-    enum Strategy {
-        case append
-        case set
-    }
-
-    let strategy: Strategy
-    let headers: [String: String]
+struct AcceptHeadersInjector: PluginType {
+    private let headers = acceptHeaders
 
     func prepare(request: inout URLRequest) async throws {
-        switch strategy {
-        case .append: request.add(headers: headers, replace: false)
-        case .set: request.add(headers: headers, replace: true)
-        }
+        request.add(headers: headers, replace: true)
     }
 }
 
-var defaultHTTPHeaders: [String: String] {
+private var acceptHeaders: [String: String] {
     [
         "Accept-Encoding": acceptEncoding,
         "Accept-Language": acceptLanguage

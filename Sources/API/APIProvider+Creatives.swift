@@ -43,11 +43,17 @@ public extension APIProvider {
     ///
     /// - Parameters:
     ///     - selector: Define what data the API returns when fetching resources.
+    ///     - decoding: Custom model to decode when filtering the returned fields using `Selector.fields` property.
+    ///     Omit this if no fields are being filtered out, which will result in
+    ///     decoding `CreativeCustomProductPage` type.
     ///
-    /// - Returns: A paginated list of `CreativeCustomProductPage`.
+    /// - Returns: A paginated list of `Model`.
     ///
     /// - Throws: An error of type `APIError`.
-    func findCreatives(selector: Selector? = nil) async throws -> Response<Paginated<CreativeCustomProductPage>> {
+    func findCreatives<Model: Decodable & Sendable>(
+        selector: Selector? = nil,
+        decoding: Model.Type = CreativeCustomProductPage.self
+    ) async throws -> Response<Paginated<Model>> {
         try await provider.requestPaginatedModel(from: CreativesFindRequest(selector: selector))
     }
 }

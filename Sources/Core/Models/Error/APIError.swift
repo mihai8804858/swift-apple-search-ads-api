@@ -27,11 +27,12 @@ public enum APIError: Swift.Error, Equatable, Sendable {
     }
 
     /// Error response status code.
-    public var statusCode: Int {
+    public var statusCode: ResponseStatus {
         switch self {
-        case .noInternetConnection: URLError.Code.notConnectedToInternet.rawValue
+        case .noInternetConnection: ResponseStatus(rawValue: URLError.Code.notConnectedToInternet.rawValue)
         case .api(let response): response.statusCode
-        case .other(let error as NSError): error.code
+        case .other(let error as URLError): ResponseStatus(rawValue: error.code.rawValue)
+        case .other(let error as NSError): ResponseStatus(rawValue: error.code)
         }
     }
 
@@ -43,12 +44,12 @@ public enum APIError: Swift.Error, Equatable, Sendable {
 
     /// Verify if API request failed with "forbidden" (403) status code.
     public var isForbidden: Bool {
-        statusCode == ResponseStatus.forbidden.code
+        statusCode == ResponseStatus.forbidden
     }
 
     /// Verify if API request failed with "unauthorized" (401) status code.
     public var isUnauthorized: Bool {
-        statusCode == ResponseStatus.unauthorized.code
+        statusCode == ResponseStatus.unauthorized
     }
 
     /// Error response that was returned by the API.

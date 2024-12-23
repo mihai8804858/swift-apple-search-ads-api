@@ -1,21 +1,14 @@
 public struct ProductPageLocalesParameters: Equatable, Encodable, Sendable {
-    private let languages: String?
-    private let languageCodes: String?
-
     /// Filters by device type.
     public let deviceClasses: DeviceClass?
-    /// Detailed app asset details of a device. Use `true` for expanded values in the API response.
-    public let expand: Bool?
     /// Filters by ISO alpha-2 country code, such as `US`.
-    public var languagesList: [String]? {
-        languages?.split { $0 == "," }.map(String.init)
-    }
+    private let languages: String?
     /// Filters by ISO 639-1 language code appended to the ISO alpha-2 country code.
     ///
     /// The languageCodes parameter can have multiple values such as `en-US`, `fr-CA`.
-    public var languageCodesList: [String]? {
-        languageCodes?.split { $0 == "," }.map(String.init)
-    }
+    private let languageCodes: String?
+    /// Detailed app asset details of a device. Use `true` for expanded values in the API response.
+    public let expand: Bool?
 
     public init(
         deviceClasses: DeviceClass? = nil,

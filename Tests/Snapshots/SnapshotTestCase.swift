@@ -7,7 +7,7 @@ class SnapshotTestCase: XCTestCase {
         baseURL: URL(string: "https://api.searchads.apple.com")!,
         plugins: [
             HostInjector(),
-            DefaultHeadersInjector(),
+            AcceptHeadersInjector(),
             ContextInjector {
                 [
                     UserACL(

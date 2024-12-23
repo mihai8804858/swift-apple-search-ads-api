@@ -9,7 +9,7 @@ public extension APIProvider {
     /// - Throws: An error of type `APIError`.
     func searchGeolocations(
         parameters: GeolocationsSearchParameters
-    ) async throws -> Response<Paginated<[GeolocationSearchEntity]>> {
+    ) async throws -> Response<Paginated<GeolocationSearchEntity>> {
         try await provider.requestPaginatedModel(from: GeolocationsSearchRequest(parameters: parameters))
     }
 
@@ -25,7 +25,7 @@ public extension APIProvider {
     func listGeolocations(
         requests: [GeolocationRequest],
         pagination: Pagination? = nil
-    ) async throws -> Response<Paginated<[GeolocationSearchEntity]>> {
+    ) async throws -> Response<Paginated<GeolocationSearchEntity>> {
         try await provider.requestPaginatedModel(from: GeolocationsListRequest(
             requests: requests,
             pagination: pagination

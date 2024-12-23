@@ -60,8 +60,8 @@ actor Provider: Sendable {
         do {
             let request = try await prepare(request: request)
             let (data, urlResponse) = try await urlSession.data(for: request)
-            let statusCode = (urlResponse as? HTTPURLResponse)?.statusCode ?? ResponseStatus.success.code
-            let response = Response(model: data, statusCode: statusCode)
+            let statusCode = (urlResponse as? HTTPURLResponse)?.statusCode ?? ResponseStatus.success.rawValue
+            let response = Response(model: data, statusCode: ResponseStatus(rawValue: statusCode))
             return try response.validatingStatusCode()
         } catch {
             throw APIError(error: error)

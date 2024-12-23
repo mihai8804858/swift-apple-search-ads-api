@@ -14,7 +14,7 @@ actor AccessTokenStore: Sendable {
             baseURL: URL(string: "https://appleid.apple.com")!,
             plugins: [
                 HostInjector(),
-                DefaultHeadersInjector()
+                AcceptHeadersInjector()
             ],
             retryBehavior: RetryBehavior(
                 maxAttempts: 3,

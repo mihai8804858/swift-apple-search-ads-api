@@ -77,11 +77,17 @@ public extension APIProvider {
     /// - Parameters:
     ///     - campaignId: The unique identifier for the campaign. Pass `nil` to find within an organization.
     ///     - selector: Define what data the API returns when fetching resources.
+    ///     - decoding: Custom model to decode when filtering the returned fields using `Selector.fields` property.
+    ///     Omit this if no fields are being filtered out, which will result in decoding `AdGroup` type.
     ///
-    /// - Returns: A paginated list of `AdGroup`.
+    /// - Returns: A paginated list of `Model`.
     ///
     /// - Throws: An error of type `APIError`.
-    func findAdGroups(campaignId: Int? = nil, selector: Selector? = nil) async throws -> Response<Paginated<AdGroup>> {
+    func findAdGroups<Model: Decodable & Sendable>(
+        campaignId: Int? = nil,
+        selector: Selector? = nil,
+        decoding: Model.Type = AdGroup.self
+    ) async throws -> Response<Paginated<Model>> {
         try await provider.requestPaginatedModel(from: AdGroupFindRequest(campaignId: campaignId, selector: selector))
     }
 }

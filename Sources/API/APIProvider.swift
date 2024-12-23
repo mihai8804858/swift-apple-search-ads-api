@@ -23,7 +23,7 @@ public actor APIProvider: Sendable {
             baseURL: URL(string: "https://api.searchads.apple.com")!,
             plugins: [
                 HostInjector(),
-                DefaultHeadersInjector(),
+                AcceptHeadersInjector(),
                 ContextInjector { try await contextStore.userACL().model },
                 AuthorizationInjector { try await accessTokenStore.token().model }
             ],

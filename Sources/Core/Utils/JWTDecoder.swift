@@ -12,11 +12,11 @@ extension String {
     }
 }
 
-struct DecodedJWT: Sendable {
+private struct DecodedJWT: Sendable {
     let expiryDate: Date
 }
 
-enum JWTDecoder: Sendable {
+private enum JWTDecoder: Sendable {
     enum DecodeError: LocalizedError, Sendable {
         case invalidBase64URL(String)
         case invalidJSON(String)

@@ -3,7 +3,7 @@ import Combine
 
 extension Response<Data> {
     func validatingStatusCode() throws -> Response<T> {
-        if ResponseStatus.successRange ~= statusCode {
+        if ResponseStatus.successRange.contains(statusCode) {
             return self
         } else {
             throw APIError(response: self)

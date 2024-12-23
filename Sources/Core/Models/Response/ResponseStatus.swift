@@ -1,27 +1,32 @@
 /// HTTP response status code.
-enum ResponseStatus: Int, Equatable, Sendable {
-    case success = 200
-    case redirection = 300
-    case clientError = 400
-    case unauthorized = 401
-    case forbidden = 403
-    case notFound = 404
-    case tooManyRequests = 429
-    case serverError = 500
-    case networkConnectTimeoutError = 599
-
-    /// The success response status range: 200...299.
-    public static var successRange: Range<Int> {
-        return ResponseStatus.success.rawValue..<ResponseStatus.redirection.rawValue
-    }
-
-    /// The server error response status range: 500...599.
-    public static var serverErrorRange: ClosedRange<Int> {
-        return ResponseStatus.serverError.rawValue...ResponseStatus.networkConnectTimeoutError.rawValue
-    }
-
+public struct ResponseStatus: RawRepresentable, Equatable, Comparable, Sendable {
     /// The HTTP response status.
-    public var code: Int {
-        return rawValue
+    public let rawValue: Int
+
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
     }
+
+    public static func < (lhs: ResponseStatus, rhs: ResponseStatus) -> Bool {
+        lhs.rawValue < rhs.rawValue
+    }
+
+    /// The success status range: 200...299.
+    public static var successRange: Range<ResponseStatus> {
+        ResponseStatus.success..<ResponseStatus.redirection
+    }
+
+    /// The server error status range: 500...599.
+    public static var serverErrorRange: ClosedRange<ResponseStatus> {
+        ResponseStatus.serverError...ResponseStatus.networkConnectTimeoutError
+    }
+
+    public static let success = ResponseStatus(rawValue: 200)
+    public static let redirection = ResponseStatus(rawValue: 300)
+    public static let badRequest = ResponseStatus(rawValue: 400)
+    public static let unauthorized = ResponseStatus(rawValue: 401)
+    public static let forbidden = ResponseStatus(rawValue: 403)
+    public static let tooManyRequests = ResponseStatus(rawValue: 429)
+    public static let serverError = ResponseStatus(rawValue: 500)
+    public static let networkConnectTimeoutError = ResponseStatus(rawValue: 599)
 }

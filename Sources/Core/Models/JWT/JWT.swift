@@ -92,7 +92,7 @@ struct JWT: Equatable, Codable, Sendable {
     }
 }
 
-extension Data {
+private extension Data {
     func base64URLEncoded() -> String {
         base64EncodedString()
             .replacingOccurrences(of: "=", with: "")

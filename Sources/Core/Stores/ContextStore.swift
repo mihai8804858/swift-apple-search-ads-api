@@ -10,7 +10,7 @@ actor ContextStore: Sendable {
             baseURL: URL(string: "https://api.searchads.apple.com")!,
             plugins: [
                 HostInjector(),
-                DefaultHeadersInjector(),
+                AcceptHeadersInjector(),
                 AuthorizationInjector(provider: token)
             ],
             retryBehavior: RetryBehavior(

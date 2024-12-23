@@ -11,7 +11,7 @@ public extension APIProvider {
     func createCampaignNegativeKeywords(
         campaignId: Int,
         keywords: [NegativeKeyword]
-    ) async throws -> Response<Paginated<[NegativeKeyword]>> {
+    ) async throws -> Response<Paginated<NegativeKeyword>> {
         try await provider.requestPaginatedModel(from: CampaignNegativeKeywordsCreateRequest(
             campaignId: campaignId,
             keywords: keywords
@@ -30,7 +30,7 @@ public extension APIProvider {
     func updateCampaignNegativeKeywords(
         campaignId: Int,
         keywords: [NegativeKeyword]
-    ) async throws -> Response<Paginated<[NegativeKeyword]>> {
+    ) async throws -> Response<Paginated<NegativeKeyword>> {
         try await provider.requestPaginatedModel(from: CampaignNegativeKeywordsUpdateRequest(
             campaignId: campaignId,
             keywords: keywords
@@ -93,14 +93,17 @@ public extension APIProvider {
     /// - Parameters:
     ///     - campaignId: The unique identifier for the campaign.
     ///     - selector: Define what data the API returns when fetching resources.
+    ///     - decoding: Custom model to decode when filtering the returned fields using `Selector.fields` property.
+    ///     Omit this if no fields are being filtered out, which will result in decoding `NegativeKeyword` type.
     ///
-    /// - Returns: A paginated list of `NegativeKeyword`.
+    /// - Returns: A paginated list of `Model`.
     ///
     /// - Throws: An error of type `APIError`.
-    func findCampaignNegativeKeywords(
+    func findCampaignNegativeKeywords<Model: Decodable & Sendable>(
         campaignId: Int,
-        selector: Selector? = nil
-    ) async throws -> Response<Paginated<NegativeKeyword>> {
+        selector: Selector? = nil,
+        decoding: Model.Type = NegativeKeyword.self
+    ) async throws -> Response<Paginated<Model>> {
         try await provider.requestPaginatedModel(from: CampaignNegativeKeywordsFindRequest(
             campaignId: campaignId,
             selector: selector

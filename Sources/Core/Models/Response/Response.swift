@@ -5,9 +5,9 @@ public struct Response<T: Sendable>: Sendable {
     /// Response model decoded from API response.
     public let model: T
     /// Response HTTP status code.
-    public let statusCode: Int
+    public let statusCode: ResponseStatus
 
-    public init(model: T, statusCode: Int) {
+    public init(model: T, statusCode: ResponseStatus) {
         self.model = model
         self.statusCode = statusCode
     }

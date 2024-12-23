@@ -85,11 +85,16 @@ public extension APIProvider {
     ///
     /// - Parameters:
     ///     - selector: Define what data the API returns when fetching resources.
+    ///     - decoding: Custom model to decode when filtering the returned fields using `Selector.fields` property.
+    ///     Omit this if no fields are being filtered out, which will result in decoding `Campaign` type.
     ///
-    /// - Returns: A paginated list of `Campaign`.
+    /// - Returns: A paginated list of `Model`.
     ///
     /// - Throws: An error of type `APIError`.
-    func findCampaigns(selector: Selector? = nil) async throws -> Response<Paginated<Campaign>> {
+    func findCampaigns<Model: Decodable & Sendable>(
+        selector: Selector? = nil,
+        decoding: Model.Type = Campaign.self
+    ) async throws -> Response<Paginated<Model>> {
         try await provider.requestPaginatedModel(from: CampaignFindRequest(selector: selector))
     }
 }

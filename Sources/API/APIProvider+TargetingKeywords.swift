@@ -13,7 +13,7 @@ public extension APIProvider {
         campaignId: Int,
         adGroupId: Int,
         keywords: [Keyword]
-    ) async throws -> Response<Paginated<[Keyword]>> {
+    ) async throws -> Response<Paginated<Keyword>> {
         try await provider.requestPaginatedModel(from: TargetingKeywordsCreateRequest(
             campaignId: campaignId,
             adGroupId: adGroupId,
@@ -35,7 +35,7 @@ public extension APIProvider {
         campaignId: Int,
         adGroupId: Int,
         keywords: [KeywordUpdate]
-    ) async throws -> Response<Paginated<[Keyword]>> {
+    ) async throws -> Response<Paginated<Keyword>> {
         try await provider.requestPaginatedModel(from: TargetingKeywordsUpdateRequest(
             campaignId: campaignId,
             adGroupId: adGroupId,
@@ -124,14 +124,17 @@ public extension APIProvider {
     /// - Parameters:
     ///     - campaignId: The unique identifier for the campaign.
     ///     - selector: Define what data the API returns when fetching resources.
+    ///     - decoding: Custom model to decode when filtering the returned fields using `Selector.fields` property.
+    ///     Omit this if no fields are being filtered out, which will result in decoding `Keyword` type.
     ///
-    /// - Returns: A paginated list of `Keyword`.
+    /// - Returns: A paginated list of `Model`.
     ///
     /// - Throws: An error of type `APIError`.
-    func findTargetingKeywords(
+    func findTargetingKeywords<Model: Decodable & Sendable>(
         campaignId: Int,
-        selector: Selector? = nil
-    ) async throws -> Response<Paginated<Keyword>> {
+        selector: Selector? = nil,
+        decoding: Model.Type = Keyword.self
+    ) async throws -> Response<Paginated<Model>> {
         try await provider.requestPaginatedModel(from: TargetingKeywordsFindRequest(
             campaignId: campaignId,
             selector: selector
