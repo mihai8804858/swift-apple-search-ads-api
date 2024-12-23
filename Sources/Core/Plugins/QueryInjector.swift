@@ -16,8 +16,8 @@ struct QueryInjector: PluginType {
         self.predicate = predicate
     }
 
-    func prepare(request: URLRequest) async throws -> URLRequest {
-        guard predicate(request), let value = value() else { return request }
-        return request.adding(queries: [name: value], replace: replace)
+    func prepare(request: inout URLRequest) async throws {
+        guard predicate(request), let value = value() else { return }
+        request.add(queries: [name: value], replace: replace)
     }
 }

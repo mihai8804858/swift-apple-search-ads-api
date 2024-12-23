@@ -22,7 +22,7 @@ actor Provider: Sendable {
     func requestData<R: RequestType>(from request: R) async throws -> Response<Data> {
         try await withExponentialBackoff {
             try await withRetryBehavior(retryBehavior) {
-                try await performRequest(request)
+                try await perform(request: request)
             }
         }
     }
@@ -56,11 +56,9 @@ actor Provider: Sendable {
         try await requestModel(from: request, type: Paginated<Model>.self)
     }
 
-    // MARK: - Private
-
-    private func performRequest<R: RequestType>(_ request: R) async throws -> Response<Data> {
+    func perform<R: RequestType>(request: R) async throws -> Response<Data> {
         do {
-            let request = try await prepare(request: request.urlRequest(baseURL: baseURL))
+            let request = try await prepare(request: request)
             let (data, urlResponse) = try await urlSession.data(for: request)
             let statusCode = (urlResponse as? HTTPURLResponse)?.statusCode ?? ResponseStatus.success.code
             let response = Response(model: data, statusCode: statusCode)
@@ -70,12 +68,12 @@ actor Provider: Sendable {
         }
     }
 
-    private func prepare(request: URLRequest) async throws -> URLRequest {
-        var request = request
+    func prepare<R: RequestType>(request: R) async throws -> URLRequest {
+        var urlRequest = try request.urlRequest(baseURL: baseURL)
         for plugin in plugins {
-            request = try await plugin.prepare(request: request)
+            try await plugin.prepare(request: &urlRequest)
         }
 
-        return request
+        return urlRequest
     }
 }

@@ -1,9 +1,13 @@
 public struct SupportedCountriesOrRegionsParameters: Equatable, Encodable, Sendable {
-    /// Filters by ISO alpha-2 country codes using one or more comma-separated values.
-    public let countriesOrRegions: [String]
+    private let countriesOrRegions: String
+
+    /// Filters by ISO alpha-2 country codes.
+    public var countriesOrRegionsList: [String] {
+        countriesOrRegions.split { $0 == "," }.map(String.init)
+    }
 
     public init(countriesOrRegions: [String]) {
-        self.countriesOrRegions = countriesOrRegions
+        self.countriesOrRegions = countriesOrRegions.joined(separator: ",")
     }
 }
 

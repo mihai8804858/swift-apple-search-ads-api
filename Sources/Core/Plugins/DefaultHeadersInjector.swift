@@ -7,7 +7,7 @@ struct DefaultHeadersInjector: PluginType {
         headersInjector = HeadersInjector(strategy: .append, headers: defaultHTTPHeaders)
     }
 
-    func prepare(request: URLRequest) async throws -> URLRequest {
-        try await headersInjector.prepare(request: request)
+    func prepare(request: inout URLRequest) async throws {
+        try await headersInjector.prepare(request: &request)
     }
 }

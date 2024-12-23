@@ -18,7 +18,8 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/apple/swift-crypto", from: "3.10.0"),
         .package(url: "https://github.com/fumoboy007/swift-retry", from: "0.2.4"),
-        .package(url: "https://github.com/CreateAPI/URLQueryEncoder", from: "0.2.1")
+        .package(url: "https://github.com/CreateAPI/URLQueryEncoder", from: "0.2.1"),
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.17.6")
     ],
     targets: [
         .target(
@@ -33,7 +34,11 @@ let package = Package(
         ),
         .testTarget(
             name: "AppleSearchAdsTests",
-            dependencies: [.target(name: "AppleSearchAds")]
+            dependencies: [
+                .target(name: "AppleSearchAds"),
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
+                .product(name: "InlineSnapshotTesting", package: "swift-snapshot-testing")
+            ]
         )
     ],
     swiftLanguageModes: [.v6]

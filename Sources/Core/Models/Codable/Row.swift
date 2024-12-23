@@ -1,11 +1,12 @@
 /// The report metrics by time granularity.
-public struct Row: Codable, Equatable, Sendable {
+public struct Row<
+    Insights: Codable & Equatable & Sendable,
+    Metadata: Codable & Equatable & Sendable
+>: Codable, Equatable, Sendable {
     /// The bid recommendations according to currency type, including range and amount.
-    ///
-    /// See `KeywordInsights` and Get Keyword-Level Reports.
-    public let insights: [String: String]
-    /// Reporting request data.
-    public let metadata: [String: String]
+    public let insights: Insights?
+    /// Reporting request metadata.
+    public let metadata: Metadata
     /// The impressions that return in reports when there are fewer than 100 demographic dimensions,
     /// and fewer than 10 search terms. If `other` is `true`, the corresponding dimensions are null.
     public let other: Bool
@@ -40,8 +41,8 @@ public struct Row: Codable, Equatable, Sendable {
     public let granularity: [SpendRowExtended]
 
     public init(
-        insights: [String: String],
-        metadata: [String: String],
+        insights: Insights?,
+        metadata: Metadata,
         other: Bool,
         total: SpendRow,
         granularity: [SpendRowExtended]

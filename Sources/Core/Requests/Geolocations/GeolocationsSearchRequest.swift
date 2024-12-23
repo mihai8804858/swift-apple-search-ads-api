@@ -8,8 +8,16 @@ public struct GeolocationsSearchParameters: Equatable, Encodable, Sendable {
     public let countryCode: String?
     /// The country, admin area, or locality locations available for targeting.
     public let entity: GeolocationEntity?
-    /// The offset and limit pagination that limits the number of records returned.
-    public let pagination: Pagination?
+    /// The number of items to return per request.
+    ///
+    /// For most objects, the default is 20 and the maximum is 1000.
+    public let limit: Int?
+    /// The offset pagination that limits the number of returned records.
+    ///
+    /// The start of each page is offset by the specified number.
+    /// You can apply offset to most API calls, but not all GET endpoints support it.
+    /// The default is 0.
+    public let offset: Int?
 
     public init(
         query: String? = nil,
@@ -20,7 +28,8 @@ public struct GeolocationsSearchParameters: Equatable, Encodable, Sendable {
         self.query = query
         self.countryCode = countryCode
         self.entity = entity
-        self.pagination = pagination
+        self.limit = pagination?.limit
+        self.offset = pagination?.offset
     }
 }
 

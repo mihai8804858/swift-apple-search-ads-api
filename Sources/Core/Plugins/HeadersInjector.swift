@@ -9,10 +9,10 @@ struct HeadersInjector: PluginType {
     let strategy: Strategy
     let headers: [String: String]
 
-    func prepare(request: URLRequest) async throws -> URLRequest {
+    func prepare(request: inout URLRequest) async throws {
         switch strategy {
-        case .append: request.adding(headers: headers, replace: false)
-        case .set: request.adding(headers: headers, replace: true)
+        case .append: request.add(headers: headers, replace: false)
+        case .set: request.add(headers: headers, replace: true)
         }
     }
 }

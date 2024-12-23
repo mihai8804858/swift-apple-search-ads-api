@@ -4,7 +4,7 @@ public extension APIProvider {
     /// - Parameters:
     ///     - request: The report request body consisting of metrics and dimensions to use as filters.
     ///
-    /// - Returns: An object of type `Reporting`.
+    /// - Returns: An object of type `Reporting<Empty, ReportingCampaign>`.
     ///
     /// - Throws: An error of type `APIError`.
     ///
@@ -15,7 +15,7 @@ public extension APIProvider {
     /// The `orderBy` selector specifies fields to sort the records list by `ASCENDING` or `DESCENDING`.
     /// All `ReportingCampaign` fields are available to the `orderBy` selector
     /// except `servingStateReasons`, `app`, `app:{appName}`, and `app:{adamId}`.
-    func getCampaignsReport(request: ReportingRequest) async throws -> Response<Reporting> {
+    func getCampaignsReport(request: ReportingRequest) async throws -> Response<Reporting<Empty, ReportingCampaign>> {
         try await provider.requestDataModel(from: CampaignReportRequest(request: request))
     }
 
@@ -25,7 +25,7 @@ public extension APIProvider {
     ///     - campaignId: The unique identifier for the campaign.
     ///     - request: The report request body consisting of metrics and dimensions to use as filters.
     ///
-    /// - Returns: An object of type `Reporting`.
+    /// - Returns: An object of type `Reporting<Empty, ReportingAdGroup>`.
     ///
     /// - Throws: An error of type `APIError`.
     ///
@@ -34,7 +34,10 @@ public extension APIProvider {
     /// See the `groupBy` parameter description in the `ReportingRequest` for supported values per targeting dimension.
     /// The `orderBy` selector specifies fields to sort the records list by `ASCENDING` or `DESCENDING`.
     /// All `ReportingAdGroup` fields are available to the `orderBy` selector except `adGroupServingStateReasons`.
-    func getAdGroupsReport(campaignId: Int, request: ReportingRequest) async throws -> Response<Reporting> {
+    func getAdGroupsReport(
+        campaignId: Int,
+        request: ReportingRequest
+    ) async throws -> Response<Reporting<Empty, ReportingAdGroup>> {
         try await provider.requestDataModel(from: AdGroupReportRequest(campaignId: campaignId, request: request))
     }
 
@@ -45,7 +48,7 @@ public extension APIProvider {
     ///     - adGroupId: The unique identifier for the ad group.
     ///     - request: The report request body consisting of metrics and dimensions to use as filters.
     ///
-    /// - Returns: An object of type `Reporting`.
+    /// - Returns: An object of type `Reporting<KeywordInsights, ReportingKeyword>`.
     ///
     /// - Throws: An error of type `APIError`.
     ///
@@ -55,9 +58,9 @@ public extension APIProvider {
     /// All `ReportingKeyword` fields are available to the `orderBy` selector.
     func getKeywordsReport(
         campaignId: Int,
-        adGroupId: Int?,
+        adGroupId: Int? = nil,
         request: ReportingRequest
-    ) async throws -> Response<Reporting> {
+    ) async throws -> Response<Reporting<KeywordInsights, ReportingKeyword>> {
         try await provider.requestDataModel(from: KeywordReportRequest(
             campaignId: campaignId,
             adGroupId: adGroupId,
@@ -72,7 +75,7 @@ public extension APIProvider {
     ///     - adGroupId: The unique identifier for the ad group.
     ///     - request: The report request body consisting of metrics and dimensions to use as filters.
     ///
-    /// - Returns: An object of type `Reporting`.
+    /// - Returns: An object of type `Reporting<Empty, ReportingSearchTerm>`.
     ///
     /// - Throws: An error of type `APIError`.
     ///
@@ -84,9 +87,9 @@ public extension APIProvider {
     /// All `ReportingSearchTerm` fields are available to the `orderBy` selector.
     func getSearchTermsReport(
         campaignId: Int,
-        adGroupId: Int?,
+        adGroupId: Int? = nil,
         request: ReportingRequest
-    ) async throws -> Response<Reporting> {
+    ) async throws -> Response<Reporting<Empty, ReportingSearchTerm>> {
         try await provider.requestDataModel(from: SearchTermReportRequest(
             campaignId: campaignId,
             adGroupId: adGroupId,
@@ -100,7 +103,7 @@ public extension APIProvider {
     ///     - campaignId: The unique identifier for the campaign.
     ///     - request: The report request body consisting of metrics and dimensions to use as filters.
     ///
-    /// - Returns: An object of type `Reporting`.
+    /// - Returns: An object of type `Reporting<Empty, ReportingSearchTerm>`.
     ///
     /// - Throws: An error of type `APIError`.
     ///
@@ -109,7 +112,10 @@ public extension APIProvider {
     /// To filter results, use selector `Condition` operators and field values that the `ReportingAd` object specifies.
     /// You can only perform `GroupBy` on the `countryOrRegion` field.
     /// You can map your campaign installations by `adId` through the `AdServices` attribution framework.
-    func getSearchTermsReport(campaignId: Int, request: ReportingRequest) async throws -> Response<Reporting> {
+    func getSearchTermsReport(
+        campaignId: Int,
+        request: ReportingRequest
+    ) async throws -> Response<Reporting<Empty, ReportingSearchTerm>> {
         try await provider.requestDataModel(from: AdReportRequest(campaignId: campaignId, request: request))
     }
 

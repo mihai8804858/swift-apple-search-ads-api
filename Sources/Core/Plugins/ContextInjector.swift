@@ -9,10 +9,9 @@ struct ContextInjector: PluginType {
         self.provider = provider
     }
 
-    func prepare(request: URLRequest) async throws -> URLRequest {
-        guard let acl = try await provider().first else { return request }
+    func prepare(request: inout URLRequest) async throws {
+        guard let acl = try await provider().first else { return }
         let header = ["X-AP-Context": "orgId=\(acl.orgId)"]
-
-        return request.adding(headers: header, replace: true)
+        request.add(headers: header, replace: true)
     }
 }

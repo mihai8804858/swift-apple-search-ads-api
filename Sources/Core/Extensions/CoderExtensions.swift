@@ -23,7 +23,7 @@ extension URLQueryEncoder {
         let encoder = URLQueryEncoder()
         encoder.dateEncodingStrategy = .iso8601
         encoder.isDeepObject = false
-        encoder.explode = false
+        encoder.explode = true
         encoder.delimiter = ","
         return encoder
     }

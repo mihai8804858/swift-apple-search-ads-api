@@ -50,13 +50,13 @@ public struct BudgetOrderCreate: Codable, Equatable, Sendable {
         }
     }
 
-    /// Contains the details of the budget order.
-    public let bo: Bo
     /// The identifier of the organization that owns the campaign. Currently, only one orgId is supported.
     public let orgIds: [Int]
+    /// Contains the details of the budget order.
+    public let bo: Bo
 
-    public init(bo: Bo, orgIds: [Int]) {
-        self.bo = bo
+    public init(orgIds: [Int], bo: Bo) {
         self.orgIds = orgIds
+        self.bo = bo
     }
 }
