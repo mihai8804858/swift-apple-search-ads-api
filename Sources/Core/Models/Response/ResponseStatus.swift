@@ -1,10 +1,14 @@
 /// HTTP response status code.
-public struct ResponseStatus: RawRepresentable, Equatable, Comparable, Sendable {
+public struct ResponseStatus: RawRepresentable, Equatable, Comparable, Sendable, ExpressibleByIntegerLiteral {
     /// The HTTP response status.
     public let rawValue: Int
 
     public init(rawValue: Int) {
         self.rawValue = rawValue
+    }
+
+    public init(integerLiteral value: Int) {
+        self.rawValue = value
     }
 
     public static func < (lhs: ResponseStatus, rhs: ResponseStatus) -> Bool {

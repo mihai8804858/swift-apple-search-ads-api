@@ -5,6 +5,7 @@ import InlineSnapshotTesting
 class SnapshotTestCase: XCTestCase {
     let snapshotTestsProvider = Provider(
         baseURL: URL(string: "https://api.searchads.apple.com")!,
+        session: URLSession.shared,
         plugins: [
             HostInjector(),
             AcceptHeadersInjector(),
@@ -28,7 +29,9 @@ class SnapshotTestCase: XCTestCase {
                     expiresIn: 3600
                 )
             }
-        ]
+        ],
+        retryBehavior: .onConnectionLost,
+        exponentialBackoffBehavior: .onRetryableError
     )
 
     override func invokeTest() {

@@ -5,7 +5,29 @@ struct RetryBehavior: Sendable {
     let errorPredicate: @Sendable (Error) -> Bool
     let recovery: @Sendable (Error) async throws -> Void
 
-    static let none = RetryBehavior(maxAttempts: 0, errorPredicate: { _ in false }, recovery: { _ in })
+    static let none = RetryBehavior(
+        maxAttempts: 0,
+        errorPredicate: { _ in false },
+        recovery: { _ in }
+    )
+
+    static let onConnectionLost = RetryBehavior(
+        maxAttempts: 3,
+        errorPredicate: \.isConnectionLost,
+        recovery: { _ in }
+    )
+
+    static func onUnauthorized(_ store: AccessTokenStore) -> RetryBehavior {
+        RetryBehavior(
+            maxAttempts: 3,
+            errorPredicate: { $0.isUnauthorized || $0.isConnectionLost },
+            recovery: { error in
+                if error.isUnauthorized {
+                    try await store.refreshToken()
+                }
+            }
+        )
+    }
 }
 
 func withRetryBehavior<T>(

@@ -13,7 +13,7 @@ extension JSONEncoder {
     static var `default`: JSONEncoder {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
-        encoder.outputFormatting = .sortedKeys
+        encoder.outputFormatting = [.sortedKeys, .prettyPrinted]
         return encoder
     }
 }

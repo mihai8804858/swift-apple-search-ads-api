@@ -1,5 +1,5 @@
 /// A container for paginated API responses.
-public struct Paginated<T: Decodable & Sendable>: Decodable, Sendable {
+public struct Paginated<T: Sendable>: Sendable {
     /// Response data that the API provides.
     public let data: [T]
     /// Page detail information that the API provides.
@@ -11,4 +11,6 @@ public struct Paginated<T: Decodable & Sendable>: Decodable, Sendable {
     }
 }
 
+extension Paginated: Decodable where T: Decodable {}
+extension Paginated: Encodable where T: Encodable {}
 extension Paginated: Equatable where T: Equatable {}

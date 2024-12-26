@@ -9,7 +9,7 @@ public struct ErrorResponse: Codable, Equatable, Sendable {
         /// A system-assigned error code.
         public let messageCode: String?
 
-        public init(field: String, message: String, messageCode: String) {
+        public init(field: String?, message: String?, messageCode: String?) {
             self.field = field
             self.message = message
             self.messageCode = messageCode

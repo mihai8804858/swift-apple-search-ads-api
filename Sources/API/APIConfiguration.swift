@@ -5,6 +5,8 @@ import Foundation
 public struct APIConfiguration: Sendable {
     private static let allowedJWTExpirationDurationRange: ClosedRange<TimeInterval> = 0...86400 * 180
 
+    /// `URLSession` to use to perform the requests.
+    public let session: URLSession
     /// You receive your client identifier when you upload a public key to App Store Search Ads UI.
     public let clientIdentifier: String
     /// You receive your team identifier when you upload a public key to App Store Search Ads UI.
@@ -21,12 +23,14 @@ public struct APIConfiguration: Sendable {
     /// Create an instance of `APIConfiguration`.
     ///
     /// - Parameters:
+    ///     - session: `URLSession` to use to perform the requests.
     ///     - clientIdentifier: You receive your client identifier when you upload a public key.
     ///     - teamIdentifier: You receive your team identifier when you upload a public key.
     ///     - keyIdentifier: You receive your key identifier when you upload a public key.
     ///     - privateKey: API users need to create a private key and upload it to App Store Search Ads UI.
     ///     - jwtExpirationDuration: Defines the JWT expiration duration, which may not exceed 180 days.
     public init(
+        session: URLSession = .shared,
         clientIdentifier: String,
         teamIdentifier: String,
         keyIdentifier: String,
@@ -44,17 +48,20 @@ public struct APIConfiguration: Sendable {
         self.clientIdentifier = clientIdentifier
         self.teamIdentifier = teamIdentifier
         self.keyIdentifier = keyIdentifier
+        self.session = session
     }
 
     /// Create an instance of `APIConfiguration`.
     ///
     /// - Parameters:
+    ///     - session: `URLSession` to use to perform the requests.
     ///     - clientIdentifier: You receive your client identifier when you upload a public key.
     ///     - teamIdentifier: You receive your team identifier when you upload a public key.
     ///     - keyIdentifier: You receive your key identifier when you upload a public key.
     ///     - privateKeyURL: API users need to create a private key and upload it to App Store Search Ads UI.
     ///     - jwtExpirationDuration: Defines the JWT expiration duration, which may not exceed 180 days.
     public init(
+        session: URLSession = .shared,
         clientIdentifier: String,
         teamIdentifier: String,
         keyIdentifier: String,
@@ -70,5 +77,6 @@ public struct APIConfiguration: Sendable {
         self.clientIdentifier = clientIdentifier
         self.teamIdentifier = teamIdentifier
         self.keyIdentifier = keyIdentifier
+        self.session = session
     }
 }

@@ -1,24 +1,26 @@
 import Foundation
 
 actor ContextStore: Sendable {
-    private let provider: Provider
+    private let provider: ProviderType
     private var cachedUserACL: Response<[UserACL]>?
     private var cachedMeDetail: Response<MeDetail>?
 
-    init(token: @escaping AuthorizationInjector.TokenProvider) {
-        self.provider = Provider(
+    init(provider: ProviderType) {
+        self.provider = provider
+    }
+
+    init(configuration: APIConfiguration, token: @escaping AuthorizationInjector.TokenProvider) {
+        self.init(provider: Provider(
             baseURL: URL(string: "https://api.searchads.apple.com")!,
+            session: configuration.session,
             plugins: [
                 HostInjector(),
                 AcceptHeadersInjector(),
                 AuthorizationInjector(provider: token)
             ],
-            retryBehavior: RetryBehavior(
-                maxAttempts: 3,
-                errorPredicate: \.isConnectionLost,
-                recovery: { _ in }
-            )
-        )
+            retryBehavior: .onConnectionLost,
+            exponentialBackoffBehavior: .onRetryableError
+        ))
     }
 
     func userACL() async throws -> Response<[UserACL]> {

@@ -2,24 +2,33 @@ import Foundation
 
 actor AccessTokenStore: Sendable {
     private let configuration: APIConfiguration
-    private let provider: Provider
+    private let provider: ProviderType
     private let jwtStore: JWTStore
     private var cachedToken: Response<AccessToken>?
     private var creationDate: Date?
 
-    init(configuration: APIConfiguration, jwtAudience: String) {
+    init(configuration: APIConfiguration, jwtStore: JWTStore, provider: ProviderType) {
         self.configuration = configuration
-        self.jwtStore = JWTStore(configuration: configuration, audience: jwtAudience)
-        self.provider = Provider(
-            baseURL: URL(string: "https://appleid.apple.com")!,
-            plugins: [
-                HostInjector(),
-                AcceptHeadersInjector()
-            ],
-            retryBehavior: RetryBehavior(
-                maxAttempts: 3,
-                errorPredicate: \.isConnectionLost,
-                recovery: { _ in }
+        self.jwtStore = jwtStore
+        self.provider = provider
+    }
+
+    init(configuration: APIConfiguration, jwtAudience: String) {
+        self.init(
+            configuration: configuration,
+            jwtStore: JWTStore(
+                configuration: configuration,
+                audience: jwtAudience
+            ),
+            provider: Provider(
+                baseURL: URL(string: "https://appleid.apple.com")!,
+                session: configuration.session,
+                plugins: [
+                    HostInjector(),
+                    AcceptHeadersInjector()
+                ],
+                retryBehavior: .onConnectionLost,
+                exponentialBackoffBehavior: .onRetryableError
             )
         )
     }

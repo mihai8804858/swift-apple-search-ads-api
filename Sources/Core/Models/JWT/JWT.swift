@@ -1,7 +1,7 @@
 import Foundation
 @preconcurrency import Crypto
 
-struct JWT: Equatable, Codable, Sendable {
+struct JWT: Equatable, Sendable {
     struct Header: Equatable, Codable, Sendable {
         enum CodingKeys: String, CodingKey {
             case algorithm = "alg"
@@ -44,27 +44,38 @@ struct JWT: Equatable, Codable, Sendable {
         }
     }
 
+    static func == (lhs: JWT, rhs: JWT) -> Bool {
+        lhs.header == rhs.header &&
+        lhs.clientIdentifier == rhs.clientIdentifier &&
+        lhs.teamIdentifier == rhs.teamIdentifier &&
+        lhs.audience == rhs.audience &&
+        lhs.expireDuration == rhs.expireDuration
+    }
+
     let header: Header
     let clientIdentifier: String
     let teamIdentifier: String
     let audience: String
     let expireDuration: TimeInterval
+    let issuedTime: @Sendable () -> Date
 
     init(
         clientIdentifier: String,
         teamIdentifier: String,
         keyIdentifier: String,
         audience: String,
-        expireDuration: TimeInterval
+        expireDuration: TimeInterval,
+        issuedTime: @escaping @Sendable () -> Date = { Date() }
     ) {
         self.header = Header(keyIdentifier: keyIdentifier)
         self.clientIdentifier = clientIdentifier
         self.teamIdentifier = teamIdentifier
         self.audience = audience
         self.expireDuration = expireDuration
+        self.issuedTime = issuedTime
     }
 
-    func signedToken(using privateKey: P256.Signing.PrivateKey) throws -> String {
+    func signed(using privateKey: P256.Signing.PrivateKey) throws -> String {
         let rawDigest = try digest()
         guard let digest = rawDigest.data(using: .utf8) else { throw JWT.Error.invalidDigest }
         let signature = try privateKey.signature(for: digest)
@@ -73,10 +84,8 @@ struct JWT: Equatable, Codable, Sendable {
         return "\(rawDigest).\(encoded)"
     }
 
-    // MARK: - Private
-
-    private func digest() throws -> String {
-        let issuedTime = Date()
+    func digest() throws -> String {
+        let issuedTime = issuedTime()
         let expirationTime = issuedTime.addingTimeInterval(expireDuration)
         let payload = Payload(
             audience: audience,
