@@ -39,6 +39,7 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 701
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -51,11 +52,11 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
                   "currency" : "USD"
                 },
                 "campaignId" : 1135,
-                "creationTime" : "1970-01-12T13:46:40Z",
+                "creationTime" : "1970-01-12T13:46:40.000",
                 "deleted" : false,
                 "id" : 1789,
                 "matchType" : "BROAD",
-                "modificationTime" : "1970-01-24T03:33:20Z",
+                "modificationTime" : "1970-01-24T03:33:20.000",
                 "status" : "ACTIVE",
                 "text" : "keyword 1"
               },
@@ -66,11 +67,11 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
                   "currency" : "USD"
                 },
                 "campaignId" : 2135,
-                "creationTime" : "1970-01-12T13:46:40Z",
+                "creationTime" : "1970-01-12T13:46:40.000",
                 "deleted" : true,
                 "id" : 2789,
                 "matchType" : "EXACT",
-                "modificationTime" : "1970-01-24T03:33:20Z",
+                "modificationTime" : "1970-01-24T03:33:20.000",
                 "status" : "PAUSED",
                 "text" : "keyword 2"
               }
@@ -111,6 +112,7 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 555
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -125,7 +127,7 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
                 "deleted" : false,
                 "id" : 1789,
                 "matchType" : "BROAD",
-                "modificationTime" : "1970-01-12T13:46:40Z",
+                "modificationTime" : "1970-01-12T13:46:40.000",
                 "status" : "ACTIVE",
                 "text" : "keyword 1"
               },
@@ -138,7 +140,7 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
                 "deleted" : true,
                 "id" : 2789,
                 "matchType" : "EXACT",
-                "modificationTime" : "1970-01-24T03:33:20Z",
+                "modificationTime" : "1970-01-24T03:33:20.000",
                 "status" : "PAUSED",
                 "text" : "keyword 2"
               }
@@ -175,6 +177,7 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 16
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -239,6 +242,7 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 472
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345

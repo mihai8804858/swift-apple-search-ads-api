@@ -53,6 +53,7 @@ final class RequestTests: XCTestCase {
         XCTAssertEqual(urlRequest.httpMethod, "GET")
         XCTAssertEqual(urlRequest.allHTTPHeaderFields, [
             "Content-Type": "application/json",
+            "Content-Length": "194",
             "Header 1": "Value 1",
             "Header 2": "Value 2"
         ])

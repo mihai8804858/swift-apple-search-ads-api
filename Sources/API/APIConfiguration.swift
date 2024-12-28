@@ -23,18 +23,18 @@ public struct APIConfiguration: Sendable {
     /// Create an instance of `APIConfiguration`.
     ///
     /// - Parameters:
-    ///     - session: `URLSession` to use to perform the requests.
     ///     - clientIdentifier: You receive your client identifier when you upload a public key.
     ///     - teamIdentifier: You receive your team identifier when you upload a public key.
     ///     - keyIdentifier: You receive your key identifier when you upload a public key.
     ///     - privateKey: API users need to create a private key and upload it to App Store Search Ads UI.
+    ///     - session: `URLSession` to use to perform the requests.
     ///     - jwtExpirationDuration: Defines the JWT expiration duration, which may not exceed 180 days.
     public init(
-        session: URLSession = .shared,
         clientIdentifier: String,
         teamIdentifier: String,
         keyIdentifier: String,
         privateKey: String,
+        session: URLSession = .shared,
         jwtExpirationDuration: TimeInterval = 86400
     ) throws {
         guard Self.allowedJWTExpirationDurationRange ~= jwtExpirationDuration else {
@@ -54,18 +54,18 @@ public struct APIConfiguration: Sendable {
     /// Create an instance of `APIConfiguration`.
     ///
     /// - Parameters:
-    ///     - session: `URLSession` to use to perform the requests.
     ///     - clientIdentifier: You receive your client identifier when you upload a public key.
     ///     - teamIdentifier: You receive your team identifier when you upload a public key.
     ///     - keyIdentifier: You receive your key identifier when you upload a public key.
     ///     - privateKeyURL: API users need to create a private key and upload it to App Store Search Ads UI.
+    ///     - session: `URLSession` to use to perform the requests.
     ///     - jwtExpirationDuration: Defines the JWT expiration duration, which may not exceed 180 days.
     public init(
-        session: URLSession = .shared,
         clientIdentifier: String,
         teamIdentifier: String,
         keyIdentifier: String,
         privateKeyURL: URL,
+        session: URLSession = .shared,
         jwtExpirationDuration: TimeInterval = 86400
     ) throws {
         guard Self.allowedJWTExpirationDurationRange ~= jwtExpirationDuration else {

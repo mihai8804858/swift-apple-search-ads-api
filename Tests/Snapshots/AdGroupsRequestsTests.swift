@@ -48,6 +48,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 1859
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -65,9 +66,9 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
               },
               "deleted" : false,
               "displayStatus" : "PAUSED",
-              "endTime" : "1970-01-24T03:33:20Z",
+              "endTime" : "1970-01-24T03:33:20.000",
               "id" : 456,
-              "modificationTime" : "1970-01-18T08:40:00Z",
+              "modificationTime" : "1970-01-18T08:40:00.000",
               "name" : "My Ad Group",
               "orgId" : 789,
               "paymentModel" : "PAYG",
@@ -77,7 +78,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
                 "AD_GROUP_PAUSED_BY_USER"
               ],
               "servingStatus" : "NOT_RUNNING",
-              "startTime" : "1970-01-12T13:46:40Z",
+              "startTime" : "1970-01-12T13:46:40.000",
               "status" : "ENABLED",
               "targetingDimensions" : {
                 "adminArea" : {
@@ -197,6 +198,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 460
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -244,8 +246,14 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 4
+            Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
+
+            {
+
+            }
             """
         }
     }
@@ -309,6 +317,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 1541
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -323,9 +332,9 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
                 "amount" : "2",
                 "currency" : "USD"
               },
-              "endTime" : "1970-01-24T03:33:20Z",
+              "endTime" : "1970-01-24T03:33:20.000",
               "name" : "My Campaign Ad Group",
-              "startTime" : "1970-01-12T13:46:40Z",
+              "startTime" : "1970-01-12T13:46:40.000",
               "status" : "PAUSED",
               "targetingDimensions" : {
                 "adminArea" : {

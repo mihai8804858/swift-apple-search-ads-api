@@ -14,8 +14,10 @@ final class CampaignsRequestsTests: SnapshotTestCase {
             budgetOrders: [246, 135],
             countriesOrRegions: ["US", "GB"],
             countryOrRegionServingStateReasons: [
-                .appNotEligible,
-                .appNotPublishedYet
+                "US": [
+                    .appNotEligible,
+                    .appNotPublishedYet
+                ]
             ],
             creationTime: Date(timeIntervalSince1970: 1_000_000),
             dailyBudgetAmount: Money(amount: "2", currency: "USD"),
@@ -46,6 +48,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 1201
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -66,18 +69,20 @@ final class CampaignsRequestsTests: SnapshotTestCase {
                 "US",
                 "GB"
               ],
-              "countryOrRegionServingStateReasons" : [
-                "APP_NOT_ELIGIBLE",
-                "APP_NOT_PUBLISHED_YET"
-              ],
-              "creationTime" : "1970-01-12T13:46:40Z",
+              "countryOrRegionServingStateReasons" : {
+                "US" : [
+                  "APP_NOT_ELIGIBLE",
+                  "APP_NOT_PUBLISHED_YET"
+                ]
+              },
+              "creationTime" : "1970-01-12T13:46:40.000",
               "dailyBudgetAmount" : {
                 "amount" : "2",
                 "currency" : "USD"
               },
               "deleted" : false,
               "displayStatus" : "ON_HOLD",
-              "endTime" : "1970-01-24T03:33:20Z",
+              "endTime" : "1970-01-24T03:33:20.000",
               "id" : 123,
               "locInvoiceDetails" : {
                 "billingContactEmail" : "billing@email.com",
@@ -86,7 +91,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
                 "clientName" : "Client Name",
                 "orderNumber" : "123abc"
               },
-              "modificationTime" : "1970-01-18T08:40:00Z",
+              "modificationTime" : "1970-01-18T08:40:00.000",
               "name" : "My Campaign",
               "orgId" : 456,
               "paymentModel" : "LOC",
@@ -95,7 +100,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
                 "BO_START_DATE_IN_FUTURE"
               ],
               "servingStatus" : "NOT_RUNNING",
-              "startTime" : "1970-01-14T21:20:00Z",
+              "startTime" : "1970-01-14T21:20:00.000",
               "status" : "PAUSED",
               "supplySources" : [
                 "APPSTORE_SEARCH_RESULTS",
@@ -133,6 +138,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 626
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -225,6 +231,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 479
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345

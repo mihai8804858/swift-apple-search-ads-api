@@ -31,6 +31,7 @@ final class AdsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 420
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -38,12 +39,12 @@ final class AdsRequestsTests: SnapshotTestCase {
             {
               "adGroupId" : 67890,
               "campaignId" : 12345,
-              "creationTime" : "1970-01-12T13:46:40Z",
+              "creationTime" : "1970-01-12T13:46:40.000",
               "creativeId" : 98765,
               "creativeType" : "CUSTOM_PRODUCT_PAGE",
               "deleted" : false,
               "id" : 13579,
-              "modificationTime" : "1970-01-24T03:33:20Z",
+              "modificationTime" : "1970-01-24T03:33:20.000",
               "name" : "My Ad",
               "orgId" : 24680,
               "servingStateReasons" : [
@@ -101,6 +102,7 @@ final class AdsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 460
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -149,8 +151,14 @@ final class AdsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 4
+            Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
+
+            {
+
+            }
             """
         }
     }
@@ -194,6 +202,7 @@ final class AdsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 399
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -201,12 +210,12 @@ final class AdsRequestsTests: SnapshotTestCase {
             {
               "adGroupId" : 67890,
               "campaignId" : 12345,
-              "creationTime" : "1970-01-12T13:46:40Z",
+              "creationTime" : "1970-01-12T13:46:40.000",
               "creativeId" : 98765,
               "creativeType" : "CUSTOM_PRODUCT_PAGE",
               "deleted" : false,
               "id" : 13579,
-              "modificationTime" : "1970-01-24T03:33:20Z",
+              "modificationTime" : "1970-01-24T03:33:20.000",
               "name" : "My Ad",
               "orgId" : 24680,
               "servingStateReasons" : [

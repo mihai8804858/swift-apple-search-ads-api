@@ -177,11 +177,11 @@ public struct Campaign: Codable, Equatable, Sendable {
     }
 
     /// A unique identifier for the campaign that you can use as a campaignid in endpoint resources.
-    public let id: Int
+    public let id: Int?
     /// The identifier of the organization that owns the campaign.
     ///
     /// Your `orgId` is the same as your account in the Apple Search Ads UI.
-    public let orgId: Int
+    public let orgId: Int?
     /// Your unique App Store app identifier.
     ///
     /// You can obtain your app `adamId` through Search for iOS apps, Get a Campaign, or Get all Campaigns.
@@ -194,21 +194,21 @@ public struct Campaign: Codable, Equatable, Sendable {
     ///
     /// If you update a `budgetAmount`, the updated amount must be greater than the previous budgetAmount and
     /// must exceed the lifetime spend of the campaign.
-    public let budgetAmount: Money
+    public let budgetAmount: Money?
     /// The budget orders that you assign to the campaign.
     ///
     /// This applies only to campaigns with a line-of-credit payment model.
     /// This field is updatable.
-    public let budgetOrders: [Int]
+    public let budgetOrders: [Int]?
     /// The App Store geoterritories where you’re promoting your app.
     ///
     /// The default value is US.
     /// Use an alpha-2 country code value , such as US, for the locations where you’re promoting.
     public let countriesOrRegions: [String]
     /// The map of reasons that returns when a campaign isn’t running.
-    public let countryOrRegionServingStateReasons: [CountryOrRegionsServingStateReason]
+    public let countryOrRegionServingStateReasons: [String: [CountryOrRegionsServingStateReason]]?
     /// The date and time of the creation of the campaign object.
-    public let creationTime: Date
+    public let creationTime: Date?
     /// Your daily budget.
     ///
     /// - A `dailyBudgetAmount` is required field for all new campaigns, even if a `budgetAmount` is specified.
@@ -217,23 +217,23 @@ public struct Campaign: Codable, Equatable, Sendable {
     /// - Your `dailyBudgetAmount` must be greater than or equal to the `defaultBidAmount` in your ad group.
     public let dailyBudgetAmount: Money
     /// The indicator of whether the campaign is soft-deleted.
-    public let deleted: Bool
+    public let deleted: Bool?
     /// The status of the campaign.
     ///
     /// The status resolves according to `servingStatus` and additional criteria.
-    public let displayStatus: DisplayStatus
+    public let displayStatus: DisplayStatus?
     /// The scheduled end time and date for the campaign.
     ///
     /// - The `endTime` must be after the `startTime`.
     /// - The `endTime` is updatable until you reach the designated time.
     /// - The `endTime` must be in UTC.
-    public let endTime: Date
+    public let endTime: Date?
     /// The standard invoice details that you can set and edit using the LOCInvoiceDetails object.
     ///
     /// This field is updatable.
-    public let locInvoiceDetails: LOCInvoiceDetails
+    public let locInvoiceDetails: LOCInvoiceDetails?
     /// The date and time of the most recent modification of the object.
-    public let modificationTime: Date
+    public let modificationTime: Date?
     /// The name of the campaign, which is unique within an organization.
     ///
     /// This field is updatable.
@@ -244,49 +244,49 @@ public struct Campaign: Codable, Equatable, Sendable {
     /// If you don’t set a payment model, campaigns can’t run.
     /// If you don’t select a payment model, you can still create campaigns.
     /// You must select a payment model before a campaign is eligible to run.
-    public let paymentModel: PaymentModel
+    public let paymentModel: PaymentModel?
     /// The status of the campaign.
-    public let servingStatus: ServingStatus
+    public let servingStatus: ServingStatus?
     /// A list of reasons that displays when a campaign can’t run.
-    public let servingStateReasons: [ServingStateReason]
+    public let servingStateReasons: [ServingStateReason]?
     /// The scheduled start time and date for the campaign.
     ///
     /// The `startTime` must be greater than the current time, and before the campaign endTime, if you set it.
     /// If you don’t set a `startTime`, the campaign defaults to the campaign request timestamp
     /// and the `startTime` is updatable until you reach the designated time.
     /// The `startTime` must be in UTC.
-    public let startTime: Date
+    public let startTime: Date?
     /// The user-controlled status to enable or pause the campaign.
     ///
     /// This field is updatable.
-    public let status: Status
+    public let status: Status?
     /// The ad placements for a campaign.
-    public let supplySources: [SupplySource]
+    public let supplySources: [SupplySource]?
 
     public init(
-        id: Int,
-        orgId: Int,
+        id: Int? = nil,
+        orgId: Int? = nil,
         adamId: Int,
         adChannelType: AdChannelType,
         billingEvent: BillingEventType,
-        budgetAmount: Money,
-        budgetOrders: [Int],
+        budgetAmount: Money? = nil,
+        budgetOrders: [Int]? = nil,
         countriesOrRegions: [String],
-        countryOrRegionServingStateReasons: [CountryOrRegionsServingStateReason],
-        creationTime: Date,
+        countryOrRegionServingStateReasons: [String: [CountryOrRegionsServingStateReason]]? = nil,
+        creationTime: Date? = nil,
         dailyBudgetAmount: Money,
-        deleted: Bool,
-        displayStatus: DisplayStatus,
-        endTime: Date,
-        locInvoiceDetails: LOCInvoiceDetails,
-        modificationTime: Date,
+        deleted: Bool? = nil,
+        displayStatus: DisplayStatus? = nil,
+        endTime: Date? = nil,
+        locInvoiceDetails: LOCInvoiceDetails? = nil,
+        modificationTime: Date? = nil,
         name: String,
-        paymentModel: PaymentModel,
-        servingStatus: ServingStatus,
-        servingStateReasons: [ServingStateReason],
-        startTime: Date,
-        status: Status,
-        supplySources: [SupplySource]
+        paymentModel: PaymentModel? = nil,
+        servingStatus: ServingStatus? = nil,
+        servingStateReasons: [ServingStateReason]? = nil,
+        startTime: Date? = nil,
+        status: Status? = nil,
+        supplySources: [SupplySource]? = nil
     ) {
         self.id = id
         self.orgId = orgId

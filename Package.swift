@@ -19,6 +19,7 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-crypto", from: "3.10.0"),
         .package(url: "https://github.com/fumoboy007/swift-retry", from: "0.2.4"),
         .package(url: "https://github.com/CreateAPI/URLQueryEncoder", from: "0.2.1"),
+        .package(url: "https://github.com/pointfreeco/swift-clocks", from: "1.0.6"),
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.17.6")
     ],
     targets: [
@@ -36,6 +37,7 @@ let package = Package(
             name: "AppleSearchAdsTests",
             dependencies: [
                 .target(name: "AppleSearchAds"),
+                .product(name: "Clocks", package: "swift-clocks"),
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
                 .product(name: "InlineSnapshotTesting", package: "swift-snapshot-testing")
             ]

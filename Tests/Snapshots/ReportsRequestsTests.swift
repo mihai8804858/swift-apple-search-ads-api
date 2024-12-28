@@ -30,6 +30,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 777
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -110,6 +111,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 786
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -184,6 +186,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 771
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -262,6 +265,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 762
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -340,6 +344,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 762
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -418,6 +423,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 762
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -496,6 +502,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 762
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -563,6 +570,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 460
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345

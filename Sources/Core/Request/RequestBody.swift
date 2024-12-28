@@ -10,8 +10,11 @@ struct RequestBody: Sendable {
 
     static func json(_ value: Value?) -> RequestBody {
         RequestBody(value: value, contentType: "application/json") { value in
-            guard let value else { return nil }
-            return try JSONEncoder.default.encode(value)
+            if let value {
+                return try JSONEncoder.default.encode(value)
+            } else {
+                return try JSONEncoder.default.encode(Empty())
+            }
         }
     }
 

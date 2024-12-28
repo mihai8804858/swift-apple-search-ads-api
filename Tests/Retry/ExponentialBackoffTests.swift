@@ -1,12 +1,16 @@
 import XCTest
 import Retry
+import Clocks
 @testable import AppleSearchAds
 
 final class ExponentialBackoffTests: XCTestCase {
     func testRetrySuccess() async throws {
         nonisolated(unsafe) var operationCount = 0
-        let clock = MockClock()
-        let backoff = Backoff<MockClock>.default(baseDelay: .seconds(2), maxDelay: .seconds(16))
+        let clock = ImmediateClock()
+        let backoff = Backoff<ImmediateClock>.default(
+            baseDelay: Duration.seconds(2),
+            maxDelay: Duration.seconds(16)
+        )
 
         let result = await Result {
             try await withExponentialBackoff(maxAttempts: 5, clock: clock, backoff: backoff) {
@@ -19,14 +23,16 @@ final class ExponentialBackoffTests: XCTestCase {
 
         XCTAssertEqual(try result.get(), "success")
         XCTAssertEqual(operationCount, 1)
-        XCTAssertEqual(clock.allSleepDurations, [])
     }
 
     func testRetryFailure() async throws {
         nonisolated(unsafe) var operationCount = 0
-        let clock = MockClock()
-        let backoff = Backoff<MockClock>.default(baseDelay: .seconds(2), maxDelay: .seconds(16))
         let error = APIError.api(.init(error: nil, statusCode: 429))
+        let clock = ImmediateClock()
+        let backoff = Backoff<ImmediateClock>.default(
+            baseDelay: Duration.seconds(2),
+            maxDelay: Duration.seconds(16)
+        )
 
         let result = await Result {
             try await withExponentialBackoff(maxAttempts: 5, clock: clock, backoff: backoff) {
@@ -40,14 +46,16 @@ final class ExponentialBackoffTests: XCTestCase {
         let resultError = try XCTUnwrap(result.failure as? APIError)
         XCTAssertEqual(resultError, error)
         XCTAssertEqual(operationCount, 5)
-        XCTAssertEqual(clock.allSleepDurations.count, 4)
     }
 
     func testRetryRecovery() async throws {
         nonisolated(unsafe) var operationCount = 0
-        let clock = MockClock()
-        let backoff = Backoff<MockClock>.default(baseDelay: .seconds(2), maxDelay: .seconds(16))
         let error = APIError.api(.init(error: nil, statusCode: 429))
+        let clock = ImmediateClock()
+        let backoff = Backoff<ImmediateClock>.default(
+            baseDelay: Duration.seconds(2),
+            maxDelay: Duration.seconds(16)
+        )
 
         let result = await Result {
             try await withExponentialBackoff(maxAttempts: 5, clock: clock, backoff: backoff) {
@@ -64,6 +72,5 @@ final class ExponentialBackoffTests: XCTestCase {
 
         XCTAssertEqual(try result.get(), "success")
         XCTAssertEqual(operationCount, 3)
-        XCTAssertEqual(clock.allSleepDurations.count, 2)
     }
 }

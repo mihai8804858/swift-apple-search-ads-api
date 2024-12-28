@@ -43,3 +43,4 @@ ignoreWords:
   - geodimensions
   - bidded
   - searchterms
+  - posix

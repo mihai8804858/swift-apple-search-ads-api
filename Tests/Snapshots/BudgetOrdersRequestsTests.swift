@@ -24,6 +24,7 @@ final class BudgetOrdersRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 524
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -36,12 +37,12 @@ final class BudgetOrdersRequestsTests: SnapshotTestCase {
                   "currency" : "USD"
                 },
                 "clientName" : "Client Name",
-                "endDate" : "1970-01-24T03:33:20Z",
+                "endDate" : "1970-01-24T03:33:20.000",
                 "name" : "Order Name",
                 "orderNumber" : "123",
                 "primaryBuyerEmail" : "buyer@email.com",
                 "primaryBuyerName" : "Buyer Name",
-                "startDate" : "1970-01-12T13:46:40Z",
+                "startDate" : "1970-01-12T13:46:40.000",
                 "supplySources" : [
                   "APPSTORE_SEARCH_RESULTS",
                   "APPSTORE_SEARCH_TAB"
@@ -76,6 +77,7 @@ final class BudgetOrdersRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 432
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
@@ -88,12 +90,12 @@ final class BudgetOrdersRequestsTests: SnapshotTestCase {
                   "currency" : "USD"
                 },
                 "clientName" : "Client Name",
-                "endDate" : "1970-01-24T03:33:20Z",
+                "endDate" : "1970-01-24T03:33:20.000",
                 "name" : "Order Name",
                 "orderNumber" : "123",
                 "primaryBuyerEmail" : "buyer@email.com",
                 "primaryBuyerName" : "Buyer Name",
-                "startDate" : "1970-01-12T13:46:40Z"
+                "startDate" : "1970-01-12T13:46:40.000"
               },
               "orgIds" : [
                 12345,

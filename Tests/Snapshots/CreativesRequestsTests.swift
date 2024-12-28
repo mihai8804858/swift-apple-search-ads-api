@@ -24,15 +24,16 @@ final class CreativesRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 334
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345
 
             {
               "adamId" : 456,
-              "creationTime" : "1970-01-12T13:46:40Z",
+              "creationTime" : "1970-01-12T13:46:40.000",
               "id" : 123,
-              "modificationTime" : "1970-01-24T03:33:20Z",
+              "modificationTime" : "1970-01-24T03:33:20.000",
               "name" : "My Creative",
               "orgId" : 789,
               "productPageId" : "page-id",
@@ -94,6 +95,7 @@ final class CreativesRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
+            Content-Length: 492
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-AP-Context: orgId=12345

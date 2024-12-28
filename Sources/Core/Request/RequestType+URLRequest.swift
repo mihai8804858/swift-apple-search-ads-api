@@ -19,6 +19,7 @@ extension RequestType {
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
         if let body, let bodyData = try body.encode(body.value) {
+            request.setValue(String(bodyData.count), forHTTPHeaderField: "Content-Length")
             request.setValue(body.contentType, forHTTPHeaderField: "Content-Type")
             request.httpBody = bodyData
         }
