@@ -4,9 +4,9 @@
 /// match. Use `bidRecommendation` to optimize campaign performance through your Search Match discovery campaigns.
 public struct KeywordInsights: Codable, Equatable, Sendable {
     /// A bid recommendation for a keyword.
-    public let bidRecommendation: KeywordBidRecommendation
+    public let bidRecommendation: KeywordBidRecommendation?
 
-    public init(bidRecommendation: KeywordBidRecommendation) {
+    public init(bidRecommendation: KeywordBidRecommendation? = nil) {
         self.bidRecommendation = bidRecommendation
     }
 }

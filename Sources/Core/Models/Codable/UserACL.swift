@@ -34,7 +34,7 @@ public struct UserACL: Codable, Equatable, Sendable {
     public init(
         orgId: Int,
         orgName: String,
-        parentOrgId: Int?,
+        parentOrgId: Int? = nil,
         currency: String,
         paymentModel: PaymentModel,
         roleNames: [String],

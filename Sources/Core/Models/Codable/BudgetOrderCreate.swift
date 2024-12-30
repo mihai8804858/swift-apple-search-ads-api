@@ -5,37 +5,37 @@ public struct BudgetOrderCreate: Codable, Equatable, Sendable {
     /// The response to a request to create a budget order.
     public struct Bo: Codable, Equatable, Sendable {
         /// The primary buyer’s email address.
-        public let primaryBuyerEmail: String
+        public let primaryBuyerEmail: String?
         /// The primary buyer’s name.
-        public let primaryBuyerName: String
+        public let primaryBuyerName: String?
         /// The billing email.
-        public let billingEmail: String
+        public let billingEmail: String?
         /// The name of the budget order, which is unique within an organization.
-        public let name: String
+        public let name: String?
         /// The advertiser or product. This is a requirement for agency-type accounts.
-        public let clientName: String
+        public let clientName: String?
         /// The total budget amount available for the budget order.
-        public let budget: Money
+        public let budget: Money?
         /// The scheduled start date and time for the budget order.
-        public let startDate: Date
+        public let startDate: Date?
         /// The scheduled end date and time for the budget order.
-        public let endDate: Date
+        public let endDate: Date?
         /// A purchase order number. This is a requirement for agency-type accounts.
-        public let orderNumber: String
+        public let orderNumber: String?
         /// The supply source of ads to use in a budget order and a campaign.
-        public let supplySources: [SupplySource]
+        public let supplySources: [SupplySource]?
 
         public init(
-            primaryBuyerEmail: String,
-            primaryBuyerName: String,
-            billingEmail: String,
-            name: String,
-            clientName: String,
-            budget: Money,
-            startDate: Date,
-            endDate: Date,
-            orderNumber: String,
-            supplySources: [SupplySource]
+            primaryBuyerEmail: String? = nil,
+            primaryBuyerName: String? = nil,
+            billingEmail: String? = nil,
+            name: String? = nil,
+            clientName: String? = nil,
+            budget: Money? = nil,
+            startDate: Date? = nil,
+            endDate: Date? = nil,
+            orderNumber: String? = nil,
+            supplySources: [SupplySource]? = nil
         ) {
             self.primaryBuyerEmail = primaryBuyerEmail
             self.primaryBuyerName = primaryBuyerName

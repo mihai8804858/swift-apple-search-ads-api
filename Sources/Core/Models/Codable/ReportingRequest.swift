@@ -1,3 +1,5 @@
+import Foundation
+
 /// The report request body.
 public struct ReportingRequest: Codable, Equatable, Sendable {
     /// The report data organized by hour, day, week, and month.
@@ -53,13 +55,13 @@ public struct ReportingRequest: Codable, Equatable, Sendable {
     }
 
     /// The date and time the report coverage starts. The format is YYYY-MM-DD.
-    public let startTime: String
+    public let startTime: Date?
     /// The date and time the report coverage ends. The format is YYYY-MM-DD.
-    public let endTime: String
+    public let endTime: Date?
     /// You set the default `timeZone` during account creation through the Apple Search Ads UI.
     /// `ORTZ` (organization time zone) is the default.
     /// Possible Values: `ORTZ`, `UTC`
-    public let timeZone: String
+    public let timeZone: String?
     /// The report data organized by hour, day, week, and month.
     public let granularity: Granularity?
     /// Use the `groupBy` field to group responses by selected dimensions.
@@ -67,7 +69,7 @@ public struct ReportingRequest: Codable, Equatable, Sendable {
     /// If `groupBy` specifies age, gender, and geodimensions, `returnRowTotals` and `returnGrandTotals` must be false.
     /// The API groups `ageRange`, `countryCode`, `gender`, `adminArea`, and `locality` records with
     /// fewer than 100 impressions in the API response as other.
-    public let groupBy: [GroupBy]
+    public let groupBy: [GroupBy]?
     /// Selector objects define what data the API returns when fetching resources.
     public let selector: Selector?
     /// Returns the total of all the rows in the result set.
@@ -75,28 +77,28 @@ public struct ReportingRequest: Codable, Equatable, Sendable {
     /// If you don’t specify `granularity`, `returnRowTotals` must be true.
     /// If you specify `granularity` in the payload, `returnGrandTotals` must be false.
     /// The default is `false`.
-    public let returnGrandTotals: Bool
+    public let returnGrandTotals: Bool?
     /// Specifies whether the API returns records without metrics.
     ///
     /// The default is `false`.
-    public let returnRecordsWithNoMetrics: Bool
+    public let returnRecordsWithNoMetrics: Bool?
     /// Specifies whether to return the totals of each row.
     ///
     /// If you don’t specify `granularity`, `returnRowTotals` must be true.
     /// If you specify `granularity` in the payload, `returnGrandTotals` must be false.
     /// The default is `false`.
-    public let returnRowTotals: Bool
+    public let returnRowTotals: Bool?
 
     public init(
-        startTime: String,
-        endTime: String,
-        timeZone: String,
-        granularity: ReportingRequest.Granularity?,
-        groupBy: [ReportingRequest.GroupBy] = [],
-        selector: Selector?,
-        returnGrandTotals: Bool,
-        returnRecordsWithNoMetrics: Bool,
-        returnRowTotals: Bool
+        startTime: Date? = nil,
+        endTime: Date? = nil,
+        timeZone: String? = nil,
+        granularity: ReportingRequest.Granularity? = nil,
+        groupBy: [ReportingRequest.GroupBy]? = nil,
+        selector: Selector? = nil,
+        returnGrandTotals: Bool? = nil,
+        returnRecordsWithNoMetrics: Bool? = nil,
+        returnRowTotals: Bool? = nil
     ) {
         self.startTime = startTime
         self.endTime = endTime
@@ -107,5 +109,45 @@ public struct ReportingRequest: Codable, Equatable, Sendable {
         self.returnGrandTotals = returnGrandTotals
         self.returnRecordsWithNoMetrics = returnRecordsWithNoMetrics
         self.returnRowTotals = returnRowTotals
+    }
+
+    enum CodingKeys: CodingKey {
+        case startTime
+        case endTime
+        case timeZone
+        case granularity
+        case groupBy
+        case selector
+        case returnGrandTotals
+        case returnRecordsWithNoMetrics
+        case returnRowTotals
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let formatter = DateFormatter.yearMonthDay
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        startTime = try container.decodeIfPresent(String.self, forKey: .startTime).flatMap(formatter.date(from:))
+        endTime = try container.decodeIfPresent(String.self, forKey: .endTime).flatMap(formatter.date(from:))
+        timeZone = try container.decodeIfPresent(String.self, forKey: .timeZone)
+        granularity = try container.decodeIfPresent(ReportingRequest.Granularity.self, forKey: .granularity)
+        groupBy = try container.decodeIfPresent([ReportingRequest.GroupBy].self, forKey: .groupBy)
+        selector = try container.decodeIfPresent(Selector.self, forKey: .selector)
+        returnGrandTotals = try container.decodeIfPresent(Bool.self, forKey: .returnGrandTotals)
+        returnRecordsWithNoMetrics = try container.decodeIfPresent(Bool.self, forKey: .returnRecordsWithNoMetrics)
+        returnRowTotals = try container.decodeIfPresent(Bool.self, forKey: .returnRowTotals)
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+        let formatter = DateFormatter.yearMonthDay
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(timeZone, forKey: .timeZone)
+        try container.encodeIfPresent(granularity, forKey: .granularity)
+        try container.encodeIfPresent(groupBy, forKey: .groupBy)
+        try container.encodeIfPresent(selector, forKey: .selector)
+        try container.encodeIfPresent(returnGrandTotals, forKey: .returnGrandTotals)
+        try container.encodeIfPresent(returnRecordsWithNoMetrics, forKey: .returnRecordsWithNoMetrics)
+        try container.encodeIfPresent(returnRowTotals, forKey: .returnRowTotals)
+        if let startTime { try container.encode(formatter.string(from: startTime), forKey: .startTime) }
+        if let endTime { try container.encode(formatter.string(from: endTime), forKey: .endTime) }
     }
 }

@@ -4,9 +4,9 @@ public struct Reporting<
     Metadata: Codable & Equatable & Sendable
 >: Codable, Equatable, Sendable {
     /// A container for reporting responses.
-    public let reportingDataResponse: ReportingData<Insights, Metadata>
+    public let reportingDataResponse: ReportingData<Insights, Metadata>?
 
-    public init(reportingDataResponse: ReportingData<Insights, Metadata>) {
+    public init(reportingDataResponse: ReportingData<Insights, Metadata>? = nil) {
         self.reportingDataResponse = reportingDataResponse
     }
 }

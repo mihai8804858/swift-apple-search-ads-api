@@ -61,60 +61,60 @@ public struct Ad: Codable, Equatable, Sendable {
     }
 
     /// An `adId` is a unique identifier that represents the assignment relationship between an adgroup and an ad.
-    public let id: Int
+    public let id: Int?
     /// The identifier of the organization that owns the campaign.
     ///
     /// Your `orgId` is the same as your account in the Apple Search Ads UI.
-    public let orgId: Int
+    public let orgId: Int?
     /// The unique identifier for an adgroup.
-    public let adGroupId: Int
+    public let adGroupId: Int?
     /// The unique identifier for a campaign.
-    public let campaignId: Int
+    public let campaignId: Int?
     /// The unique identifier for a creative.
     ///
     /// This field is required in requests to Create an Ad.
-    public let creativeId: Int
+    public let creativeId: Int?
     /// The unique name of the ad assigned to an ad group.
     ///
     /// This field is required in requests to Create an Ad and Update an Ad.
     /// The name field is synonymous with the `adName` field in `ReportingAd`.
     /// Maximum Length: 255.
-    public let name: String
+    public let name: String?
     /// The type of creative. See `Creative.Kind` for value descriptions.
     ///
     /// You can create one creative per custom product page per organization.
-    public let creativeType: Creative.Kind
+    public let creativeType: Creative.Kind?
     /// Indicates whether an ad is deleted.
-    public let deleted: Bool
+    public let deleted: Bool?
     /// The status of the ad.
     ///
     /// This field is required in requests to Create an Ad and Update an Ad.
-    public let status: Status
+    public let status: Status?
     /// The indicator of the status of an ad assignment with an ad group.
-    public let servingStatus: ServingStatus
+    public let servingStatus: ServingStatus?
     /// A list of reasons that displays when an ad isn’t running.
     ///
     /// For example, if the `DeviceClass` changes, the `servingStateReasons` may change.
-    public let servingStateReasons: [ServingStateReason]
+    public let servingStateReasons: [ServingStateReason]?
     /// The date and time of the creation of the Ad object.
-    public let creationTime: Date
+    public let creationTime: Date?
     /// The date and time of the most recent modification of the ad.
-    public let modificationTime: Date
+    public let modificationTime: Date?
 
     public init(
-        id: Int,
-        orgId: Int,
-        adGroupId: Int,
-        campaignId: Int,
-        creativeId: Int,
-        name: String,
-        creativeType: Creative.Kind,
-        deleted: Bool,
-        status: Status,
-        servingStatus: ServingStatus,
-        servingStateReasons: [ServingStateReason],
-        creationTime: Date,
-        modificationTime: Date
+        id: Int? = nil,
+        orgId: Int? = nil,
+        adGroupId: Int? = nil,
+        campaignId: Int? = nil,
+        creativeId: Int? = nil,
+        name: String? = nil,
+        creativeType: Creative.Kind? = nil,
+        deleted: Bool? = nil,
+        status: Status? = nil,
+        servingStatus: ServingStatus? = nil,
+        servingStateReasons: [ServingStateReason]? = nil,
+        creationTime: Date? = nil,
+        modificationTime: Date? = nil
     ) {
         self.id = id
         self.orgId = orgId

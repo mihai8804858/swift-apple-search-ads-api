@@ -35,40 +35,40 @@ public struct ProductPageReason: Codable, Equatable, Sendable {
     }
 
     /// The rejection reason identifier.
-    public let id: Int
+    public let id: Int?
     /// Your unique App Store app identifier.
-    public let adamId: Int
+    public let adamId: Int?
     /// The custom product page identifier associated with the ad creative rejection reason.
     public let productPageId: String?
     /// TThe unique identifier for an app preview or screenshot.
-    public let assetGenId: String
+    public let assetGenId: String?
     /// The ISO 639-1 language code appended to the ISO 3166-1 alpha-2 country code, such as en-US.
-    public let languageCode: String
+    public let languageCode: String?
     /// The reason rejection code.
-    public let reasonCode: ReasonCode
+    public let reasonCode: ReasonCode?
     /// The reason type has a value of `REJECTION_REASON`.
-    public let reasonType: ReasonType
+    public let reasonType: ReasonType?
     /// The level at which the system applies the rejection reason. See ReasonLevel for enumerations.
-    public let reasonLevel: AdRejectionReasonLevel
+    public let reasonLevel: AdRejectionReasonLevel?
     /// The ad placement associated with the ad creative rejection reason.
-    public let supplySource: SupplySource
+    public let supplySource: SupplySource?
     /// The App Store geoterritories where you’re promoting your app.
-    public let countryOrRegion: String
+    public let countryOrRegion: String?
     /// Custom comments from Apple about the rejection reason.
-    public let comment: String
+    public let comment: String?
 
     public init(
-        id: Int,
-        adamId: Int,
-        productPageId: String?,
-        assetGenId: String,
-        languageCode: String,
-        reasonCode: ReasonCode,
-        reasonType: ReasonType,
-        reasonLevel: AdRejectionReasonLevel,
-        supplySource: SupplySource,
-        countryOrRegion: String,
-        comment: String
+        id: Int? = nil,
+        adamId: Int? = nil,
+        productPageId: String? = nil,
+        assetGenId: String? = nil,
+        languageCode: String? = nil,
+        reasonCode: ReasonCode? = nil,
+        reasonType: ReasonType? = nil,
+        reasonLevel: AdRejectionReasonLevel? = nil,
+        supplySource: SupplySource? = nil,
+        countryOrRegion: String? = nil,
+        comment: String? = nil
     ) {
         self.id = id
         self.adamId = adamId

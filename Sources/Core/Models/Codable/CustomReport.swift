@@ -33,33 +33,33 @@ public struct CustomReport: Codable, Equatable, Sendable {
     }
 
     /// The report id is a unique identifier per report.
-    public let id: Int
+    public let id: Int?
     /// A free-text field. The maximum length is 50 characters.
-    public let name: String
+    public let name: String?
     /// The state of the report.
     ///
     /// A value of `COMPLETED` has a report link in the `downloadUri` field.
-    public let state: State
+    public let state: State?
     /// The start time of the report. The format is YYYY-MM-DD, such as 2024-06-01.
-    public let startTime: String
+    public let startTime: Date?
     /// The end time of the report. The format is YYYY-MM-DD, such as 2024-06-30.
-    public let endTime: String
+    public let endTime: Date?
     /// The timestamp for the creation of the report.
-    public let creationTime: Date
+    public let creationTime: Date?
     /// The most recent timestamp of report modifications
-    public let modificationTime: Date
+    public let modificationTime: Date?
     /// The report data organized by day or week.
-    public let granularity: CustomReportGranularity
+    public let granularity: CustomReportGranularity?
     /// The report dimensions.
-    public let dimensions: [Dimension]
+    public let dimensions: [Dimension]?
     /// Impression Share is a daily aggregation with a range in deciles, such as 11–20% and 21–30%.
     ///
     /// App impressions for search terms correlate by country or region and organization against
     /// the total requests for country- or region-search term combinations.
     /// Search terms need to have more than 10 impressions per day for inclusion in a daily Impression Share report.
-    public let metrics: [Metric]
+    public let metrics: [Metric]?
     /// Selector is an optional parameter to filter API results using the `countryOrRegion` and `adamId` fields.
-    public let selector: CustomReportSelector
+    public let selector: CustomReportSelector?
     /// The report download link.
     ///
     /// The state of the report needs to be `COMPLETED` for a valid URL to return when calling
@@ -70,18 +70,18 @@ public struct CustomReport: Codable, Equatable, Sendable {
     public let downloadUri: URL?
 
     public init(
-        id: Int,
-        name: String,
-        state: State,
-        startTime: String,
-        endTime: String,
-        creationTime: Date,
-        modificationTime: Date,
-        granularity: CustomReportGranularity,
-        dimensions: [Dimension],
-        metrics: [Metric],
-        selector: CustomReportSelector,
-        downloadUri: URL?
+        id: Int? = nil,
+        name: String? = nil,
+        state: State? = nil,
+        startTime: Date? = nil,
+        endTime: Date? = nil,
+        creationTime: Date? = nil,
+        modificationTime: Date? = nil,
+        granularity: CustomReportGranularity? = nil,
+        dimensions: [Dimension]? = nil,
+        metrics: [Metric]? = nil,
+        selector: CustomReportSelector? = nil,
+        downloadUri: URL? = nil
     ) {
         self.id = id
         self.name = name
@@ -95,5 +95,54 @@ public struct CustomReport: Codable, Equatable, Sendable {
         self.metrics = metrics
         self.selector = selector
         self.downloadUri = downloadUri
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case state
+        case startTime
+        case endTime
+        case creationTime
+        case modificationTime
+        case granularity
+        case dimensions
+        case metrics
+        case selector
+        case downloadUri
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let formatter = DateFormatter.yearMonthDay
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decodeIfPresent(Int.self, forKey: .id)
+        name = try container.decodeIfPresent(String.self, forKey: .name)
+        state = try container.decodeIfPresent(CustomReport.State.self, forKey: .state)
+        startTime = try container.decodeIfPresent(String.self, forKey: .startTime).flatMap(formatter.date(from:))
+        endTime = try container.decodeIfPresent(String.self, forKey: .endTime).flatMap(formatter.date(from:))
+        creationTime = try container.decodeIfPresent(Date.self, forKey: .creationTime)
+        modificationTime = try container.decodeIfPresent(Date.self, forKey: .modificationTime)
+        granularity = try container.decodeIfPresent(CustomReportGranularity.self, forKey: .granularity)
+        dimensions = try container.decodeIfPresent([CustomReport.Dimension].self, forKey: .dimensions)
+        metrics = try container.decodeIfPresent([CustomReport.Metric].self, forKey: .metrics)
+        selector = try container.decodeIfPresent(CustomReportSelector.self, forKey: .selector)
+        downloadUri = try container.decodeIfPresent(URL.self, forKey: .downloadUri)
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+        let formatter = DateFormatter.yearMonthDay
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(id, forKey: .id)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(state, forKey: .state)
+        try container.encodeIfPresent(creationTime, forKey: .creationTime)
+        try container.encodeIfPresent(modificationTime, forKey: .modificationTime)
+        try container.encodeIfPresent(granularity, forKey: .granularity)
+        try container.encodeIfPresent(dimensions, forKey: .dimensions)
+        try container.encodeIfPresent(metrics, forKey: .metrics)
+        try container.encodeIfPresent(selector, forKey: .selector)
+        try container.encodeIfPresent(downloadUri, forKey: .downloadUri)
+        if let startTime { try container.encode(formatter.string(from: startTime), forKey: .startTime) }
+        if let endTime { try container.encode(formatter.string(from: endTime), forKey: .endTime) }
     }
 }

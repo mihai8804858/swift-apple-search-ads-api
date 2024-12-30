@@ -6,9 +6,9 @@ public struct KeywordBidRecommendation: Codable, Equatable, Sendable {
     /// A `suggestedBidAmount` isn’t a representation of a bid floor or ceiling. A `suggestedBidAmount` is based on
     /// various factors, including, but not limited to, historical data related to past performance and recommendations.
     /// Actual outcomes, including changes in spend and average CPA, may vary.
-    public let suggestedBidAmount: Money
+    public let suggestedBidAmount: Money?
 
-    public init(suggestedBidAmount: Money) {
+    public init(suggestedBidAmount: Money? = nil) {
         self.suggestedBidAmount = suggestedBidAmount
     }
 }

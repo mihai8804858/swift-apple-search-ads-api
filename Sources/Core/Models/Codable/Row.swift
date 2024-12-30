@@ -6,13 +6,13 @@ public struct Row<
     /// The bid recommendations according to currency type, including range and amount.
     public let insights: Insights?
     /// Reporting request metadata.
-    public let metadata: Metadata
+    public let metadata: Metadata?
     /// The impressions that return in reports when there are fewer than 100 demographic dimensions,
     /// and fewer than 10 search terms. If `other` is `true`, the corresponding dimensions are null.
-    public let other: Bool
+    public let other: Bool?
     /// The tap, conversion, and monetary totals (SpendRow) in the response.
     /// This is the same as `SpendRowExtended` except it doesn’t include the date attribute.
-    public let total: SpendRow
+    public let total: SpendRow?
     /// The report data organized by hour, day, week, and month.
     ///
     /// If you specify `granularity` in the payload, `returnRowTotals` and `returnGrandTotals` must be `false`.
@@ -38,14 +38,14 @@ public struct Row<
     /// The date value is the first day of the designated month.
     /// The `startTime` and `endTime` are > 3 months apart, and the `startTime` is ≤ 24 months in the past.
     ///
-    public let granularity: [SpendRowExtended]
+    public let granularity: [SpendRowExtended]?
 
     public init(
-        insights: Insights?,
-        metadata: Metadata,
-        other: Bool,
-        total: SpendRow,
-        granularity: [SpendRowExtended]
+        insights: Insights? = nil,
+        metadata: Metadata? = nil,
+        other: Bool? = nil,
+        total: SpendRow? = nil,
+        granularity: [SpendRowExtended]? = nil
     ) {
         self.insights = insights
         self.metadata = metadata

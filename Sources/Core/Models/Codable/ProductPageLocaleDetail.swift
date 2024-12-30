@@ -2,37 +2,37 @@
 public struct ProductPageLocaleDetail: Codable, Equatable, Sendable {
     /// Your unique App Store app identifier.
     /// Use Get a Campaign or Get All Campaigns to obtain your adamId used in your campaign.
-    public let adamId: Int
+    public let adamId: Int?
     /// The app name on App Store Connect.
-    public let appName: String
+    public let appName: String?
     /// The device classes assigned to a custom product page on App Store Connect.
-    public let deviceClasses: DeviceClass
+    public let deviceClasses: DeviceClass?
     /// The language associated with the ISO alpha-2 country code, such as US.
-    public let language: String
+    public let language: String?
     /// The ISO 639-1 language code appended to the ISO 3166-1 alpha-2 country code, such as en-US.
-    public let languageCode: String
+    public let languageCode: String?
     /// A unique string to identify a product page on App Store Connect.
-    public let productPageId: String
+    public let productPageId: String?
     /// Text that appears at the top of the main description of a product page.
-    public let promotionalText: String
+    public let promotionalText: String?
     /// Concise, informative text used on a product page to describe an app.
-    public let shortDescription: String
+    public let shortDescription: String?
     /// A summary of an app on a product page that appears below the name of an app.
-    public let subTitle: String
+    public let subTitle: String?
     /// A map between the device and available app preview details for that device.
-    public let appPreviewDeviceWithAssets: [String: AppPreviewDeviceWithAssets]
+    public let appPreviewDeviceWithAssets: [String: AppPreviewDeviceWithAssets]?
 
     public init(
-        adamId: Int,
-        appName: String,
-        deviceClasses: DeviceClass,
-        language: String,
-        languageCode: String,
-        productPageId: String,
-        promotionalText: String,
-        shortDescription: String,
-        subTitle: String,
-        appPreviewDeviceWithAssets: [String: AppPreviewDeviceWithAssets]
+        adamId: Int? = nil,
+        appName: String? = nil,
+        deviceClasses: DeviceClass? = nil,
+        language: String? = nil,
+        languageCode: String? = nil,
+        productPageId: String? = nil,
+        promotionalText: String? = nil,
+        shortDescription: String? = nil,
+        subTitle: String? = nil,
+        appPreviewDeviceWithAssets: [String: AppPreviewDeviceWithAssets]? = nil
     ) {
         self.adamId = adamId
         self.appName = appName

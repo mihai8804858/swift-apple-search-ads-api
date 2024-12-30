@@ -7,8 +7,8 @@ final class ReportsRequestsTests: SnapshotTestCase {
         try await assertRequest(AdGroupReportRequest(
             campaignId: 123,
             request: ReportingRequest(
-                startTime: "2024-12-31",
-                endTime: "2025-01-31",
+                startTime: DateFormatter.yearMonthDay.date(from: "2024-12-31"),
+                endTime: DateFormatter.yearMonthDay.date(from: "2025-01-31"),
                 timeZone: "UTC",
                 granularity: .daily,
                 groupBy: [.locality, .gender],
@@ -85,8 +85,8 @@ final class ReportsRequestsTests: SnapshotTestCase {
         try await assertRequest(AdReportRequest(
             campaignId: 123,
             request: ReportingRequest(
-                startTime: "2024-12-31",
-                endTime: "2025-01-31",
+                startTime: DateFormatter.yearMonthDay.date(from: "2024-12-31"),
+                endTime: DateFormatter.yearMonthDay.date(from: "2025-01-31"),
                 timeZone: "UTC",
                 granularity: .daily,
                 groupBy: [.locality, .gender],
@@ -164,8 +164,8 @@ final class ReportsRequestsTests: SnapshotTestCase {
 
     func testCampaignReportRequest() async throws {
         try await assertRequest(CampaignReportRequest(request: ReportingRequest(
-            startTime: "2024-12-31",
-            endTime: "2025-01-31",
+            startTime: DateFormatter.yearMonthDay.date(from: "2024-12-31"),
+            endTime: DateFormatter.yearMonthDay.date(from: "2025-01-31"),
             timeZone: "UTC",
             granularity: .daily,
             groupBy: [.locality, .gender],
@@ -242,8 +242,8 @@ final class ReportsRequestsTests: SnapshotTestCase {
             campaignId: 123,
             adGroupId: 456,
             request: ReportingRequest(
-                startTime: "2024-12-31",
-                endTime: "2025-01-31",
+                startTime: DateFormatter.yearMonthDay.date(from: "2024-12-31"),
+                endTime: DateFormatter.yearMonthDay.date(from: "2025-01-31"),
                 timeZone: "UTC",
                 granularity: .daily,
                 groupBy: [.locality, .gender],
@@ -321,8 +321,8 @@ final class ReportsRequestsTests: SnapshotTestCase {
             campaignId: 123,
             adGroupId: nil,
             request: ReportingRequest(
-                startTime: "2024-12-31",
-                endTime: "2025-01-31",
+                startTime: DateFormatter.yearMonthDay.date(from: "2024-12-31"),
+                endTime: DateFormatter.yearMonthDay.date(from: "2025-01-31"),
                 timeZone: "UTC",
                 granularity: .daily,
                 groupBy: [.locality, .gender],
@@ -400,8 +400,8 @@ final class ReportsRequestsTests: SnapshotTestCase {
             campaignId: 123,
             adGroupId: 456,
             request: ReportingRequest(
-                startTime: "2024-12-31",
-                endTime: "2025-01-31",
+                startTime: DateFormatter.yearMonthDay.date(from: "2024-12-31"),
+                endTime: DateFormatter.yearMonthDay.date(from: "2025-01-31"),
                 timeZone: "UTC",
                 granularity: .daily,
                 groupBy: [.locality, .gender],
@@ -479,8 +479,8 @@ final class ReportsRequestsTests: SnapshotTestCase {
             campaignId: 123,
             adGroupId: nil,
             request: ReportingRequest(
-                startTime: "2024-12-31",
-                endTime: "2025-01-31",
+                startTime: DateFormatter.yearMonthDay.date(from: "2024-12-31"),
+                endTime: DateFormatter.yearMonthDay.date(from: "2025-01-31"),
                 timeZone: "UTC",
                 granularity: .daily,
                 groupBy: [.locality, .gender],
@@ -556,8 +556,8 @@ final class ReportsRequestsTests: SnapshotTestCase {
     func testImpressionShareReportCreateRequest() async throws {
         try await assertRequest(ImpressionShareReportCreateRequest(request: CustomReportRequest(
             name: "My Report",
-            startTime: "2024-12-31",
-            endTime: "2025-01-31",
+            startTime: DateFormatter.yearMonthDay.date(from: "2024-12-31"),
+            endTime: DateFormatter.yearMonthDay.date(from: "2025-01-31"),
             dateRange: .last4Weeks,
             granularity: .daily,
             selector: CustomReportSelector(conditions: [

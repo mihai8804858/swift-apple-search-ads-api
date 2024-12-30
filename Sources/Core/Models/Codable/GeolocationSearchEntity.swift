@@ -18,9 +18,9 @@ public struct GeolocationSearchEntity: Codable, Equatable, Sendable {
         id: String,
         entity: GeolocationEntity,
         displayName: String,
-        countryOrRegion: String?,
-        adminArea: String?,
-        locality: String?
+        countryOrRegion: String? = nil,
+        adminArea: String? = nil,
+        locality: String? = nil
     ) {
         self.id = id
         self.entity = entity

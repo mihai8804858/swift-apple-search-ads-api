@@ -34,44 +34,44 @@ public struct Creative: Codable, Equatable, Sendable {
     }
 
     /// The creativeId is a unique identifier for a creative.
-    public let id: Int
+    public let id: Int?
     /// Your unique App Store app identifier.
     ///
     /// This field is required in requests to Create a Creative.
-    public let adamId: Int
+    public let adamId: Int?
     /// The identifier of the organization that owns a campaign.
     ///
     /// Your `orgId` is the same as your account in the Apple Search Ads UI.
-    public let orgId: Int
+    public let orgId: Int?
     /// The name of a creative.
     ///
     /// This field is required in requests to Create a Creative.
     /// Minimum Length: 1
     /// Maximum Length: 200
-    public let name: String
+    public let name: String?
     /// The type of creative.
     ///
     /// This field is required in requests to Create a Creative.
-    public let type: Kind
+    public let type: Kind?
     /// The system state of the creative.
-    public let state: State
+    public let state: State?
     /// The detailed explanation of the system state.
-    public let stateReasons: [StateReason]
+    public let stateReasons: [StateReason]?
     /// The date and time of the creation of the Creative object.
-    public let creationTime: Date
+    public let creationTime: Date?
     /// The date and time of the most recent modification of the object.
-    public let modificationTime: Date
+    public let modificationTime: Date?
 
     public init(
-        id: Int,
-        adamId: Int,
-        orgId: Int,
-        name: String,
-        type: Kind,
-        state: State,
-        stateReasons: [StateReason],
-        creationTime: Date,
-        modificationTime: Date
+        id: Int? = nil,
+        adamId: Int? = nil,
+        orgId: Int? = nil,
+        name: String? = nil,
+        type: Kind? = nil,
+        state: State? = nil,
+        stateReasons: [StateReason]? = nil,
+        creationTime: Date? = nil,
+        modificationTime: Date? = nil
     ) {
         self.id = id
         self.adamId = adamId

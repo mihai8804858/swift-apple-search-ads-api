@@ -4,11 +4,11 @@ public struct ReportingData<
     Metadata: Codable & Equatable & Sendable
 >: Codable, Equatable, Sendable {
     /// A summary of cumulative report metrics.
-    public let grandTotals: GrandTotalsRow
+    public let grandTotals: GrandTotalsRow?
     /// A grouping of metric totals.
-    public let row: [Row<Insights, Metadata>]
+    public let row: [Row<Insights, Metadata>]?
 
-    public init(grandTotals: GrandTotalsRow, row: [Row<Insights, Metadata>]) {
+    public init(grandTotals: GrandTotalsRow? = nil, row: [Row<Insights, Metadata>]? = nil) {
         self.grandTotals = grandTotals
         self.row = row
     }

@@ -3,28 +3,28 @@ import Foundation
 /// The localized creative metadata.
 public struct CreativeLocalization: Codable, Equatable, Sendable {
     /// The app name on App Store Connect.
-    public let appName: String
+    public let appName: String?
     /// The device classes assigned to a custom product page..
-    public let deviceClasses: DeviceClass
+    public let deviceClasses: DeviceClass?
     /// The language associated with the ISO alpha-2 country code, such as US.
-    public let language: String
+    public let language: String?
     /// The ISO 639-1 language code appended to the ISO alpha-2 country code, such as en-US.
-    public let languageCode: String
+    public let languageCode: String?
     /// Text that appears at the top of the main description of a product page.
-    public let promotionalText: String
+    public let promotionalText: String?
     /// Concise, informative text to describe an app on a product page.
-    public let shortDescription: String
+    public let shortDescription: String?
     /// A summary of an app that appears below the name of an app on a product page.
-    public let subTitle: String
+    public let subTitle: String?
 
     public init(
-        appName: String,
-        deviceClasses: DeviceClass,
-        language: String,
-        languageCode: String,
-        promotionalText: String,
-        shortDescription: String,
-        subTitle: String
+        appName: String? = nil,
+        deviceClasses: DeviceClass? = nil,
+        language: String? = nil,
+        languageCode: String? = nil,
+        promotionalText: String? = nil,
+        shortDescription: String? = nil,
+        subTitle: String? = nil
     ) {
         self.appName = appName
         self.deviceClasses = deviceClasses

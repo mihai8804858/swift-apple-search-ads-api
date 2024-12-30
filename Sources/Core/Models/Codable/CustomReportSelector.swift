@@ -5,9 +5,9 @@
 /// See `SovCondition` for selector descriptions and see `Selector` for structural guidance with selectors.
 public struct CustomReportSelector: Codable, Equatable, Sendable {
     /// A list of condition objects that allow users to filter a list of records.
-    public let conditions: [SovCondition]
+    public let conditions: [SovCondition]?
 
-    public init(conditions: [SovCondition]) {
+    public init(conditions: [SovCondition]? = nil) {
         self.conditions = conditions
     }
 }
