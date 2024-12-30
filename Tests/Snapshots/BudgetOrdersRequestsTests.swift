@@ -27,7 +27,7 @@ final class BudgetOrdersRequestsTests: SnapshotTestCase {
             Content-Length: 524
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "bo" : {
@@ -80,7 +80,7 @@ final class BudgetOrdersRequestsTests: SnapshotTestCase {
             Content-Length: 432
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "bo" : {
@@ -114,7 +114,7 @@ final class BudgetOrdersRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -127,7 +127,7 @@ final class BudgetOrdersRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }

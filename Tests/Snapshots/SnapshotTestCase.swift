@@ -1,3 +1,7 @@
+import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 import XCTest
 import InlineSnapshotTesting
 @testable import AppleSearchAds
@@ -8,7 +12,7 @@ class SnapshotTestCase: XCTestCase {
         session: URLSession.shared,
         plugins: [
             HostInjector(),
-            AcceptHeadersInjector(),
+            AcceptHeadersInjector(preferredLanguages: ["en-US"]),
             ContextInjector {
                 [
                     UserACL(

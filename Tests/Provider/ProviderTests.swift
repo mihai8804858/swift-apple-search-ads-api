@@ -1,3 +1,7 @@
+import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 import XCTest
 @testable import AppleSearchAds
 
@@ -38,6 +42,13 @@ final class ProviderTests: XCTestCase {
             exponentialBackoffBehavior: .none
         )
 
+        let httpResponse = try XCTUnwrap(HTTPURLResponse(
+            url: baseURL.appendingPathComponent(request.path),
+            statusCode: ResponseStatus.success.rawValue,
+            httpVersion: "1.0",
+            headerFields: nil
+        ))
+        session.dataStub = .success((Data(), httpResponse))
         _ = try await provider.requestData(from: request)
 
         let urlRequest = try XCTUnwrap(plugin.preparedRequests.first)

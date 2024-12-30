@@ -27,7 +27,7 @@ final class CreativesRequestsTests: SnapshotTestCase {
             Content-Length: 334
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "adamId" : 456,
@@ -59,7 +59,7 @@ final class CreativesRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -72,7 +72,7 @@ final class CreativesRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -98,7 +98,7 @@ final class CreativesRequestsTests: SnapshotTestCase {
             Content-Length: 492
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "conditions" : [

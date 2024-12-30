@@ -11,7 +11,7 @@ final class CustomProductPagesRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -33,7 +33,7 @@ final class CustomProductPagesRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -48,7 +48,7 @@ final class CustomProductPagesRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -61,7 +61,7 @@ final class CustomProductPagesRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -77,7 +77,7 @@ final class CustomProductPagesRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }

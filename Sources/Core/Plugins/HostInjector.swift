@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 struct HostInjector: PluginType {
     func prepare(request: inout URLRequest) async throws {

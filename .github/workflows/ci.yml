@@ -40,30 +40,22 @@ jobs:
         run: cspell-cli lint --no-progress
 
   build:
-    name: Build
-    runs-on: macos-15
+    name: Build (${{ matrix.os }}, swift ${{ matrix.swift }}, ${{ matrix.config }})
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: ['ubuntu-latest', 'macos-latest']
+        swift: ['5.10'] # ['5.10', '6.0']
         config: ['debug', 'release']
     steps:
       - uses: actions/checkout@v4
 
-      - uses: maxim-lobanov/setup-xcode@v1
+      - uses: swift-actions/setup-swift@v2
         with:
-          xcode-version: latest-stable
+          swift-version: ${{ matrix.swift }}
 
-      - name: Build in ${{ matrix.config }}
+      - name: Build
         run: swift build -c ${{ matrix.config }}
 
-  test:
-    name: Test
-    runs-on: macos-15
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: latest-stable
-
-      - name: Run tests
-        run: swift test
+      - name: Test
+        run: swift test -c ${{ matrix.config }}

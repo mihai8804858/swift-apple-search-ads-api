@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 struct AcceptHeadersInjector: PluginType {
     private let headers: [String: String]

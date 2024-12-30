@@ -42,7 +42,7 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
             Content-Length: 701
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             [
               {
@@ -115,7 +115,7 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
             Content-Length: 555
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             [
               {
@@ -161,7 +161,7 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -180,7 +180,7 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
             Content-Length: 16
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             [
               789,
@@ -202,7 +202,7 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -219,7 +219,7 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -245,7 +245,7 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
             Content-Length: 472
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "conditions" : [

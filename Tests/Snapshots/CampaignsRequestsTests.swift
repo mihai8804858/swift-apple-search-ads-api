@@ -51,7 +51,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
             Content-Length: 1201
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "adamId" : 789,
@@ -141,7 +141,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
             Content-Length: 626
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "campaign" : {
@@ -185,7 +185,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -198,7 +198,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -211,7 +211,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -234,7 +234,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
             Content-Length: 479
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "conditions" : [

@@ -1,8 +1,16 @@
 import XCTest
 @testable import AppleSearchAds
 
+#if os(Linux)
+private let env = ProcessInfo.processInfo.environment
+#endif
+
 final class APIConfigurationTests: XCTestCase {
+    #if os(Linux)
+    private lazy var pemDir = URL(fileURLWithPath: env["TMPDIR"] ?? env["TEMP"] ?? env["TMP"] ?? "/tmp")
+    #else
     private lazy var pemDir = URL.temporaryDirectory.appendingPathComponent("apple-search-ads-api-tests")
+    #endif
     private lazy var pemURL = pemDir.appendingPathComponent("test.pem")
 
     override func setUpWithError() throws {

@@ -33,7 +33,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Content-Length: 777
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "endTime" : "2025-01-31",
@@ -114,7 +114,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Content-Length: 786
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "endTime" : "2025-01-31",
@@ -189,7 +189,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Content-Length: 771
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "endTime" : "2025-01-31",
@@ -268,7 +268,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Content-Length: 762
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "endTime" : "2025-01-31",
@@ -347,7 +347,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Content-Length: 762
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "endTime" : "2025-01-31",
@@ -426,7 +426,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Content-Length: 762
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "endTime" : "2025-01-31",
@@ -505,7 +505,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Content-Length: 762
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "endTime" : "2025-01-31",
@@ -573,7 +573,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Content-Length: 460
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "dateRange" : "LAST_4_WEEKS",
@@ -613,7 +613,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -631,7 +631,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }

@@ -1,5 +1,4 @@
 import Foundation
-import Combine
 
 extension Response<Data> {
     func validatingStatusCode() throws -> Response<T> {
@@ -10,12 +9,9 @@ extension Response<Data> {
         }
     }
 
-    func decoding<Model: Decodable, Decoder: TopLevelDecoder>(
-        _ type: Model.Type,
-        decoder: Decoder
-    ) throws -> Response<Model> where Decoder.Input == Data {
+    func jsonDecoding<Model: Decodable>(_ type: Model.Type) throws -> Response<Model> {
         do {
-            let decoded = try decoder.decode(Model.self, from: model)
+            let decoded = try JSONDecoder.default.decode(Model.self, from: model)
             return map { _ in decoded }
         } catch let error {
             throw APIError(error: error)

@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 struct AuthorizationInjector: PluginType {
     typealias TokenProvider = @Sendable () async throws -> AccessToken

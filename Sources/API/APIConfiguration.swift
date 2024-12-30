@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 @preconcurrency import Crypto
 
 /// API configuration parameters.

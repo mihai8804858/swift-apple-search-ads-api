@@ -1,3 +1,7 @@
+import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 import XCTest
 @testable import AppleSearchAds
 
@@ -21,6 +25,6 @@ final class ContextInjectorTests: XCTestCase {
         var request = URLRequest(url: url)
         try await plugin.prepare(request: &request)
 
-        XCTAssertEqual(request.allHTTPHeaderFields?["X-AP-Context"], "orgId=123")
+        XCTAssertEqual(request.allHTTPHeaderFields?["X-Ap-Context"], "orgId=123")
     }
 }

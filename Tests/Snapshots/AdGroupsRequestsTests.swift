@@ -51,7 +51,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
             Content-Length: 1859
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "automatedKeywordsOptIn" : true,
@@ -175,7 +175,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -201,7 +201,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
             Content-Length: 460
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "conditions" : [
@@ -249,7 +249,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
             Content-Length: 4
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
 
@@ -266,7 +266,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -279,7 +279,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
             """
         }
     }
@@ -320,7 +320,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
             Content-Length: 1541
             Content-Type: application/json
             Host: api.searchads.apple.com
-            X-AP-Context: orgId=12345
+            X-Ap-Context: orgId=12345
 
             {
               "automatedKeywordsOptIn" : false,

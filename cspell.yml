@@ -44,3 +44,4 @@ ignoreWords:
   - bidded
   - searchterms
   - posix
+  - tmpdir
