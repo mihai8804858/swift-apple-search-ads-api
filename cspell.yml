@@ -45,3 +45,8 @@ ignoreWords:
   - searchterms
   - posix
   - tmpdir
+  - ecparam
+  - genkey
+  - pubout
+  - noout
+  - struct
