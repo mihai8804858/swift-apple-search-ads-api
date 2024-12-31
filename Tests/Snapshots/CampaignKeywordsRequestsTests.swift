@@ -188,11 +188,14 @@ final class CampaignKeywordsRequestsTests: SnapshotTestCase {
             campaignId: 123,
             selector: Selector(
                 conditions: [
-                    Condition(field: "status", operator: .equals, values: ["ACTIVE"]),
-                    Condition(field: "matchType", operator: .contains, values: ["BROAD", "EXACT"])
+                    Condition(field: .status, operator: .equals, value: KeywordStatus.active),
+                    Condition(field: .matchType, operator: .contains, values: [
+                        KeywordMatchType.broad,
+                        KeywordMatchType.exact
+                    ])
                 ],
-                fields: ["id", "text"],
-                orderBy: [Sorting(field: "modificationTime", sortOrder: .ascending)],
+                fields: [.id, .text],
+                orderBy: [Sorting(field: .modificationTime, sortOrder: .ascending)],
                 pagination: Pagination(limit: 20, offset: 40)
             )
         )) {

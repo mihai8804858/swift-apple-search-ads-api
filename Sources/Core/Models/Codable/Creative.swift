@@ -1,7 +1,7 @@
 import Foundation
 
 /// The creative object.
-public struct Creative: Codable, Equatable, Sendable {
+public struct Creative: Codable, Equatable, Sendable, CodingKeysContaining {
     /// The type of creative.
     public enum Kind: String, Codable, Equatable, Sendable {
         /// You can assign only one custom product page to an adgroup.
@@ -82,5 +82,17 @@ public struct Creative: Codable, Equatable, Sendable {
         self.stateReasons = stateReasons
         self.creationTime = creationTime
         self.modificationTime = modificationTime
+    }
+
+    public enum CodingKeys: String, CodingKey {
+        case id
+        case adamId
+        case orgId
+        case name
+        case type
+        case state
+        case stateReasons
+        case creationTime
+        case modificationTime
     }
 }

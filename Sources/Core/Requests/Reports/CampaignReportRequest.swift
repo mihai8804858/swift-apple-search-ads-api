@@ -3,7 +3,7 @@ struct CampaignReportRequest: RequestType {
     let method = HTTPMethod.post
     let body: RequestBody?
 
-    init(request: ReportingRequest) {
+    init(request: ReportingRequest<ReportingCampaign>) {
         body = .json(request)
     }
 }

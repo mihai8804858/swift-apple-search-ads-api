@@ -92,7 +92,7 @@ public extension APIProvider {
     ///
     /// - Throws: An error of type `APIError`.
     func findCampaigns<Model: Decodable & Sendable>(
-        selector: Selector? = nil,
+        selector: Selector<Campaign>? = nil,
         decoding: Model.Type = Campaign.self
     ) async throws -> Response<Paginated<Model>> {
         try await provider.requestPaginatedModel(from: CampaignFindRequest(selector: selector))

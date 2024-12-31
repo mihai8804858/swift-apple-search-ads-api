@@ -1,7 +1,7 @@
 import Foundation
 
 /// The response to a request to fetch ad group-level reports.
-public struct ReportingAdGroup: Codable, Equatable, Sendable {
+public struct ReportingAdGroup: Codable, Equatable, Sendable, CodingKeysContaining {
     /// The state of the operation.
     public let adGroupDisplayStatus: AdGroup.DisplayStatus?
     /// The identifier for the ad group.
@@ -69,5 +69,23 @@ public struct ReportingAdGroup: Codable, Equatable, Sendable {
         self.endTime = endTime
         self.modificationTime = modificationTime
         self.orgId = orgId
+    }
+
+    public enum CodingKeys: String, CodingKey {
+        case adGroupDisplayStatus
+        case adGroupId
+        case adGroupName
+        case adGroupServingStateReasons
+        case adGroupServingStatus
+        case adGroupStatus
+        case automatedKeywordsOptIn
+        case campaignId
+        case cpaGoal
+        case defaultBidAmount
+        case deleted
+        case startTime
+        case endTime
+        case modificationTime
+        case orgId
     }
 }

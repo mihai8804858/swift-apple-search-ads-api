@@ -1,7 +1,7 @@
 import Foundation
 
 /// The response to a request to fetch search term-level reports.
-public struct ReportingSearchTerm: Codable, Equatable, Sendable {
+public struct ReportingSearchTerm: Codable, Equatable, Sendable, CodingKeysContaining {
     /// The source of the keyword to use as a search term.
     public enum Source: String, Codable, Equatable, Sendable {
         /// The value to use to ensure Search Match automatically matches your ads.
@@ -77,5 +77,23 @@ public struct ReportingSearchTerm: Codable, Equatable, Sendable {
         self.modificationTime = modificationTime
         self.searchTermSource = searchTermSource
         self.searchTermText = searchTermText
+    }
+
+    public enum CodingKeys: String, CodingKey {
+        case adGroupDeleted
+        case adGroupId
+        case adGroupName
+        case bidAmount
+        case campaignId
+        case deleted
+        case keywordId
+        case keyword
+        case keywordStatus
+        case keywordDisplayStatus
+        case matchType
+        case orgId
+        case modificationTime
+        case searchTermSource
+        case searchTermText
     }
 }

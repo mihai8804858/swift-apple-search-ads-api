@@ -1,7 +1,7 @@
 import Foundation
 
 /// Negative keyword parameters to use in requests and responses.
-public struct NegativeKeyword: Codable, Equatable, Sendable {
+public struct NegativeKeyword: Codable, Equatable, Sendable, CodingKeysContaining {
     /// A unique identifier for the negative keyword.
     public let id: Int?
     /// The unique identifier of the campaign that the negative keywords belong to.
@@ -38,5 +38,16 @@ public struct NegativeKeyword: Codable, Equatable, Sendable {
         self.status = status
         self.deleted = deleted
         self.modificationTime = modificationTime
+    }
+
+    public enum CodingKeys: String, CodingKey {
+        case id
+        case campaignId
+        case adGroupId
+        case text
+        case matchType
+        case status
+        case deleted
+        case modificationTime
     }
 }

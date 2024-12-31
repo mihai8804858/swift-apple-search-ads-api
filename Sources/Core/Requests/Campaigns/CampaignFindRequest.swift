@@ -3,7 +3,7 @@ struct CampaignFindRequest: RequestType {
     let method = HTTPMethod.post
     let body: RequestBody?
 
-    init(selector: Selector?) {
+    init(selector: Selector<Campaign>?) {
         body = .json(selector)
     }
 }

@@ -1,7 +1,7 @@
 import Foundation
 
 /// The response to a request to fetch campaign-level reports.
-public struct ReportingCampaign: Codable, Equatable, Sendable {
+public struct ReportingCampaign: Codable, Equatable, Sendable, CodingKeysContaining {
     /// The channel type of ad in a campaign.
     public let adChannelType: Campaign.AdChannelType?
     /// The name of the app and the `adamId`.
@@ -78,5 +78,24 @@ public struct ReportingCampaign: Codable, Equatable, Sendable {
         self.servingStatus = servingStatus
         self.supplySources = supplySources
         self.totalBudget = totalBudget
+    }
+
+    public enum CodingKeys: String, CodingKey {
+        case adChannelType
+        case app
+        case campaignId
+        case campaignName
+        case campaignStatus
+        case countriesOrRegions
+        case countryOrRegionServingStateReasons
+        case dailyBudget
+        case deleted
+        case displayStatus
+        case modificationTime
+        case orgId
+        case servingStateReasons
+        case servingStatus
+        case supplySources
+        case totalBudget
     }
 }

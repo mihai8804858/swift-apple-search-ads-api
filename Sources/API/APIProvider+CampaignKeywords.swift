@@ -101,7 +101,7 @@ public extension APIProvider {
     /// - Throws: An error of type `APIError`.
     func findCampaignNegativeKeywords<Model: Decodable & Sendable>(
         campaignId: Int,
-        selector: Selector? = nil,
+        selector: Selector<NegativeKeyword>? = nil,
         decoding: Model.Type = NegativeKeyword.self
     ) async throws -> Response<Paginated<Model>> {
         try await provider.requestPaginatedModel(from: CampaignNegativeKeywordsFindRequest(

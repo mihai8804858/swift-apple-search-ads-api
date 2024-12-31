@@ -22,25 +22,48 @@
 ///   ]
 /// }
 /// ```
-public struct Selector: Codable, Equatable, Sendable {
+public struct Selector<Root: CodingKeysContaining>: Codable, Equatable, Sendable {
     /// A list of condition objects that allow users to filter a list of records.
-    public let conditions: [Condition]?
+    public let conditions: [Condition<Root>]?
     /// A list of field names to return within each record.
-    public let fields: [String]?
+    public let fields: [Root.CodingKeys]?
     /// A list of field names and grouping to sort the records by ASCENDING or DESCENDING.
-    public let orderBy: [Sorting]?
+    public let orderBy: [Sorting<Root>]?
     /// A defined range and limit of the number of returned records.
     public let pagination: Pagination?
 
     public init(
-        conditions: [Condition]? = nil,
-        fields: [String]? = nil,
-        orderBy: [Sorting]? = nil,
+        conditions: [Condition<Root>]? = nil,
+        fields: [Root.CodingKeys]? = nil,
+        orderBy: [Sorting<Root>]? = nil,
         pagination: Pagination? = nil
     ) {
         self.conditions = conditions
         self.fields = fields
         self.orderBy = orderBy
         self.pagination = pagination
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case conditions
+        case fields
+        case orderBy
+        case pagination
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        fields = try container.decodeCodingKeysIfPresent(forKey: .fields, type: Root.self)
+        conditions = try container.decodeIfPresent([Condition<Root>].self, forKey: .conditions)
+        orderBy = try container.decodeIfPresent([Sorting<Root>].self, forKey: .orderBy)
+        pagination = try container.decodeIfPresent(Pagination.self, forKey: .pagination)
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeCodingKeysIfPresent(fields, forKey: .fields, type: Root.self)
+        try container.encodeIfPresent(conditions, forKey: .conditions)
+        try container.encodeIfPresent(orderBy, forKey: .orderBy)
+        try container.encodeIfPresent(pagination, forKey: .pagination)
     }
 }

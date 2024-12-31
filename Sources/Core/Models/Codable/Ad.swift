@@ -1,7 +1,7 @@
 import Foundation
 
 /// The response to ad group requests.
-public struct Ad: Codable, Equatable, Sendable {
+public struct Ad: Codable, Equatable, Sendable, CodingKeysContaining {
     /// The user-controlled status of the ad.
     public enum Status: String, Codable, Equatable, Sendable {
         /// The ad is enabled.
@@ -129,5 +129,21 @@ public struct Ad: Codable, Equatable, Sendable {
         self.servingStateReasons = servingStateReasons
         self.creationTime = creationTime
         self.modificationTime = modificationTime
+    }
+
+    public enum CodingKeys: String, CodingKey {
+        case id
+        case orgId
+        case adGroupId
+        case campaignId
+        case creativeId
+        case name
+        case creativeType
+        case deleted
+        case status
+        case servingStatus
+        case servingStateReasons
+        case creationTime
+        case modificationTime
     }
 }

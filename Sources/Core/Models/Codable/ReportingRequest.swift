@@ -1,7 +1,7 @@
 import Foundation
 
 /// The report request body.
-public struct ReportingRequest: Codable, Equatable, Sendable {
+public struct ReportingRequest<Root: CodingKeysContaining>: Codable, Equatable, Sendable {
     /// The report data organized by hour, day, week, and month.
     public enum Granularity: String, Codable, Equatable, Sendable {
         /// The `startTime` and `endTime` are ≤ 7 days apart, and the `startTime` is ≤ 30 days in the past.
@@ -71,7 +71,7 @@ public struct ReportingRequest: Codable, Equatable, Sendable {
     /// fewer than 100 impressions in the API response as other.
     public let groupBy: [GroupBy]?
     /// Selector objects define what data the API returns when fetching resources.
-    public let selector: Selector?
+    public let selector: Selector<Root>?
     /// Returns the total of all the rows in the result set.
     ///
     /// If you don’t specify `granularity`, `returnRowTotals` must be true.
@@ -95,7 +95,7 @@ public struct ReportingRequest: Codable, Equatable, Sendable {
         timeZone: String? = nil,
         granularity: ReportingRequest.Granularity? = nil,
         groupBy: [ReportingRequest.GroupBy]? = nil,
-        selector: Selector? = nil,
+        selector: Selector<Root>? = nil,
         returnGrandTotals: Bool? = nil,
         returnRecordsWithNoMetrics: Bool? = nil,
         returnRowTotals: Bool? = nil
@@ -131,7 +131,7 @@ public struct ReportingRequest: Codable, Equatable, Sendable {
         timeZone = try container.decodeIfPresent(String.self, forKey: .timeZone)
         granularity = try container.decodeIfPresent(ReportingRequest.Granularity.self, forKey: .granularity)
         groupBy = try container.decodeIfPresent([ReportingRequest.GroupBy].self, forKey: .groupBy)
-        selector = try container.decodeIfPresent(Selector.self, forKey: .selector)
+        selector = try container.decodeIfPresent(Selector<Root>.self, forKey: .selector)
         returnGrandTotals = try container.decodeIfPresent(Bool.self, forKey: .returnGrandTotals)
         returnRecordsWithNoMetrics = try container.decodeIfPresent(Bool.self, forKey: .returnRecordsWithNoMetrics)
         returnRowTotals = try container.decodeIfPresent(Bool.self, forKey: .returnRowTotals)

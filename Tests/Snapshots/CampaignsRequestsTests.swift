@@ -219,11 +219,14 @@ final class CampaignsRequestsTests: SnapshotTestCase {
     func testFindRequest() async throws {
         try await assertRequest(CampaignFindRequest(selector: Selector(
             conditions: [
-                Condition(field: "servicingStatus", operator: .equals, values: ["RUNNING"]),
-                Condition(field: "adChannelType", operator: .in, values: ["SEARCH", "DISPLAY"])
+                Condition(field: .servingStatus, operator: .equals, value: Campaign.ServingStatus.running),
+                Condition(field: .adChannelType, operator: .in, values: [
+                    Campaign.AdChannelType.search,
+                    Campaign.AdChannelType.display
+                ])
             ],
-            fields: ["id", "name"],
-            orderBy: [Sorting(field: "creationTime", sortOrder: .ascending)],
+            fields: [.id, .name],
+            orderBy: [Sorting(field: .creationTime, sortOrder: .ascending)],
             pagination: Pagination(limit: 20, offset: 40)
         ))) {
             """
@@ -231,7 +234,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
-            Content-Length: 479
+            Content-Length: 477
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-Ap-Context: orgId=12345
@@ -239,7 +242,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
             {
               "conditions" : [
                 {
-                  "field" : "servicingStatus",
+                  "field" : "servingStatus",
                   "operator" : "EQUALS",
                   "values" : [
                     "RUNNING"

@@ -1,7 +1,7 @@
 import Foundation
 
 /// The response to a request to fetch keyword-level reports.
-public struct ReportingKeyword: Codable, Equatable, Sendable {
+public struct ReportingKeyword: Codable, Equatable, Sendable, CodingKeysContaining {
     /// An indicator of whether the ad group is soft-deleted.
     public let adGroupDeleted: Bool?
     /// The unique identifier for the ad group the search term belongs to.
@@ -61,5 +61,21 @@ public struct ReportingKeyword: Codable, Equatable, Sendable {
         self.matchType = matchType
         self.orgId = orgId
         self.modificationTime = modificationTime
+    }
+
+    public enum CodingKeys: String, CodingKey {
+        case adGroupDeleted
+        case adGroupId
+        case adGroupName
+        case bidAmount
+        case campaignId
+        case deleted
+        case keywordId
+        case keyword
+        case keywordStatus
+        case keywordDisplayStatus
+        case matchType
+        case orgId
+        case modificationTime
     }
 }

@@ -3,7 +3,7 @@ struct AdReportRequest: RequestType {
     let method = HTTPMethod.post
     let body: RequestBody?
 
-    init(campaignId: Int, request: ReportingRequest) {
+    init(campaignId: Int, request: ReportingRequest<ReportingAd>) {
         path = "/api/v5/reports/campaigns/\(campaignId)/ads"
         body = .json(request)
     }

@@ -80,14 +80,14 @@ final class CreativesRequestsTests: SnapshotTestCase {
     func testFindRequest() async throws {
         try await assertRequest(CreativesFindRequest(selector: Selector(
             conditions: [
-                Condition(field: "state", operator: .equals, values: ["VALID"]),
-                Condition(field: "stateReasons", operator: .contains, values: [
-                    "ASSET_DELETED",
-                    "PRODUCT_PAGE_DELETED"
+                Condition(field: .state, operator: .equals, value: Creative.State.valid),
+                Condition(field: .stateReasons, operator: .contains, values: [
+                    Creative.StateReason.assetDeleted,
+                    Creative.StateReason.productPageDeleted
                 ])
             ],
-            fields: ["id", "name"],
-            orderBy: [Sorting(field: "creationTime", sortOrder: .ascending)],
+            fields: [.id, .name],
+            orderBy: [Sorting(field: .creationTime, sortOrder: .ascending)],
             pagination: Pagination(limit: 20, offset: 40)
         ))) {
             """

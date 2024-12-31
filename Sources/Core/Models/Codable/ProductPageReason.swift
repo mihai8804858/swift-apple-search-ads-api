@@ -1,7 +1,7 @@
 import Foundation
 
 /// The ad creative rejection reason based on a product page.
-public struct ProductPageReason: Codable, Equatable, Sendable {
+public struct ProductPageReason: Codable, Equatable, Sendable, CodingKeysContaining {
     public enum ReasonType: String, Codable, Equatable, Sendable {
         case rejectionReason = "REJECTION_REASON"
     }
@@ -81,5 +81,19 @@ public struct ProductPageReason: Codable, Equatable, Sendable {
         self.supplySource = supplySource
         self.countryOrRegion = countryOrRegion
         self.comment = comment
+    }
+
+    public enum CodingKeys: String, CodingKey {
+        case id
+        case adamId
+        case productPageId
+        case assetGenId
+        case languageCode
+        case reasonCode
+        case reasonType
+        case reasonLevel
+        case supplySource
+        case countryOrRegion
+        case comment
     }
 }

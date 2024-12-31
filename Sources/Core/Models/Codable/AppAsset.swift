@@ -1,7 +1,7 @@
 import Foundation
 
 /// The app assets associated with an adam ID.
-public struct AppAsset: Codable, Equatable, Sendable {
+public struct AppAsset: Codable, Equatable, Sendable, CodingKeysContaining {
     /// Your unique App Store app identifier.
     ///
     /// This field is sortable.
@@ -60,5 +60,18 @@ public struct AppAsset: Codable, Equatable, Sendable {
         self.orientation = orientation
         self.sourceHeight = sourceHeight
         self.sourceWidth = sourceWidth
+    }
+
+    public enum CodingKeys: String, CodingKey {
+        case adamId
+        case appPreviewDevice
+        case assetGenId
+        case assetType
+        case assetURL
+        case assetVideoUrl
+        case deleted
+        case orientation
+        case sourceHeight
+        case sourceWidth
     }
 }

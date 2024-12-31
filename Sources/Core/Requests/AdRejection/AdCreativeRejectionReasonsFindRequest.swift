@@ -3,7 +3,7 @@ struct AdCreativeRejectionReasonsFindRequest: RequestType {
     let method = HTTPMethod.post
     let body: RequestBody?
 
-    init(selector: Selector?) {
+    init(selector: Selector<ProductPageReason>?) {
         body = .json(selector)
     }
 }

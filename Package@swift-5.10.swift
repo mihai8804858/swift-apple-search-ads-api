@@ -20,7 +20,8 @@ let package = Package(
         .package(url: "https://github.com/fumoboy007/swift-retry", from: "0.2.4"),
         .package(url: "https://github.com/CreateAPI/URLQueryEncoder", from: "0.2.1"),
         .package(url: "https://github.com/pointfreeco/swift-clocks", from: "1.0.6"),
-        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.17.6")
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.17.6"),
+        .package(url: "https://github.com/Flight-School/AnyCodable", from: "0.6.7")
     ],
     targets: [
         .target(
@@ -28,6 +29,7 @@ let package = Package(
             dependencies: [
                 .product(name: "Crypto", package: "swift-crypto"),
                 .product(name: "DMRetry", package: "swift-retry"),
+                .product(name: "AnyCodable", package: "AnyCodable"),
                 .product(name: "URLQueryEncoder", package: "URLQueryEncoder")
             ],
             resources: [.copy("Resources/PrivacyInfo.xcprivacy")]

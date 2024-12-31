@@ -3,7 +3,7 @@ struct AdGroupNegativeKeywordsFindRequest: RequestType {
     let method = HTTPMethod.post
     let body: RequestBody?
 
-    init(campaignId: Int, selector: Selector?) {
+    init(campaignId: Int, selector: Selector<NegativeKeyword>?) {
         path = "/api/v5/campaigns/\(campaignId)/adgroups/negativekeywords/find"
         body = .json(selector)
     }

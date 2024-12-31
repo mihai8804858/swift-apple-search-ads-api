@@ -51,7 +51,7 @@ public extension APIProvider {
     ///
     /// - Throws: An error of type `APIError`.
     func findCreatives<Model: Decodable & Sendable>(
-        selector: Selector? = nil,
+        selector: Selector<CreativeCustomProductPage>? = nil,
         decoding: Model.Type = CreativeCustomProductPage.self
     ) async throws -> Response<Paginated<Model>> {
         try await provider.requestPaginatedModel(from: CreativesFindRequest(selector: selector))

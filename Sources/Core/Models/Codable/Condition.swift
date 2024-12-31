@@ -1,7 +1,9 @@
+@preconcurrency import AnyCodable
+
 /// The list of condition objects that allow users to filter a list of records.
 ///
 /// The Condition object functionality is similar to the `WHERE` clause in `SQL`.
-public struct Condition: Codable, Equatable, Sendable {
+public struct Condition<Root: CodingKeysContaining>: Codable, Equatable, Sendable {
     public enum Operator: String, Codable, Equatable, Sendable {
         /// The attribute matches the values within a specified range. The values can be numbers, text, or dates.
         case between = "BETWEEN"
@@ -26,15 +28,39 @@ public struct Condition: Codable, Equatable, Sendable {
     }
 
     /// The name of a field.
-    public let field: String
+    public let field: Root.CodingKeys
     /// The operator values compare attributes to a list of specified values.
     public let `operator`: Operator
     /// A list of matching values.
-    public let values: [String]
+    public let values: [AnyCodable]
 
-    public init(field: String, operator: Operator, values: [String]) {
+    public init<Value: Codable & Equatable & Sendable>(field: Root.CodingKeys, operator: Operator, values: [Value]) {
         self.field = field
         self.operator = `operator`
-        self.values = values
+        self.values = values.map { AnyCodable($0) }
+    }
+
+    public init<Value: Codable & Equatable & Sendable>(field: Root.CodingKeys, operator: Operator, value: Value) {
+        self.init(field: field, operator: `operator`, values: [value])
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case field
+        case `operator`
+        case values
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        field = try container.decodeCodingKey(forKey: .field, type: Root.self)
+        `operator` = try container.decode(Operator.self, forKey: .operator)
+        values = try container.decode([AnyCodable].self, forKey: .values)
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeCodingKey(field, forKey: .field, type: Root.self)
+        try container.encode(`operator`, forKey: .operator)
+        try container.encode(values, forKey: .values)
     }
 }

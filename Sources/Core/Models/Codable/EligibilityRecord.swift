@@ -1,5 +1,5 @@
 /// App eligibility parameters that an API response returns.
-public struct EligibilityRecord: Codable, Equatable, Sendable {
+public struct EligibilityRecord: Codable, Equatable, Sendable, CodingKeysContaining {
     /// The eligible devices you can use for targeting.
     public enum State: String, Codable, Equatable, Sendable {
         case eligible = "ELIGIBLE"
@@ -33,5 +33,14 @@ public struct EligibilityRecord: Codable, Equatable, Sendable {
         self.minAge = minAge
         self.state = state
         self.supplySource = supplySource
+    }
+
+    public enum CodingKeys: String, CodingKey {
+        case adamId
+        case countryOrRegion
+        case deviceClass
+        case minAge
+        case state
+        case supplySource
     }
 }

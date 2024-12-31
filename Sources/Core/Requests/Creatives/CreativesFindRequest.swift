@@ -3,7 +3,7 @@ struct CreativesFindRequest: RequestType {
     let method = HTTPMethod.post
     let body: RequestBody?
 
-    init(selector: Selector?) {
+    init(selector: Selector<CreativeCustomProductPage>?) {
         body = .json(selector)
     }
 }

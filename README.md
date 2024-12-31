@@ -147,7 +147,7 @@ struct MyCampaignModel: Decodable, Sendable {
 }
 
 let campaigns = try await provider.findCampaigns(
-  selector: Selector(fields: ["id", "name"]),
+  selector: Selector(fields: [.id, .name]),
   decoding: MyCampaignModel.self
 )
 ```

@@ -1,7 +1,7 @@
 import Foundation
 
 /// The response to a request to create and fetch campaigns.
-public struct Campaign: Codable, Equatable, Sendable {
+public struct Campaign: Codable, Equatable, Sendable, CodingKeysContaining {
     /// The status of the campaign.
     public enum Status: String, Codable, Equatable, Sendable {
         /// The campaign is enabled.
@@ -311,5 +311,31 @@ public struct Campaign: Codable, Equatable, Sendable {
         self.modificationTime = modificationTime
         self.startTime = startTime
         self.endTime = endTime
+    }
+
+    public enum CodingKeys: String, CodingKey {
+        case id
+        case orgId
+        case adamId
+        case name
+        case adChannelType
+        case supplySources
+        case status
+        case displayStatus
+        case servingStatus
+        case servingStateReasons
+        case countriesOrRegions
+        case countryOrRegionServingStateReasons
+        case billingEvent
+        case budgetAmount
+        case dailyBudgetAmount
+        case budgetOrders
+        case paymentModel
+        case locInvoiceDetails
+        case deleted
+        case creationTime
+        case modificationTime
+        case startTime
+        case endTime
     }
 }

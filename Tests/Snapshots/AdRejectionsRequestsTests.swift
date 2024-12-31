@@ -8,11 +8,11 @@ final class AdRejectionsRequestsTests: SnapshotTestCase {
             adamId: 12345,
             selector: Selector(
                 conditions: [
-                    Condition(field: "assetType", operator: .equals, values: ["APP_PREVIEW"]),
-                    Condition(field: "deleted", operator: .in, values: ["true", "false"])
+                    Condition(field: .assetType, operator: .equals, value: MediaAssetType.appPreview),
+                    Condition(field: .deleted, operator: .in, values: [true, false])
                 ],
-                fields: ["assetGenId", "assetURL"],
-                orderBy: [Sorting(field: "sourceWidth", sortOrder: .ascending)],
+                fields: [.assetGenId, .assetURL],
+                orderBy: [Sorting(field: .sourceWidth, sortOrder: .ascending)],
                 pagination: Pagination(limit: 20, offset: 40)
             )
         )) {
@@ -21,7 +21,7 @@ final class AdRejectionsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
-            Content-Length: 478
+            Content-Length: 474
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-Ap-Context: orgId=12345
@@ -39,8 +39,8 @@ final class AdRejectionsRequestsTests: SnapshotTestCase {
                   "field" : "deleted",
                   "operator" : "IN",
                   "values" : [
-                    "true",
-                    "false"
+                    true,
+                    false
                   ]
                 }
               ],
@@ -79,15 +79,15 @@ final class AdRejectionsRequestsTests: SnapshotTestCase {
     func testFindRequest() async throws {
         try await assertRequest(AdCreativeRejectionReasonsFindRequest(selector: Selector(
             conditions: [
-                Condition(field: "reasonType", operator: .equals, values: ["REJECTION_REASON"]),
-                Condition(field: "reasonCode", operator: .in, values: [
-                    "APP_ICON_GRAPHIC_OR_ADULT_THEMED_CONTENT",
-                    "APP_NAME_GRAPHIC_OR_ADULT_THEMED_CONTENT",
-                    "SUBTITLE_GRAPHIC_OR_ADULT_THEMED_CONTENT"
+                Condition(field: .reasonType, operator: .equals, value: ProductPageReason.ReasonType.rejectionReason),
+                Condition(field: .reasonCode, operator: .in, values: [
+                    ProductPageReason.ReasonCode.appIconGraphicOrAdultThemedContent,
+                    ProductPageReason.ReasonCode.appNameGraphicOrAdultThemedContent,
+                    ProductPageReason.ReasonCode.subtitleGraphicOrAdultThemedContent
                 ])
             ],
-            fields: ["id", "comment"],
-            orderBy: [Sorting(field: "languageCode", sortOrder: .ascending)],
+            fields: [.id, .comment],
+            orderBy: [Sorting(field: .languageCode, sortOrder: .ascending)],
             pagination: Pagination(limit: 20, offset: 40)
         ))) {
             """

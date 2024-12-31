@@ -1,7 +1,7 @@
 import Foundation
 
 /// A container for Impression Share report metrics.
-public struct CustomReport: Codable, Equatable, Sendable {
+public struct CustomReport: Codable, Equatable, Sendable, CodingKeysContaining {
     /// The state of the report.
     public enum State: String, Codable, Equatable, Sendable {
         case queued = "QUEUED"
@@ -97,7 +97,7 @@ public struct CustomReport: Codable, Equatable, Sendable {
         self.downloadUri = downloadUri
     }
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case id
         case name
         case state

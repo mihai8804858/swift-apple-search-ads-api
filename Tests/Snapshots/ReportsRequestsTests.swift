@@ -14,10 +14,14 @@ final class ReportsRequestsTests: SnapshotTestCase {
                 groupBy: [.locality, .gender],
                 selector: Selector(
                     conditions: [
-                        Condition(field: "adGroupServingStatus", operator: .equals, values: ["RUNNING"]),
-                        Condition(field: "adGroupStatus", operator: .contains, values: ["ENABLED", "PAUSED"])
+                        Condition(field: .adGroupServingStatus, operator: .equals,
+                                  value: AdGroup.ServingStatus.running),
+                        Condition(field: .adGroupStatus, operator: .contains, values: [
+                            AdGroup.Status.enabled,
+                            AdGroup.Status.paused
+                        ])
                     ],
-                    orderBy: [Sorting(field: "impressions", sortOrder: .ascending)],
+                    orderBy: [Sorting(field: .cpaGoal, sortOrder: .ascending)],
                     pagination: Pagination(limit: 20, offset: 40)
                 ),
                 returnGrandTotals: true,
@@ -30,7 +34,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
-            Content-Length: 777
+            Content-Length: 773
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-Ap-Context: orgId=12345
@@ -65,7 +69,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
                 ],
                 "orderBy" : [
                   {
-                    "field" : "impressions",
+                    "field" : "cpaGoal",
                     "sortOrder" : "ASCENDING"
                   }
                 ],
@@ -92,13 +96,13 @@ final class ReportsRequestsTests: SnapshotTestCase {
                 groupBy: [.locality, .gender],
                 selector: Selector(
                     conditions: [
-                        Condition(field: "status", operator: .equals, values: ["VALID"]),
-                        Condition(field: "creativeType", operator: .contains, values: [
-                            "DEFAULT_PRODUCT_PAGE",
-                            "CUSTOM_PRODUCT_PAGE"
+                        Condition(field: .status, operator: .equals, value: Creative.State.valid),
+                        Condition(field: .creativeType, operator: .contains, values: [
+                            Creative.Kind.defaultProductPage,
+                            Creative.Kind.customProductPage
                         ])
                     ],
-                    orderBy: [Sorting(field: "impressions", sortOrder: .ascending)],
+                    orderBy: [Sorting(field: .adDisplayStatus, sortOrder: .ascending)],
                     pagination: Pagination(limit: 20, offset: 40)
                 ),
                 returnGrandTotals: true,
@@ -111,7 +115,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
-            Content-Length: 786
+            Content-Length: 790
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-Ap-Context: orgId=12345
@@ -146,7 +150,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
                 ],
                 "orderBy" : [
                   {
-                    "field" : "impressions",
+                    "field" : "adDisplayStatus",
                     "sortOrder" : "ASCENDING"
                   }
                 ],
@@ -171,10 +175,13 @@ final class ReportsRequestsTests: SnapshotTestCase {
             groupBy: [.locality, .gender],
             selector: Selector(
                 conditions: [
-                    Condition(field: "campaignStatus", operator: .equals, values: ["ENABLED"]),
-                    Condition(field: "displayStatus", operator: .contains, values: ["RUNNING", "PAUSED"])
+                    Condition(field: .campaignStatus, operator: .equals, value: Campaign.Status.enabled),
+                    Condition(field: .displayStatus, operator: .contains, values: [
+                        Campaign.DisplayStatus.running,
+                        Campaign.DisplayStatus.paused
+                    ])
                 ],
-                orderBy: [Sorting(field: "impressions", sortOrder: .ascending)],
+                orderBy: [Sorting(field: .dailyBudget, sortOrder: .ascending)],
                 pagination: Pagination(limit: 20, offset: 40)
             ),
             returnGrandTotals: true,
@@ -221,7 +228,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
                 ],
                 "orderBy" : [
                   {
-                    "field" : "impressions",
+                    "field" : "dailyBudget",
                     "sortOrder" : "ASCENDING"
                   }
                 ],
@@ -249,10 +256,13 @@ final class ReportsRequestsTests: SnapshotTestCase {
                 groupBy: [.locality, .gender],
                 selector: Selector(
                     conditions: [
-                        Condition(field: "keywordStatus", operator: .equals, values: ["ACTIVE"]),
-                        Condition(field: "matchType", operator: .contains, values: ["EXACT", "BROAD"])
+                        Condition(field: .keywordStatus, operator: .equals, value: KeywordStatus.active),
+                        Condition(field: .matchType, operator: .contains, values: [
+                            KeywordMatchType.exact,
+                            KeywordMatchType.broad
+                        ])
                     ],
-                    orderBy: [Sorting(field: "impressions", sortOrder: .ascending)],
+                    orderBy: [Sorting(field: .bidAmount, sortOrder: .ascending)],
                     pagination: Pagination(limit: 20, offset: 40)
                 ),
                 returnGrandTotals: true,
@@ -265,7 +275,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
-            Content-Length: 762
+            Content-Length: 760
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-Ap-Context: orgId=12345
@@ -300,7 +310,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
                 ],
                 "orderBy" : [
                   {
-                    "field" : "impressions",
+                    "field" : "bidAmount",
                     "sortOrder" : "ASCENDING"
                   }
                 ],
@@ -328,10 +338,13 @@ final class ReportsRequestsTests: SnapshotTestCase {
                 groupBy: [.locality, .gender],
                 selector: Selector(
                     conditions: [
-                        Condition(field: "keywordStatus", operator: .equals, values: ["ACTIVE"]),
-                        Condition(field: "matchType", operator: .contains, values: ["EXACT", "BROAD"])
+                        Condition(field: .keywordStatus, operator: .equals, value: KeywordStatus.active),
+                        Condition(field: .matchType, operator: .contains, values: [
+                            KeywordMatchType.exact,
+                            KeywordMatchType.broad
+                        ])
                     ],
-                    orderBy: [Sorting(field: "impressions", sortOrder: .ascending)],
+                    orderBy: [Sorting(field: .bidAmount, sortOrder: .ascending)],
                     pagination: Pagination(limit: 20, offset: 40)
                 ),
                 returnGrandTotals: true,
@@ -344,7 +357,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
-            Content-Length: 762
+            Content-Length: 760
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-Ap-Context: orgId=12345
@@ -379,7 +392,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
                 ],
                 "orderBy" : [
                   {
-                    "field" : "impressions",
+                    "field" : "bidAmount",
                     "sortOrder" : "ASCENDING"
                   }
                 ],
@@ -407,10 +420,13 @@ final class ReportsRequestsTests: SnapshotTestCase {
                 groupBy: [.locality, .gender],
                 selector: Selector(
                     conditions: [
-                        Condition(field: "keywordStatus", operator: .equals, values: ["ACTIVE"]),
-                        Condition(field: "matchType", operator: .contains, values: ["EXACT", "BROAD"])
+                        Condition(field: .keywordStatus, operator: .equals, value: KeywordStatus.active),
+                        Condition(field: .matchType, operator: .contains, values: [
+                            KeywordMatchType.exact,
+                            KeywordMatchType.broad
+                        ])
                     ],
-                    orderBy: [Sorting(field: "impressions", sortOrder: .ascending)],
+                    orderBy: [Sorting(field: .bidAmount, sortOrder: .ascending)],
                     pagination: Pagination(limit: 20, offset: 40)
                 ),
                 returnGrandTotals: true,
@@ -423,7 +439,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
-            Content-Length: 762
+            Content-Length: 760
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-Ap-Context: orgId=12345
@@ -458,7 +474,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
                 ],
                 "orderBy" : [
                   {
-                    "field" : "impressions",
+                    "field" : "bidAmount",
                     "sortOrder" : "ASCENDING"
                   }
                 ],
@@ -486,10 +502,13 @@ final class ReportsRequestsTests: SnapshotTestCase {
                 groupBy: [.locality, .gender],
                 selector: Selector(
                     conditions: [
-                        Condition(field: "keywordStatus", operator: .equals, values: ["ACTIVE"]),
-                        Condition(field: "matchType", operator: .contains, values: ["EXACT", "BROAD"])
+                        Condition(field: .keywordStatus, operator: .equals, value: KeywordStatus.active),
+                        Condition(field: .matchType, operator: .contains, values: [
+                            KeywordMatchType.exact,
+                            KeywordMatchType.broad
+                        ])
                     ],
-                    orderBy: [Sorting(field: "impressions", sortOrder: .ascending)],
+                    orderBy: [Sorting(field: .bidAmount, sortOrder: .ascending)],
                     pagination: Pagination(limit: 20, offset: 40)
                 ),
                 returnGrandTotals: true,
@@ -502,7 +521,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
-            Content-Length: 762
+            Content-Length: 760
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-Ap-Context: orgId=12345
@@ -537,7 +556,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
                 ],
                 "orderBy" : [
                   {
-                    "field" : "impressions",
+                    "field" : "bidAmount",
                     "sortOrder" : "ASCENDING"
                   }
                 ],
@@ -561,8 +580,14 @@ final class ReportsRequestsTests: SnapshotTestCase {
             dateRange: .last4Weeks,
             granularity: .daily,
             selector: CustomReportSelector(conditions: [
-                SovCondition(field: "field 1", operator: .in, values: ["value 1", "value 2"]),
-                SovCondition(field: "field 2", operator: .in, values: ["value 3"])
+                SovCondition(field: .granularity, operator: .in, values: [
+                    CustomReportGranularity.daily,
+                    CustomReportGranularity.weekly
+                ]),
+                SovCondition(field: .dimensions, operator: .in, values: [
+                    CustomReport.Metric.searchPopularity,
+                    CustomReport.Metric.rank
+                ])
             ])
         ))) {
             """
@@ -570,7 +595,7 @@ final class ReportsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
-            Content-Length: 460
+            Content-Length: 491
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-Ap-Context: orgId=12345
@@ -583,18 +608,19 @@ final class ReportsRequestsTests: SnapshotTestCase {
               "selector" : {
                 "conditions" : [
                   {
-                    "field" : "field 1",
+                    "field" : "granularity",
                     "operator" : "IN",
                     "values" : [
-                      "value 1",
-                      "value 2"
+                      "DAILY",
+                      "WEEKLY"
                     ]
                   },
                   {
-                    "field" : "field 2",
+                    "field" : "dimensions",
                     "operator" : "IN",
                     "values" : [
-                      "value 3"
+                      "searchPopularity",
+                      "rank"
                     ]
                   }
                 ]
@@ -621,12 +647,12 @@ final class ReportsRequestsTests: SnapshotTestCase {
     func testImpressionShareReportListRequest() async throws {
         try await assertRequest(ImpressionShareReportListRequest(
             parameters: ImpressionShareReportListParameters(
-                sorting: Sorting(field: "field", sortOrder: .ascending),
+                sorting: Sorting(field: .endTime, sortOrder: .ascending),
                 pagination: Pagination(limit: 20, offset: 40)
             )
         )) {
             """
-            GET https://api.searchads.apple.com/api/v5/custom-reports?field=field&limit=20&offset=40&sortOrder=ASCENDING
+            GET https://api.searchads.apple.com/api/v5/custom-reports?field=endTime&limit=20&offset=40&sortOrder=ASCENDING
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token

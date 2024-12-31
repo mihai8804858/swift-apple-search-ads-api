@@ -19,7 +19,7 @@ public extension APIProvider {
     /// All `ReportingCampaign` fields are available to the `orderBy` selector
     /// except `servingStateReasons`, `app`, `app:{appName}`, and `app:{adamId}`.
     func getCampaignsReport<Model: Decodable & Sendable>(
-        request: ReportingRequest,
+        request: ReportingRequest<ReportingCampaign>,
         decoding: Model.Type = ReportingCampaign.self
     ) async throws -> Response<Reporting<Empty, Model>> {
         try await provider.requestDataModel(from: CampaignReportRequest(request: request))
@@ -45,7 +45,7 @@ public extension APIProvider {
     /// All `ReportingAdGroup` fields are available to the `orderBy` selector except `adGroupServingStateReasons`.
     func getAdGroupsReport<Model: Decodable & Sendable>(
         campaignId: Int,
-        request: ReportingRequest,
+        request: ReportingRequest<ReportingAdGroup>,
         decoding: Model.Type = ReportingAdGroup.self
     ) async throws -> Response<Reporting<Empty, Model>> {
         try await provider.requestDataModel(from: AdGroupReportRequest(campaignId: campaignId, request: request))
@@ -72,7 +72,7 @@ public extension APIProvider {
     func getKeywordsReport<Model: Decodable & Sendable>(
         campaignId: Int,
         adGroupId: Int? = nil,
-        request: ReportingRequest,
+        request: ReportingRequest<ReportingKeyword>,
         decoding: Model.Type = ReportingKeyword.self
     ) async throws -> Response<Reporting<KeywordInsights, Model>> {
         try await provider.requestDataModel(from: KeywordReportRequest(
@@ -105,7 +105,7 @@ public extension APIProvider {
     func getSearchTermsReport<Model: Decodable & Sendable>(
         campaignId: Int,
         adGroupId: Int? = nil,
-        request: ReportingRequest,
+        request: ReportingRequest<ReportingSearchTerm>,
         decoding: Model.Type = ReportingSearchTerm.self
     ) async throws -> Response<Reporting<Empty, Model>> {
         try await provider.requestDataModel(from: SearchTermReportRequest(
@@ -135,7 +135,7 @@ public extension APIProvider {
     /// You can map your campaign installations by `adId` through the `AdServices` attribution framework.
     func getAdReport<Model: Decodable & Sendable>(
         campaignId: Int,
-        request: ReportingRequest,
+        request: ReportingRequest<ReportingAd>,
         decoding: Model.Type = ReportingAd.self
     ) async throws -> Response<Reporting<Empty, Model>> {
         try await provider.requestDataModel(from: AdReportRequest(campaignId: campaignId, request: request))

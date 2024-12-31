@@ -1,7 +1,7 @@
 import Foundation
 
 /// The response to ad group requests.
-public struct AdGroup: Codable, Equatable, Sendable {
+public struct AdGroup: Codable, Equatable, Sendable, CodingKeysContaining {
     /// The status of whether the ad group is enabled or not.
     public enum Status: String, Codable, Equatable, Sendable {
         /// The adgroup is serving.
@@ -151,5 +151,26 @@ public struct AdGroup: Codable, Equatable, Sendable {
         self.startTime = startTime
         self.endTime = endTime
         self.targetingDimensions = targetingDimensions
+    }
+
+    public enum CodingKeys: String, CodingKey {
+        case id
+        case orgId
+        case campaignId
+        case status
+        case servingStatus
+        case servingStateReasons
+        case displayStatus
+        case name
+        case pricingModel
+        case paymentModel
+        case defaultBidAmount
+        case cpaGoal
+        case deleted
+        case automatedKeywordsOptIn
+        case modificationTime
+        case startTime
+        case endTime
+        case targetingDimensions
     }
 }

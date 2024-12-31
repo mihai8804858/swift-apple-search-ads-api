@@ -7,9 +7,9 @@ final class AppsRequestsTests: SnapshotTestCase {
         try await assertRequest(AppEligibilityRequest(
             adamId: 12345,
             selector: Selector(
-                conditions: [Condition(field: "state", operator: .equals, values: ["ELIGIBLE"])],
-                fields: ["adamId", "supplySource"],
-                orderBy: [Sorting(field: "minAge", sortOrder: .ascending)],
+                conditions: [Condition(field: .state, operator: .equals, value: EligibilityRecord.State.eligible)],
+                fields: [.adamId, .supplySource],
+                orderBy: [Sorting(field: .minAge, sortOrder: .ascending)],
                 pagination: Pagination(limit: 20, offset: 40)
             )
         )) {

@@ -1,7 +1,7 @@
 import Foundation
 
 /// The response to a request to fetch ad-level reports.
-public struct ReportingAd: Codable, Equatable, Sendable {
+public struct ReportingAd: Codable, Equatable, Sendable, CodingKeysContaining {
     /// A unique identifier that represents the assignment relationship between an ad group and an ad.
     public let adId: Int?
     /// The unique identifier for the ad group the creative belongs to.
@@ -82,5 +82,23 @@ public struct ReportingAd: Codable, Equatable, Sendable {
         self.deleted = deleted
         self.creationTime = creationTime
         self.modificationTime = modificationTime
+    }
+
+    public enum CodingKeys: String, CodingKey {
+        case adId
+        case adGroupId
+        case campaignId
+        case creativeId
+        case orgId
+        case productPageId
+        case adName
+        case creativeType
+        case status
+        case adDisplayStatus
+        case adServingStateReasons
+        case language
+        case deleted
+        case creationTime
+        case modificationTime
     }
 }

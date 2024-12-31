@@ -3,7 +3,7 @@ struct KeywordReportRequest: RequestType {
     let method = HTTPMethod.post
     let body: RequestBody?
 
-    init(campaignId: Int, adGroupId: Int?, request: ReportingRequest) {
+    init(campaignId: Int, adGroupId: Int?, request: ReportingRequest<ReportingKeyword>) {
         body = .json(request)
         if let adGroupId {
             path = "/api/v5/reports/campaigns/\(campaignId)/adgroups/\(adGroupId)/keywords"

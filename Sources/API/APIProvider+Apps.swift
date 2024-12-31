@@ -24,7 +24,7 @@ public extension APIProvider {
     /// - Throws: An error of type `APIError`.
     func appEligibility<Model: Decodable & Sendable>(
         adamId: Int,
-        selector: Selector? = nil,
+        selector: Selector<EligibilityRecord>? = nil,
         decoding: Model.Type = EligibilityRecord.self
     ) async throws -> Response<Paginated<Model>> {
         try await provider.requestPaginatedModel(from: AppEligibilityRequest(

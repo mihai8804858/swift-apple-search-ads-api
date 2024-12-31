@@ -89,11 +89,11 @@ final class AdsRequestsTests: SnapshotTestCase {
             campaignId: 12345,
             selector: Selector(
                 conditions: [
-                    Condition(field: "status", operator: .equals, values: ["ENABLED"]),
-                    Condition(field: "deleted", operator: .in, values: ["true", "false"])
+                    Condition(field: .status, operator: .equals, value: Ad.Status.enabled),
+                    Condition(field: .deleted, operator: .in, values: [true, false])
                 ],
-                fields: ["id", "name"],
-                orderBy: [Sorting(field: "creationTime", sortOrder: .ascending)],
+                fields: [.id, .name],
+                orderBy: [Sorting(field: .creationTime, sortOrder: .ascending)],
                 pagination: Pagination(limit: 20, offset: 40)
             )
         )) {
@@ -102,7 +102,7 @@ final class AdsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
-            Content-Length: 460
+            Content-Length: 456
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-Ap-Context: orgId=12345
@@ -120,8 +120,8 @@ final class AdsRequestsTests: SnapshotTestCase {
                   "field" : "deleted",
                   "operator" : "IN",
                   "values" : [
-                    "true",
-                    "false"
+                    true,
+                    false
                   ]
                 }
               ],

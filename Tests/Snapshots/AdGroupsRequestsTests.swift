@@ -185,11 +185,11 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
             campaignId: 12345,
             selector: Selector(
                 conditions: [
-                    Condition(field: "status", operator: .equals, values: ["ENABLED"]),
-                    Condition(field: "name", operator: .contains, values: ["Latest"])
+                    Condition(field: .status, operator: .equals, value: AdGroup.Status.enabled),
+                    Condition(field: .name, operator: .contains, value: "Latest")
                 ],
-                fields: ["campaignId", "cpaGoal"],
-                orderBy: [Sorting(field: "displayStatus", sortOrder: .ascending)],
+                fields: [.campaignId, .cpaGoal],
+                orderBy: [Sorting(field: .displayStatus, sortOrder: .ascending)],
                 pagination: Pagination(limit: 20, offset: 40)
             )
         )) {
