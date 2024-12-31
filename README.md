@@ -179,6 +179,18 @@ Which will result in the following response:
 }
 ```
 
+## Paged Responses
+
+If the responses from the API request can be delivered in multiple pages, you can iterate over all of them using an `AsyncSequence` or individually request the next page following the current one.
+
+```swift
+for try await page in provider.pages(size: 20, request: { provider, pagination in
+  try await provider.listCampaigns(pagination: pagination)
+}) {
+  print(page)
+}
+```
+
 ## Rate Limits
 
 Rate limits exist in the Apple Search Ads Campaign Management API to avoid latency and other system problems from too many API calls within a limited time. For API users that are using automated retry logic in their environments, Apple’s solution is to require the retry logic to increase retry attempts exponentially by seconds. For example, if your default minimum wait time between retries is 2 seconds, the next retry wait time is 4 seconds, and so forth.
