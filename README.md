@@ -2,7 +2,7 @@
 
 `AppleSearchAds` is a framework that enables working with the [Apple Search Ads API](https://developer.apple.com/documentation/apple_search_ads) from Apple.
 
-[![CI](https://github.com/mihai8804858/swift-apple-search-ads-api/actions/workflows/ci.yml/badge.svg)](https://github.com/mihai8804858/swift-apple-search-ads-api/actions/workflows/ci.yml)
+[![CI](https://github.com/mihai8804858/swift-apple-search-ads-api/actions/workflows/ci.yml/badge.svg)](https://github.com/mihai8804858/swift-apple-search-ads-api/actions/workflows/ci.yml) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fmihai8804858%2Fswift-apple-search-ads-api%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/mihai8804858/swift-apple-search-ads-api) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fmihai8804858%2Fswift-apple-search-ads-api%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/mihai8804858/swift-apple-search-ads-api)
 
 ## Installation
 
@@ -200,6 +200,7 @@ This SDK automatically handles the rate limit reached errors (`429`) and impleme
 * If the request fails, wait 4 seconds and retry the request.
 * If the request fails, wait 8 seconds and retry the request.
 * If the request fails, wait 16 seconds and retry the request.
+* If the request fails, propagate the failure.
 
 ## License
 
