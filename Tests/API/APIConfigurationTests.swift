@@ -24,7 +24,7 @@ final class APIConfigurationTests: XCTestCase {
         try FileManager.default.removeItem(at: pemURL)
     }
 
-    func testJWTExpiration() throws {
+    func testJWTExpiration() {
         let validExpiration: TimeInterval = 86400
         let invalidExpiration: TimeInterval = 86400 * 181
 
@@ -34,7 +34,7 @@ final class APIConfigurationTests: XCTestCase {
             keyIdentifier: "key-id",
             privateKey: clearKey,
             jwtExpirationDuration: validExpiration
-        ))
+        ).privateKey)
 
         XCTAssertNoThrow(try APIConfiguration(
             clientIdentifier: "client-id",
@@ -42,7 +42,7 @@ final class APIConfigurationTests: XCTestCase {
             keyIdentifier: "key-id",
             privateKeyURL: pemURL,
             jwtExpirationDuration: validExpiration
-        ))
+        ).privateKey)
 
         XCTAssertThrowsError(try APIConfiguration(
             clientIdentifier: "client-id",
@@ -50,7 +50,7 @@ final class APIConfigurationTests: XCTestCase {
             keyIdentifier: "key-id",
             privateKey: clearKey,
             jwtExpirationDuration: invalidExpiration
-        ))
+        ).privateKey)
 
         XCTAssertThrowsError(try APIConfiguration(
             clientIdentifier: "client-id",
@@ -58,6 +58,6 @@ final class APIConfigurationTests: XCTestCase {
             keyIdentifier: "key-id",
             privateKeyURL: pemURL,
             jwtExpirationDuration: invalidExpiration
-        ))
+        ).privateKey)
     }
 }

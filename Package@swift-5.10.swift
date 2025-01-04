@@ -32,7 +32,8 @@ let package = Package(
                 .product(name: "AnyCodable", package: "AnyCodable"),
                 .product(name: "URLQueryEncoder", package: "URLQueryEncoder")
             ],
-            resources: [.copy("Resources/PrivacyInfo.xcprivacy")]
+            resources: [.copy("Resources/PrivacyInfo.xcprivacy")],
+            swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]
         ),
         .testTarget(
             name: "AppleSearchAdsTests",

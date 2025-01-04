@@ -4,9 +4,19 @@ import FoundationNetworking
 #endif
 @preconcurrency import Crypto
 
+enum PrivateKeySource: Sendable {
+    case derContents(String)
+    case pemURL(URL)
+}
+
 /// API configuration parameters.
 public struct APIConfiguration: Sendable {
     private static let allowedJWTExpirationDurationRange: ClosedRange<TimeInterval> = 0...86400 * 180
+
+    /// API users need to create a private key and upload it to App Store Search Ads UI in exchange for client,
+    /// team and key identifier. Private key is used to generate a JWT which is then exchanged for an access token
+    /// that is used to authenticate the API calls.
+    private let privateKeySource: PrivateKeySource
 
     /// `URLSession` to use to perform the requests.
     public let session: URLSession
@@ -18,10 +28,6 @@ public struct APIConfiguration: Sendable {
     public let keyIdentifier: String
     /// Defines the JWT expiration duration, which may not exceed 180 days.
     public let jwtExpirationDuration: TimeInterval
-    /// API users need to create a private key and upload it to App Store Search Ads UI in exchange for client,
-    /// team and key identifier. Private key is used to generate a JWT which is then exchanged for an access token
-    /// that is used to authenticate the API calls.
-    public let privateKey: P256.Signing.PrivateKey
 
     /// Create an instance of `APIConfiguration`.
     ///
@@ -39,14 +45,8 @@ public struct APIConfiguration: Sendable {
         privateKey: String,
         session: URLSession = .shared,
         jwtExpirationDuration: TimeInterval = 86400
-    ) throws {
-        guard Self.allowedJWTExpirationDurationRange ~= jwtExpirationDuration else {
-            throw JWT.Error.invalidExpirationDuration
-        }
-        guard let base64Key = Data(base64Encoded: privateKey) else {
-            throw JWT.Error.invalidBase64EncodedPrivateKey
-        }
-        self.privateKey = try P256.Signing.PrivateKey(derRepresentation: base64Key)
+    ) {
+        self.privateKeySource = .derContents(privateKey)
         self.jwtExpirationDuration = jwtExpirationDuration
         self.clientIdentifier = clientIdentifier
         self.teamIdentifier = teamIdentifier
@@ -70,16 +70,30 @@ public struct APIConfiguration: Sendable {
         privateKeyURL: URL,
         session: URLSession = .shared,
         jwtExpirationDuration: TimeInterval = 86400
-    ) throws {
-        guard Self.allowedJWTExpirationDurationRange ~= jwtExpirationDuration else {
-            throw JWT.Error.invalidExpirationDuration
-        }
-        let pemEncodedPrivateKey = try String(contentsOf: privateKeyURL)
-        self.privateKey = try P256.Signing.PrivateKey(pemRepresentation: pemEncodedPrivateKey)
+    ) {
+        self.privateKeySource = .pemURL(privateKeyURL)
         self.jwtExpirationDuration = jwtExpirationDuration
         self.clientIdentifier = clientIdentifier
         self.teamIdentifier = teamIdentifier
         self.keyIdentifier = keyIdentifier
         self.session = session
+    }
+
+    var privateKey: P256.Signing.PrivateKey {
+        get throws {
+            guard Self.allowedJWTExpirationDurationRange ~= jwtExpirationDuration else {
+                throw JWT.Error.invalidExpirationDuration
+            }
+            switch privateKeySource {
+            case .derContents(let privateKey):
+                guard let base64Key = Data(base64Encoded: privateKey) else {
+                    throw JWT.Error.invalidBase64EncodedPrivateKey
+                }
+                return try P256.Signing.PrivateKey(derRepresentation: base64Key)
+            case .pemURL(let privateKeyURL):
+                let pemEncodedPrivateKey = try String(contentsOf: privateKeyURL)
+                return try P256.Signing.PrivateKey(pemRepresentation: pemEncodedPrivateKey)
+            }
+        }
     }
 }

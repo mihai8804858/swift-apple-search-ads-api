@@ -28,6 +28,11 @@ final class ErrorTests: XCTestCase {
         XCTAssert(error.isForbidden)
     }
 
+    func testTooManyRequests() throws {
+        let error = APIError(response: Response(model: Data(), statusCode: 429))
+        XCTAssert(error.isTooManyRequests)
+    }
+
     func testRetryable() throws {
         XCTAssert(URLError(.networkConnectionLost).isRetryable)
         XCTAssertFalse(URLError(.notConnectedToInternet).isRetryable)

@@ -52,6 +52,11 @@ public enum APIError: Swift.Error, Equatable, Sendable {
         statusCode == ResponseStatus.unauthorized
     }
 
+    /// Verify if API request failed with "tooManyRequests" (429) status code.
+    public var isTooManyRequests: Bool {
+        statusCode == ResponseStatus.tooManyRequests
+    }
+
     /// Error response that was returned by the API.
     public var errorResponse: APIErrorResponse? {
         switch self {
