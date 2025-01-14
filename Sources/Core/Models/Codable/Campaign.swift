@@ -132,6 +132,8 @@ public struct Campaign: Codable, Equatable, Sendable, CodingKeysContaining {
 
     /// Reasons that displays when a campaign can’t run.
     public enum CountryOrRegionsServingStateReason: String, Codable, Equatable, Sendable {
+        /// The app doesn't support the country language.
+        case appLanguageIncompatible = "APP_LANGUAGE_INCOMPATIBLE"
         /// The app is not eligible in App Store Connect.
         case appNotEligible = "APP_NOT_ELIGIBLE"
         /// The app is not eligible for Apple Search Ads.

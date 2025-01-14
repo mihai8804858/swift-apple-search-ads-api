@@ -5,7 +5,7 @@ final class JWTStoreTests: XCTestCase {
     func testNoCache() async throws {
         nonisolated(unsafe) var jwtIssueCount = 0
         let store = JWTStore(
-            configuration: try APIConfiguration(
+            configuration: APIConfiguration(
                 clientIdentifier: "client-id",
                 teamIdentifier: "team-id",
                 keyIdentifier: "key-id",
@@ -25,7 +25,7 @@ final class JWTStoreTests: XCTestCase {
     func testValidCache() async throws {
         nonisolated(unsafe) var jwtIssueCount = 0
         let store = JWTStore(
-            configuration: try APIConfiguration(
+            configuration: APIConfiguration(
                 clientIdentifier: "client-id",
                 teamIdentifier: "team-id",
                 keyIdentifier: "key-id",
@@ -48,7 +48,7 @@ final class JWTStoreTests: XCTestCase {
         nonisolated(unsafe) var isFirstIssue = true
         nonisolated(unsafe) var jwtIssueCount = 0
         let store = JWTStore(
-            configuration: try APIConfiguration(
+            configuration: APIConfiguration(
                 clientIdentifier: "client-id",
                 teamIdentifier: "team-id",
                 keyIdentifier: "key-id",

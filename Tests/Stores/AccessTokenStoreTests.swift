@@ -4,7 +4,7 @@ import XCTest
 final class AccessTokenStoreTests: XCTestCase {
     func testNoCache() async throws {
         let provider = MockProvider()
-        let configuration = try APIConfiguration(
+        let configuration = APIConfiguration(
             clientIdentifier: "client-id",
             teamIdentifier: "team-id",
             keyIdentifier: "key-id",
@@ -27,7 +27,7 @@ final class AccessTokenStoreTests: XCTestCase {
 
     func testValidCache() async throws {
         let provider = MockProvider()
-        let configuration = try APIConfiguration(
+        let configuration = APIConfiguration(
             clientIdentifier: "client-id",
             teamIdentifier: "team-id",
             keyIdentifier: "key-id",
@@ -52,7 +52,7 @@ final class AccessTokenStoreTests: XCTestCase {
 
     func testExpiredCache() async throws {
         let provider = MockProvider()
-        let configuration = try APIConfiguration(
+        let configuration = APIConfiguration(
             clientIdentifier: "client-id",
             teamIdentifier: "team-id",
             keyIdentifier: "key-id",
@@ -76,7 +76,7 @@ final class AccessTokenStoreTests: XCTestCase {
 
     func testRefreshToken() async throws {
         let provider = MockProvider()
-        let configuration = try APIConfiguration(
+        let configuration = APIConfiguration(
             clientIdentifier: "client-id",
             teamIdentifier: "team-id",
             keyIdentifier: "key-id",
