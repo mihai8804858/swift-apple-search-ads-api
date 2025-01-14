@@ -18,7 +18,7 @@ public struct ReportingCampaign: Codable, Equatable, Sendable, CodingKeysContain
     /// The default value is US.
     public let countriesOrRegions: [String]?
     /// The map of reasons that returns when a campaign isn’t running.
-    public let countryOrRegionServingStateReasons: [String: Campaign.CountryOrRegionsServingStateReason]?
+    public let countryOrRegionServingStateReasons: [String: [Campaign.CountryOrRegionsServingStateReason]]?
     /// The daily budget amount available to the campaign.
     ///
     /// This is the equivalent of `dailyBudgetAmount` in your `Campaign`.
@@ -51,7 +51,7 @@ public struct ReportingCampaign: Codable, Equatable, Sendable, CodingKeysContain
         campaignName: String? = nil,
         campaignStatus: Campaign.Status? = nil,
         countriesOrRegions: [String]? = nil,
-        countryOrRegionServingStateReasons: [String: Campaign.CountryOrRegionsServingStateReason]? = nil,
+        countryOrRegionServingStateReasons: [String: [Campaign.CountryOrRegionsServingStateReason]]? = nil,
         dailyBudget: Money? = nil,
         deleted: Bool? = nil,
         displayStatus: Campaign.DisplayStatus? = nil,
