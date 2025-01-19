@@ -1,7 +1,7 @@
 import Foundation
 
 /// The list of campaign fields that are updatable.
-public struct CampaignUpdateProperties: Codable, Equatable, Sendable {
+public struct CampaignUpdateProperties: Codable, Hashable, Sendable {
     /// The name of the campaign, which is unique within an organization.
     ///
     /// This field is updatable.

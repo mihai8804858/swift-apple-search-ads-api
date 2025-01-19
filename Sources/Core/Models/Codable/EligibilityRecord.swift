@@ -1,7 +1,7 @@
 /// App eligibility parameters that an API response returns.
-public struct EligibilityRecord: Codable, Equatable, Sendable, CodingKeysContaining {
+public struct EligibilityRecord: Codable, Hashable, Sendable, CodingKeysContaining, Identifiable {
     /// The eligible devices you can use for targeting.
-    public enum State: String, Codable, Equatable, Sendable {
+    public enum State: String, Codable, Hashable, Sendable {
         case eligible = "ELIGIBLE"
         case ineligible = "INELIGIBLE"
     }
@@ -18,6 +18,8 @@ public struct EligibilityRecord: Codable, Equatable, Sendable, CodingKeysContain
     public let state: State
     /// The ad placements eligible for a campaign.
     public let supplySource: SupplySource
+
+    public var id: Int { adamId }
 
     public init(
         adamId: Int,

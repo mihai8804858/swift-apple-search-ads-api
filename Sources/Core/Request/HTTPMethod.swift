@@ -1,4 +1,4 @@
-struct HTTPMethod: RawRepresentable, Equatable, Sendable {
+struct HTTPMethod: RawRepresentable, Hashable, Sendable {
     let rawValue: String
 
     static let get = HTTPMethod(rawValue: "GET")

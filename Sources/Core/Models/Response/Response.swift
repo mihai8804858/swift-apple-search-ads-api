@@ -18,3 +18,4 @@ public struct Response<T: Sendable>: Sendable {
 }
 
 extension Response: Equatable where T: Equatable {}
+extension Response: Hashable where T: Hashable {}

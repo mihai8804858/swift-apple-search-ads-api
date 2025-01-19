@@ -1,7 +1,7 @@
 import Foundation
 
 /// The response to ad group update requests.
-public struct AdGroupUpdate: Codable, Equatable, Sendable {
+public struct AdGroupUpdate: Codable, Hashable, Sendable {
     /// The user-controlled status to enable or pause the ad group.
     ///
     /// This field is updatable.

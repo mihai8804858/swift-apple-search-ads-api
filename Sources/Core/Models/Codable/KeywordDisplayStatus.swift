@@ -1,5 +1,5 @@
 /// The state of the keyword display operation.
-public enum KeywordDisplayStatus: String, Codable, Equatable, Sendable {
+public enum KeywordDisplayStatus: String, Codable, Hashable, Sendable {
     /// The ad group is on hold.
     case adGroupOnHold = "AD_GROUP_ON_HOLD"
     /// The campaign is on hold.

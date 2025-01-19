@@ -1,6 +1,6 @@
 import Foundation
 
-struct AccessToken: Codable, Equatable, Sendable {
+struct AccessToken: Codable, Hashable, Sendable {
     enum CodingKeys: String, CodingKey {
         case token = "access_token"
         case tokenType = "token_type"

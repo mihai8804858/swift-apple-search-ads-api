@@ -1,13 +1,13 @@
 import Foundation
 
 /// The ad creative rejection reason based on a product page.
-public struct ProductPageReason: Codable, Equatable, Sendable, CodingKeysContaining {
-    public enum ReasonType: String, Codable, Equatable, Sendable {
+public struct ProductPageReason: Codable, Hashable, Sendable, CodingKeysContaining, Identifiable {
+    public enum ReasonType: String, Codable, Hashable, Sendable {
         case rejectionReason = "REJECTION_REASON"
     }
 
     /// The reason rejection code.
-    public enum ReasonCode: String, Codable, Equatable, Sendable {
+    public enum ReasonCode: String, Codable, Hashable, Sendable {
         /// Violent, offensive, sexually explicit, or otherwise inappropriate images aren’t allowed in the app icon.
         case appIconGraphicOrAdultThemedContent = "APP_ICON_GRAPHIC_OR_ADULT_THEMED_CONTENT"
         /// The app icon doesn’t comply with Apple advertising guidelines.

@@ -1,7 +1,7 @@
 import Foundation
 
 /// The asset details of the app preview or app screenshots for a corresponding device.
-public struct MediaAppPreviewOrScreenshots: Codable, Equatable, Sendable {
+public struct MediaAppPreviewOrScreenshots: Codable, Hashable, Sendable, Identifiable {
     /// Your unique App Store app identifier. Use Get a Campaign or Get all Campaigns to obtain your adamId.
     public let adamId: Int?
     /// Indicates the device model and corresponding display size.
@@ -31,6 +31,8 @@ public struct MediaAppPreviewOrScreenshots: Codable, Equatable, Sendable {
     public let sourceHeight: Int?
     /// The width of the asset that you upload to App Store Connect.
     public let sourceWidth: Int?
+
+    public var id: String? { assetGenId }
 
     public init(
         adamId: Int? = nil,

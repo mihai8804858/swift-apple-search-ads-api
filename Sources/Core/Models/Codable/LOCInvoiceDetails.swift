@@ -1,5 +1,5 @@
 /// The response to a request to fetch details for a monthly invoicing payment model.
-public struct LOCInvoiceDetails: Codable, Equatable, Sendable {
+public struct LOCInvoiceDetails: Codable, Hashable, Sendable {
     /// A valid email address for the LOC billing contact.
     public let billingContactEmail: String?
     /// A valid email address for the LOC buyer.

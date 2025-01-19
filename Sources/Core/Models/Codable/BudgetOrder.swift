@@ -1,9 +1,9 @@
 import Foundation
 
 /// The response to requests for budget order details.
-public struct BudgetOrder: Codable, Equatable, Sendable {
+public struct BudgetOrder: Codable, Hashable, Sendable, Identifiable {
     /// The system-controlled status indicator for the budget order.
-    public enum Status: String, Codable, Equatable, Sendable {
+    public enum Status: String, Codable, Hashable, Sendable {
         /// This status occurs when the budget order reaches its start date.
         case active = "ACTIVE"
         /// This status occurs after you create the budget order and before it reaches its start date.

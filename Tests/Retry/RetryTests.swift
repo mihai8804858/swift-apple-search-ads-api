@@ -2,7 +2,7 @@ import XCTest
 @testable import AppleSearchAds
 
 final class RetryTests: XCTestCase {
-    private struct MockError: Swift.Error, Equatable {
+    private struct MockError: Swift.Error, Hashable {
         let message: String
     }
 

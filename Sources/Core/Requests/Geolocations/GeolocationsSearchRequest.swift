@@ -1,4 +1,4 @@
-public struct GeolocationsSearchParameters: Equatable, Encodable, Sendable {
+public struct GeolocationsSearchParameters: Hashable, Encodable, Sendable {
     /// The query search pattern uses a prefix-matching algorithm.
     public let query: String?
     /// The country or region to serve ads in.

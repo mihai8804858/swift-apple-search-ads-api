@@ -1,7 +1,7 @@
 import Foundation
 
 /// The response to a request to fetch campaign-level reports.
-public struct ReportingCampaign: Codable, Equatable, Sendable, CodingKeysContaining {
+public struct ReportingCampaign: Codable, Hashable, Sendable, CodingKeysContaining, Identifiable {
     /// The channel type of ad in a campaign.
     public let adChannelType: Campaign.AdChannelType?
     /// The name of the app and the `adamId`.
@@ -43,6 +43,8 @@ public struct ReportingCampaign: Codable, Equatable, Sendable, CodingKeysContain
     ///
     /// This is the equivalent of `budgetAmount` in your `Campaign`.
     public let totalBudget: Money?
+
+    public var id: Int? { campaignId }
 
     public init(
         adChannelType: Campaign.AdChannelType? = nil,

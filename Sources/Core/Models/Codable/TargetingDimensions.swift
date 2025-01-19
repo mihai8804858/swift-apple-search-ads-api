@@ -1,5 +1,5 @@
 /// The optional criteria to use with ad groups to narrow the audience that views your ads.
-public struct TargetingDimensions: Codable, Equatable, Sendable {
+public struct TargetingDimensions: Codable, Hashable, Sendable {
     /// The dimension to target users by age demographic.
     /// Limit the age group you want to show your ad to.
     /// You must set a minimum age.

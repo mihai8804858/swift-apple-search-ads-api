@@ -1,6 +1,6 @@
 /// The payment model that you set through the Apple Search Ads UI.
 /// If you don’t set a payment model, campaigns can’t run.
-public enum PaymentModel: String, Codable, Equatable, Sendable {
+public enum PaymentModel: String, Codable, Hashable, Sendable {
     /// A pay-as-you-go payment model.
     case payAsYouGo = "PAYG"
     /// A line-of-credit payment model.

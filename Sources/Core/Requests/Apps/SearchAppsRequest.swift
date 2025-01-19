@@ -1,4 +1,4 @@
-public struct SearchAppsRequestParameters: Equatable, Encodable, Sendable {
+public struct SearchAppsRequestParameters: Hashable, Encodable, Sendable {
     /// The query for a list of iOS apps using a matching prefix.
     public let query: String?
     /// The list of apps belonging to your organization.

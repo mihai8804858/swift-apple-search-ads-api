@@ -1,5 +1,5 @@
 // The product page locale metadata on App Store Connect.
-public struct ProductPageLocaleDetail: Codable, Equatable, Sendable {
+public struct ProductPageLocaleDetail: Codable, Hashable, Sendable {
     /// Your unique App Store app identifier.
     /// Use Get a Campaign or Get All Campaigns to obtain your adamId used in your campaign.
     public let adamId: Int?

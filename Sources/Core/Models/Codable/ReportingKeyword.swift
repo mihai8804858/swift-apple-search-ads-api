@@ -1,7 +1,7 @@
 import Foundation
 
 /// The response to a request to fetch keyword-level reports.
-public struct ReportingKeyword: Codable, Equatable, Sendable, CodingKeysContaining {
+public struct ReportingKeyword: Codable, Hashable, Sendable, CodingKeysContaining, Identifiable {
     /// An indicator of whether the ad group is soft-deleted.
     public let adGroupDeleted: Bool?
     /// The unique identifier for the ad group the search term belongs to.
@@ -32,6 +32,8 @@ public struct ReportingKeyword: Codable, Equatable, Sendable, CodingKeysContaini
     public let orgId: Int?
     /// The date and time of the most recent modification of the object.
     public let modificationTime: Date?
+
+    public var id: Int? { keywordId }
 
     public init(
         adGroupDeleted: Bool? = nil,

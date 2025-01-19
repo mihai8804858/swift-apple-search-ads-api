@@ -1,7 +1,7 @@
 import Foundation
 
 /// The app asset details of a device.
-public struct MediaAppPreviewOrScreenshotsDetail: Codable, Equatable, Sendable {
+public struct MediaAppPreviewOrScreenshotsDetail: Codable, Hashable, Sendable {
     /// The display name of the device previewing the app.
     /// See Get App Preview Device Sizes for information about how devices map in the API.
     public let deviceDisplayName: String?

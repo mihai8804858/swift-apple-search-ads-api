@@ -1,4 +1,4 @@
-struct AccessTokenParameters: Equatable, Encodable, Sendable {
+struct AccessTokenParameters: Hashable, Encodable, Sendable {
     enum CodingKeys: String, CodingKey {
         case scope
         case grantType = "grant_type"

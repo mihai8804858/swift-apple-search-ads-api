@@ -1,7 +1,7 @@
 import Foundation
 
 /// The app assets associated with an adam ID.
-public struct AppAsset: Codable, Equatable, Sendable, CodingKeysContaining {
+public struct AppAsset: Codable, Hashable, Sendable, CodingKeysContaining, Identifiable {
     /// Your unique App Store app identifier.
     ///
     /// This field is sortable.
@@ -37,6 +37,8 @@ public struct AppAsset: Codable, Equatable, Sendable, CodingKeysContaining {
     ///
     /// This field is sortable.
     public let sourceWidth: Int?
+
+    public var id: String? { assetGenId }
 
     public init(
         adamId: String? = nil,

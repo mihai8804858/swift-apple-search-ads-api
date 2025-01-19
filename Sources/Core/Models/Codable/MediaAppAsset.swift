@@ -1,7 +1,7 @@
 import Foundation
 
 /// The asset details of app preview or app screenshots.
-public struct MediaAppAsset: Codable, Equatable, Sendable {
+public struct MediaAppAsset: Codable, Hashable, Sendable, Identifiable {
     /// The unique identifier for an app preview or screenshot.
     /// Your `adamId` is the first numerical grouping in `assetGenId`.
     /// For example, in `1408851466;en-US;5;0;f8c9add6280c781e6f701c506be5a921`, `1408851466` is your `adamId`.
@@ -19,6 +19,8 @@ public struct MediaAppAsset: Codable, Equatable, Sendable {
     public let sourceHeight: Int?
     /// The width of the asset that you upload to App Store Connect.
     public let sourceWidth: Int?
+    
+    public var id: String? { assetGenId }
 
     public init(
         assetGenId: String? = nil,

@@ -1,5 +1,5 @@
 /// The app asset details of a device.
-public struct MediaAppAssetsDetail: Codable, Equatable, Sendable {
+public struct MediaAppAssetsDetail: Codable, Hashable, Sendable {
     /// Devices that don’t have uploaded assets use fallback device mapping.
     public let appPreviewDeviceFallBackDevices: [String]?
     /// Still images of video assets to use for app previews.

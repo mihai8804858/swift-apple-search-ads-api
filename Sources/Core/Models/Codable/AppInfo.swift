@@ -1,5 +1,5 @@
 /// The response to an app search request.
-public struct AppInfo: Codable, Equatable, Sendable {
+public struct AppInfo: Codable, Hashable, Sendable, Identifiable {
     /// Your unique App Store Connect app identifier.
     public let adamId: Int
     /// The name of the app.
@@ -8,6 +8,8 @@ public struct AppInfo: Codable, Equatable, Sendable {
     public let developerName: String
     /// A list of ISO alpha-2 country code strings.
     public let countryOrRegionCodes: [String]
+
+    public var id: Int { adamId }
 
     public init(adamId: Int, appName: String, developerName: String, countryOrRegionCodes: [String]) {
         self.adamId = adamId

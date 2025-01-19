@@ -1,5 +1,5 @@
 /// The geosearch request object.
-public struct GeolocationRequest: Codable, Equatable, Sendable {
+public struct GeolocationRequest: Codable, Hashable, Sendable, Identifiable {
     /// The geographic location in the format of countryOrRegion|adminArea|locality.
     /// A countryCode is an ISO alpha-2 country code string.
     /// An adminArea is a state or the equivalent according to its associated country.

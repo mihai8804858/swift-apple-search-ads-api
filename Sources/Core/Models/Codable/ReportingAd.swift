@@ -1,7 +1,7 @@
 import Foundation
 
 /// The response to a request to fetch ad-level reports.
-public struct ReportingAd: Codable, Equatable, Sendable, CodingKeysContaining {
+public struct ReportingAd: Codable, Hashable, Sendable, CodingKeysContaining, Identifiable {
     /// A unique identifier that represents the assignment relationship between an ad group and an ad.
     public let adId: Int?
     /// The unique identifier for the ad group the creative belongs to.
@@ -49,6 +49,8 @@ public struct ReportingAd: Codable, Equatable, Sendable, CodingKeysContaining {
     ///
     /// You can use this field with the `orderBy` selector.
     public let modificationTime: Date?
+
+    public var id: Int? { adId }
 
     public init(
         adId: Int? = nil,

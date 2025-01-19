@@ -1,9 +1,9 @@
 import Foundation
 
 /// The report request body.
-public struct ReportingRequest<Root: CodingKeysContaining>: Codable, Equatable, Sendable {
+public struct ReportingRequest<Root: CodingKeysContaining>: Codable, Hashable, Sendable {
     /// The report data organized by hour, day, week, and month.
-    public enum Granularity: String, Codable, Equatable, Sendable {
+    public enum Granularity: String, Codable, Hashable, Sendable {
         /// The `startTime` and `endTime` are ≤ 7 days apart, and the `startTime` is ≤ 30 days in the past.
         /// The hour, 00 to 23, appends to the date string as HH.
         /// `HOURLY` isn’t available to use in Get Ad-Level Reports or Get Search Term-Level Reports.
@@ -20,7 +20,7 @@ public struct ReportingRequest<Root: CodingKeysContaining>: Codable, Equatable, 
     }
 
     /// Use the groupBy field to group responses by selected dimensions.
-    public enum GroupBy: String, Codable, Equatable, Sendable {
+    public enum GroupBy: String, Codable, Hashable, Sendable {
         /// The `adminArea` dimension is a group of states or the equivalent according to its associated country.
         /// In Get Ad Group-Level Reports, you need to use the `adminArea` dimension with `countryCode`.
         /// The `locality` dimension is optional.

@@ -1,5 +1,5 @@
 /// The level at which the system applies an ad rejection reason.
-public enum AdRejectionReasonLevel: String, Codable, Equatable, Sendable {
+public enum AdRejectionReasonLevel: String, Codable, Hashable, Sendable {
     /// The rejection ReasonLevel applies to a custom product page.
     case customProductPage = "CUSTOM_PRODUCT_PAGE"
     /// The rejection ReasonLevel applies to a custom product page locale.

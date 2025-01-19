@@ -1,5 +1,5 @@
 // The app preview device assets.
-public struct AppPreviewDeviceWithAssets: Codable, Equatable, Sendable {
+public struct AppPreviewDeviceWithAssets: Codable, Hashable, Sendable {
     /// The device that’s available for the asset, corresponding to the display size.
     /// See Get App Preview Device Sizes for device mapping in the API.
     public let appPreviewDevice: String?

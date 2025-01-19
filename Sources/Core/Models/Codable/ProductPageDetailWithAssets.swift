@@ -1,7 +1,7 @@
 import Foundation
 
 /// The product page asset metadata.
-public struct ProductPageDetailWithAssets: Codable, Equatable, Sendable {
+public struct ProductPageDetailWithAssets: Codable, Hashable, Sendable, Identifiable {
     /// A unique string to identify a product page on App Store Connect.
     public let id: String?
     /// Your unique App Store app identifier.

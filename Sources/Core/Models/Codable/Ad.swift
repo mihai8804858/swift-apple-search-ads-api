@@ -1,9 +1,9 @@
 import Foundation
 
 /// The response to ad group requests.
-public struct Ad: Codable, Equatable, Sendable, CodingKeysContaining {
+public struct Ad: Codable, Hashable, Sendable, CodingKeysContaining, Identifiable {
     /// The user-controlled status of the ad.
-    public enum Status: String, Codable, Equatable, Sendable {
+    public enum Status: String, Codable, Hashable, Sendable {
         /// The ad is enabled.
         case enabled = "ENABLED"
         /// The ad is paused.
@@ -11,7 +11,7 @@ public struct Ad: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// The display status that derives from the ad’s serving status.
-    public enum DisplayStatus: String, Codable, Equatable, Sendable {
+    public enum DisplayStatus: String, Codable, Hashable, Sendable {
         /// The ad is active.
         case active = "ACTIVE"
         /// The ad is invalid.
@@ -25,7 +25,7 @@ public struct Ad: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// The status of whether the ad is serving.
-    public enum ServingStatus: String, Codable, Equatable, Sendable {
+    public enum ServingStatus: String, Codable, Hashable, Sendable {
         /// The ad is running.
         case running = "RUNNING"
         /// The ad isn’t running.
@@ -33,7 +33,7 @@ public struct Ad: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// Reasons the system provides when an ad isn’t running.
-    public enum ServingStateReason: String, Codable, Equatable, Sendable {
+    public enum ServingStateReason: String, Codable, Hashable, Sendable {
         /// The ad is approved.
         case adApprovalPending = "AD_APPROVAL_PENDING"
         /// The ad is rejected. The system doesn’t serve rejected ads.

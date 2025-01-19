@@ -1,9 +1,9 @@
 import Foundation
 
 /// A container for Impression Share report metrics.
-public struct CustomReport: Codable, Equatable, Sendable, CodingKeysContaining {
+public struct CustomReport: Codable, Hashable, Sendable, CodingKeysContaining, Identifiable {
     /// The state of the report.
-    public enum State: String, Codable, Equatable, Sendable {
+    public enum State: String, Codable, Hashable, Sendable {
         case queued = "QUEUED"
         case pending = "PENDING"
         case completed = "COMPLETED"
@@ -11,7 +11,7 @@ public struct CustomReport: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// The report dimension.
-    public enum Dimension: String, Codable, Equatable, Sendable {
+    public enum Dimension: String, Codable, Hashable, Sendable {
         case adamId
         case appName
         case countryOrRegion
@@ -19,7 +19,7 @@ public struct CustomReport: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// The report metric.
-    public enum Metric: String, Codable, Equatable, Sendable {
+    public enum Metric: String, Codable, Hashable, Sendable {
         /// If impression share is 11–20%, `lowImpressionShare` is 0.11 and `highImpressionShare` is 0.2.
         case lowImpressionShare
         /// If impression share is 91–100%, `lowImpressionShare` is 0.91 and `highImpressionShare` is 1.

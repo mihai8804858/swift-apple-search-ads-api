@@ -2,7 +2,7 @@
 ///
 /// Countries and regions use ISO alpha-2 country codes.
 /// Use the Get Supported Countries or Regions endpoint to fetch supported languages ands language codes.
-public struct CountryOrRegion: Codable, Equatable, Sendable {
+public struct CountryOrRegion: Codable, Hashable, Sendable {
     /// The supported App Store territory of your product page.
     public let countryOrRegion: String?
     /// The default languages of assets to use for a campaign’s CountryOrRegion.

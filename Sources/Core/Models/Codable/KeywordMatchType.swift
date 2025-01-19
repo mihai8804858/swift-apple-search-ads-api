@@ -1,5 +1,5 @@
 /// An automated keyword and bidding strategy.
-public enum KeywordMatchType: String, Codable, Equatable, Sendable {
+public enum KeywordMatchType: String, Codable, Hashable, Sendable {
     /// Specifies the system serves impressions with optimized keywords,
     /// in addition to those you explicitly add to the ad group.
     case auto = "AUTO"

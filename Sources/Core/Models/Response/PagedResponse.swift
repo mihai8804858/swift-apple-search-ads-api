@@ -23,6 +23,7 @@ public struct PagedResponse<T: Sendable>: AsyncSequence, AsyncIteratorProtocol, 
     public mutating func next() async throws -> Response<Paginated<T>>? {
         guard !Task.isCancelled else { return nil }
         if let current = currentPageDetail {
+            guard current.startIndex + size < current.totalResults else { return nil }
             let pagination = Pagination(limit: size, offset: current.startIndex + size)
             let response = try await request(pagination)
             currentPageDetail = response.model.pagination

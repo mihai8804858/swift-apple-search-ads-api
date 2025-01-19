@@ -1,5 +1,5 @@
 /// The summary of cumulative metrics.
-public struct GrandTotalsRow: Codable, Equatable, Sendable {
+public struct GrandTotalsRow: Codable, Hashable, Sendable {
     /// The impressions that return in reports when there are fewer than 100 demographic dimensions,
     /// and fewer than 10 search terms. If `other` is `true`, the corresponding dimensions are null.
     public let other: Bool?

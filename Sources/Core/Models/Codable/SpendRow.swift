@@ -1,5 +1,5 @@
 /// The reporting response metrics.
-public struct SpendRow: Codable, Equatable, Sendable {
+public struct SpendRow: Codable, Hashable, Sendable {
     /// The average CPM is the average amount you pay per one thousand ad impressions.
     public let avgCPM: Money?
     /// The average cost-per-tap (CPT) is the ratio of spend over taps.

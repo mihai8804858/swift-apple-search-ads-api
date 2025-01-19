@@ -1,7 +1,7 @@
 import Foundation
 
 /// The request to update an ad.
-public struct AdUpdate: Codable, Equatable, Sendable {
+public struct AdUpdate: Codable, Hashable, Sendable, Identifiable {
     /// An `adId` is a unique identifier that represents the assignment relationship between an ad group and an Ad.
     public let id: Int?
     /// The identifier of the organization that owns the campaign.

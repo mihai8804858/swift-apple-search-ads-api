@@ -1,5 +1,5 @@
 /// The response to ACL requests.
-public struct UserACL: Codable, Equatable, Sendable {
+public struct UserACL: Codable, Hashable, Sendable {
     /// The identifier of the organization that owns the campaign.
     /// Your orgId is the same as your account in the Apple Search Ads UI.
     public let orgId: Int

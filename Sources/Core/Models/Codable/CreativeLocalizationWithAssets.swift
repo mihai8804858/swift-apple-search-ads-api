@@ -1,7 +1,7 @@
 import Foundation
 
 /// The localized creative metadata with app preview.
-public struct CreativeLocalizationWithAssets: Codable, Equatable, Sendable {
+public struct CreativeLocalizationWithAssets: Codable, Hashable, Sendable {
     /// The app name on App Store Connect.
     public let appName: String?
     /// The device classes assigned to a custom product page.

@@ -1,9 +1,9 @@
 import Foundation
 
 /// The Impression Share report request body.
-public struct CustomReportRequest: Codable, Equatable, Sendable {
+public struct CustomReportRequest: Codable, Hashable, Sendable {
     /// The date range of the report request.
-    public enum DateRange: String, Codable, Equatable, Sendable {
+    public enum DateRange: String, Codable, Hashable, Sendable {
         case lastWeek = "LAST_WEEK"
         case last2Weeks = "LAST_2_WEEKS"
         case last4Weeks = "LAST_4_WEEKS"

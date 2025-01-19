@@ -14,3 +14,4 @@ public struct Paginated<T: Sendable>: Sendable {
 extension Paginated: Decodable where T: Decodable {}
 extension Paginated: Encodable where T: Encodable {}
 extension Paginated: Equatable where T: Equatable {}
+extension Paginated: Hashable where T: Hashable {}

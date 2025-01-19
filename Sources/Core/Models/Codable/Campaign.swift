@@ -1,9 +1,9 @@
 import Foundation
 
 /// The response to a request to create and fetch campaigns.
-public struct Campaign: Codable, Equatable, Sendable, CodingKeysContaining {
+public struct Campaign: Codable, Hashable, Sendable, CodingKeysContaining, Identifiable {
     /// The status of the campaign.
-    public enum Status: String, Codable, Equatable, Sendable {
+    public enum Status: String, Codable, Hashable, Sendable {
         /// The campaign is enabled.
         case enabled = "ENABLED"
         /// The campaign is paused.
@@ -11,7 +11,7 @@ public struct Campaign: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// The status of the campaign.
-    public enum DisplayStatus: String, Codable, Equatable, Sendable {
+    public enum DisplayStatus: String, Codable, Hashable, Sendable {
         /// The campaign is running.
         case running = "RUNNING"
         /// The campaign is on hold for one or more reasons.
@@ -23,7 +23,7 @@ public struct Campaign: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// The status of the campaign.
-    public enum ServingStatus: String, Codable, Equatable, Sendable {
+    public enum ServingStatus: String, Codable, Hashable, Sendable {
         /// The campaign is running.
         case running = "RUNNING"
         /// The campaign is not running.
@@ -31,7 +31,7 @@ public struct Campaign: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// The channel type of an ad in a campaign.
-    public enum AdChannelType: String, Codable, Equatable, Sendable {
+    public enum AdChannelType: String, Codable, Hashable, Sendable {
         /// When the `SupplySource` is `APPSTORE_SEARCH_RESULTS`, the `adChannelType` needs to be `SEARCH`.
         case search = "SEARCH"
         /// When the `SupplySource` is `APPSTORE_SEARCH_TAB`, `APPSTORE_PRODUCT_PAGES_BROWSE`, or `APPSTORE_TODAY_TAB`,
@@ -40,7 +40,7 @@ public struct Campaign: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// The type of billing event for a campaign.
-    public enum BillingEventType: String, Codable, Equatable, Sendable {
+    public enum BillingEventType: String, Codable, Hashable, Sendable {
         /// The cost to the advertiser is per tap.
         /// When the `SupplySources` value is `APPSTORE_SEARCH_RESULTS` or `APPSTORE_SEARCH_TAB`,
         /// the billingEvent must be `TAPS`.
@@ -50,7 +50,7 @@ public struct Campaign: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// Reason the system provides when a campaign can’t run.
-    public enum ServingStateReason: String, Codable, Equatable, Sendable {
+    public enum ServingStateReason: String, Codable, Hashable, Sendable {
         /// The ad group is missing from the campaign.
         case adGroupMissing = "AD_GROUP_MISSING"
         /// The app doesn’t have an assigned category.
@@ -131,7 +131,7 @@ public struct Campaign: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// Reasons that displays when a campaign can’t run.
-    public enum CountryOrRegionsServingStateReason: String, Codable, Equatable, Sendable {
+    public enum CountryOrRegionsServingStateReason: String, Codable, Hashable, Sendable {
         /// The app doesn't support the country language.
         case appLanguageIncompatible = "APP_LANGUAGE_INCOMPATIBLE"
         /// The app is not eligible in App Store Connect.

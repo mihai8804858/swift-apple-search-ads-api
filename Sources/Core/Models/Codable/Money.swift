@@ -1,5 +1,5 @@
 /// The response to requests for budget amounts in campaigns.
-public struct Money: Codable, Equatable, Sendable {
+public struct Money: Codable, Hashable, Sendable {
     /// The monetary value in the specified currency.
     /// The API uses amount whenever a currency value is necessary.
     /// The string can contain up to two decimal digits.

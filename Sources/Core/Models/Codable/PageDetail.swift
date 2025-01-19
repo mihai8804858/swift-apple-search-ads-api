@@ -1,5 +1,5 @@
 /// The number of items that return in the page.
-public struct PageDetail: Codable, Equatable, Sendable {
+public struct PageDetail: Codable, Hashable, Sendable {
     /// The total number of entries that return for the operation.
     public let totalResults: Int
     /// The offset of the first entry that returns. Use offset in the request query string or Selector to override

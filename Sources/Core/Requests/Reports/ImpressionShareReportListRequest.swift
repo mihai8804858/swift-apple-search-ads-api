@@ -1,4 +1,4 @@
-public struct ImpressionShareReportListParameters: Equatable, Encodable, Sendable {
+public struct ImpressionShareReportListParameters: Hashable, Encodable, Sendable {
     /// The name of a field.
     public let field: CustomReport.CodingKeys?
     /// The order of grouped results.

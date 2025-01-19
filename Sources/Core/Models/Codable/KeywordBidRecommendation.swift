@@ -1,5 +1,5 @@
 /// The suggested bid amount for a keyword.
-public struct KeywordBidRecommendation: Codable, Equatable, Sendable {
+public struct KeywordBidRecommendation: Codable, Hashable, Sendable {
     /// An indicator that varies over time to help you incrementally increase the likelihood of your ad showing
     /// in searches in the App Store.
     ///

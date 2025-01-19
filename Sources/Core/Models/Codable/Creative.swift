@@ -1,9 +1,9 @@
 import Foundation
 
 /// The creative object.
-public struct Creative: Codable, Equatable, Sendable, CodingKeysContaining {
+public struct Creative: Codable, Hashable, Sendable, CodingKeysContaining, Identifiable {
     /// The type of creative.
-    public enum Kind: String, Codable, Equatable, Sendable {
+    public enum Kind: String, Codable, Hashable, Sendable {
         /// You can assign only one custom product page to an adgroup.
         case customProductPage = "CUSTOM_PRODUCT_PAGE"
         /// See section 4.1 in Apple Search Ads Campaign Management API 4
@@ -14,7 +14,7 @@ public struct Creative: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// The system state of the creative.
-    public enum State: String, Codable, Equatable, Sendable {
+    public enum State: String, Codable, Hashable, Sendable {
         /// The state of the creative is valid.
         case valid = "VALID"
         /// The state of the creative is invalid.
@@ -22,7 +22,7 @@ public struct Creative: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// Reasons the system provides when an ad isn’t running.
-    public enum StateReason: String, Codable, Equatable, Sendable {
+    public enum StateReason: String, Codable, Hashable, Sendable {
         /// The creative asset was deleted from App Store Connect.
         case assetDeleted = "ASSET_DELETED"
         /// See section 4.1 in Apple Search Ads Campaign Management API 4 for additional details.

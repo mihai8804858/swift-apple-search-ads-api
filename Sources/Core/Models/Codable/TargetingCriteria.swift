@@ -1,5 +1,5 @@
 /// The defined targeted criteria.
-public struct TargetingCriteria<Dimension: Codable & Equatable & Sendable>: Codable, Equatable, Sendable {
+public struct TargetingCriteria<Dimension: Codable & Hashable & Sendable>: Codable, Hashable, Sendable {
     /// The dimension to include targeting criteria values.
     public let included: [Dimension]?
     /// The dimension to exclude targeting criteria values.

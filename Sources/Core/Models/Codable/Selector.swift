@@ -22,7 +22,7 @@
 ///   ]
 /// }
 /// ```
-public struct Selector<Root: CodingKeysContaining>: Codable, Equatable, Sendable {
+public struct Selector<Root: CodingKeysContaining>: Codable, Hashable, Sendable {
     /// A list of condition objects that allow users to filter a list of records.
     public let conditions: [Condition<Root>]?
     /// A list of field names to return within each record.

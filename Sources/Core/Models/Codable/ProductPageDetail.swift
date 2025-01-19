@@ -1,9 +1,9 @@
 import Foundation
 
 /// The product page metadata.
-public struct ProductPageDetail: Codable, Equatable, Sendable {
+public struct ProductPageDetail: Codable, Hashable, Sendable, Identifiable {
     /// The system state of the custom product page that indicates whether the page is visible or not.
-    public enum State: String, Codable, Equatable, Sendable {
+    public enum State: String, Codable, Hashable, Sendable {
         case hidden = "HIDDEN"
         case visible = "VISIBLE"
     }

@@ -3,8 +3,8 @@
 /// The list of condition objects that allow users to filter a list of records.
 ///
 /// The `Condition` object functionality is similar to the `WHERE` clause in `SQL`.
-public struct SovCondition<Root: CodingKeysContaining>: Codable, Equatable, Sendable {
-    public enum Operator: String, Codable, Equatable, Sendable {
+public struct SovCondition<Root: CodingKeysContaining>: Codable, Hashable, Sendable {
+    public enum Operator: String, Codable, Hashable, Sendable {
         /// The `IN` operator matches any value in a list of specified values.
         case `in` = "IN"
     }
@@ -16,13 +16,13 @@ public struct SovCondition<Root: CodingKeysContaining>: Codable, Equatable, Send
     /// A list of matching values.
     public let values: [AnyCodable]
 
-    public init<Value: Codable & Equatable & Sendable>(field: Root.CodingKeys, operator: Operator, values: [Value]) {
+    public init<Value: Codable & Hashable & Sendable>(field: Root.CodingKeys, operator: Operator, values: [Value]) {
         self.field = field
         self.operator = `operator`
         self.values = values.map { AnyCodable($0) }
     }
 
-    public init<Value: Codable & Equatable & Sendable>(field: Root.CodingKeys, operator: Operator, value: Value) {
+    public init<Value: Codable & Hashable & Sendable>(field: Root.CodingKeys, operator: Operator, value: Value) {
         self.init(field: field, operator: `operator`, values: [value])
     }
 

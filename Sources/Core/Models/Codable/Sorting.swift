@@ -1,6 +1,6 @@
 /// The order of grouped results.
-public struct Sorting<Root: CodingKeysContaining>: Codable, Equatable, Sendable {
-    public enum Order: String, Codable, Equatable, Sendable {
+public struct Sorting<Root: CodingKeysContaining>: Codable, Hashable, Sendable {
+    public enum Order: String, Codable, Hashable, Sendable {
         /// Grouped results are ordered in ascending order.
         case ascending = "ASCENDING"
         /// Grouped results are ordered in descending order.

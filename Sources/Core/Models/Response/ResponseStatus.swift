@@ -1,5 +1,5 @@
 /// HTTP response status code.
-public struct ResponseStatus: RawRepresentable, Equatable, Comparable, Sendable, ExpressibleByIntegerLiteral {
+public struct ResponseStatus: RawRepresentable, Hashable, Comparable, Sendable, ExpressibleByIntegerLiteral {
     /// The HTTP response status.
     public let rawValue: Int
 

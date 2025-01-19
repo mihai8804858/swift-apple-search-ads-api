@@ -1,8 +1,8 @@
 import Foundation
 @preconcurrency import Crypto
 
-struct JWT: Equatable, Sendable {
-    struct Header: Equatable, Codable, Sendable {
+struct JWT: Hashable, Sendable {
+    struct Header: Hashable, Codable, Sendable {
         enum CodingKeys: String, CodingKey {
             case algorithm = "alg"
             case keyIdentifier = "kid"
@@ -12,7 +12,7 @@ struct JWT: Equatable, Sendable {
         let keyIdentifier: String
     }
 
-    struct Payload: Equatable, Codable, Sendable {
+    struct Payload: Hashable, Codable, Sendable {
         enum CodingKeys: String, CodingKey {
             case subject = "sub"
             case issuer = "iss"
@@ -98,6 +98,14 @@ struct JWT: Equatable, Sendable {
         let payloadString = try JSONEncoder.default.encode(payload).base64URLEncoded()
 
         return "\(headerString).\(payloadString)"
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(header)
+        hasher.combine(clientIdentifier)
+        hasher.combine(teamIdentifier)
+        hasher.combine(audience)
+        hasher.combine(expireDuration)
     }
 }
 

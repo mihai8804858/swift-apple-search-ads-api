@@ -1,8 +1,8 @@
 /// The report metrics by time granularity.
 public struct Row<
-    Insights: Codable & Equatable & Sendable,
-    Metadata: Codable & Equatable & Sendable
->: Codable, Equatable, Sendable {
+    Insights: Codable & Hashable & Sendable,
+    Metadata: Codable & Hashable & Sendable
+>: Codable, Hashable, Sendable {
     /// The bid recommendations according to currency type, including range and amount.
     public let insights: Insights?
     /// Reporting request metadata.

@@ -1,7 +1,7 @@
 import Foundation
 
 /// The creative details of a product page.
-public struct CreativeCustomProductPage: Codable, Equatable, Sendable, CodingKeysContaining {
+public struct CreativeCustomProductPage: Codable, Hashable, Sendable, CodingKeysContaining, Identifiable {
     /// The creativeId is a unique identifier for a creative.
     public let id: Int?
     /// Your unique App Store app identifier.

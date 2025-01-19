@@ -1,7 +1,7 @@
 import Foundation
 
 /// The response to a request to fetch ad group-level reports.
-public struct ReportingAdGroup: Codable, Equatable, Sendable, CodingKeysContaining {
+public struct ReportingAdGroup: Codable, Hashable, Sendable, CodingKeysContaining, Identifiable {
     /// The state of the operation.
     public let adGroupDisplayStatus: AdGroup.DisplayStatus?
     /// The identifier for the ad group.
@@ -36,6 +36,8 @@ public struct ReportingAdGroup: Codable, Equatable, Sendable, CodingKeysContaini
     ///
     /// Your `orgId` is the same as your account in the Apple Search Ads UI.
     public let orgId: Int?
+
+    public var id: Int? { adGroupId }
 
     public init(
         adGroupDisplayStatus: AdGroup.DisplayStatus? = nil,

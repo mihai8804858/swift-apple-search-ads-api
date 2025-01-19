@@ -1,7 +1,7 @@
 import Foundation
 
 /// A container for errors throws by this library.
-public enum APIError: Swift.Error, Equatable, Sendable {
+public enum APIError: Swift.Error, Hashable, Sendable {
     /// API request failed with "not connected to internet" status code.
     case noInternetConnection
     /// API responded with an error response.
@@ -71,6 +71,14 @@ public enum APIError: Swift.Error, Equatable, Sendable {
         case let (.api(lhsError), .api(rhsError)): lhsError == rhsError
         case let (.other(lhsError), .other(rhsError)): lhsError.localizedDescription == rhsError.localizedDescription
         default: false
+        }
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        switch self {
+        case .noInternetConnection: hasher.combine(1)
+        case .api(let response): hasher.combine(response)
+        case .other(let error): error.localizedDescription.hash(into: &hasher)
         }
     }
 }

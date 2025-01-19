@@ -1,4 +1,4 @@
-public struct ProductPagesParameters: Equatable, Encodable, Sendable {
+public struct ProductPagesParameters: Hashable, Encodable, Sendable {
     /// Filters by name field. For example, the name of your custom product page on App Store Connect.
     public let name: String?
     /// Filters by state, which indicates whether the product page is visible or not.

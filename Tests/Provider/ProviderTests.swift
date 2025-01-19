@@ -6,7 +6,7 @@ import XCTest
 @testable import AppleSearchAds
 
 final class ProviderTests: XCTestCase {
-    private struct MockModel: Equatable, Codable, Sendable {
+    private struct MockModel: Hashable, Codable, Sendable {
         let intValue: Int
         let stringValue: String
         let doubleValue: Double

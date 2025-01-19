@@ -1,7 +1,7 @@
 /// A parent object of the error response body.
-public struct ErrorResponse: Codable, Equatable, Sendable {
+public struct ErrorResponse: Codable, Hashable, Sendable {
     /// The error response details in the response body.
-    public struct Item: Equatable, Codable, Sendable {
+    public struct Item: Hashable, Codable, Sendable {
         /// The details regarding an error.
         public let field: String?
         /// A nonlocalized (U.S. English only) user-friendly string that describes the error.

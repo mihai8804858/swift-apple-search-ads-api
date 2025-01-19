@@ -1,9 +1,9 @@
 import Foundation
 
 /// The response to ad group requests.
-public struct AdGroup: Codable, Equatable, Sendable, CodingKeysContaining {
+public struct AdGroup: Codable, Hashable, Sendable, CodingKeysContaining, Identifiable {
     /// The status of whether the ad group is enabled or not.
-    public enum Status: String, Codable, Equatable, Sendable {
+    public enum Status: String, Codable, Hashable, Sendable {
         /// The adgroup is serving.
         case enabled = "ENABLED"
         /// The adgroup is paused.
@@ -11,7 +11,7 @@ public struct AdGroup: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// The status of whether the ad group is serving.
-    public enum ServingStatus: String, Codable, Equatable, Sendable {
+    public enum ServingStatus: String, Codable, Hashable, Sendable {
         /// The adgroup is running.
         case running = "RUNNING"
         /// The adgroup is not running.
@@ -19,7 +19,7 @@ public struct AdGroup: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// The status of the ad group.
-    public enum DisplayStatus: String, Codable, Equatable, Sendable {
+    public enum DisplayStatus: String, Codable, Hashable, Sendable {
         /// The adgroup is running in the campaign.
         case running = "RUNNING"
         /// The adgroup is on hold.
@@ -33,7 +33,7 @@ public struct AdGroup: Codable, Equatable, Sendable, CodingKeysContaining {
     }
 
     /// A list of reasons that displays when an ad group isn’t running.
-    public enum ServingStateReasons: String, Codable, Equatable, Sendable {
+    public enum ServingStateReasons: String, Codable, Hashable, Sendable {
         /// The user paused the ad group.
         case adGroupPausedByUser = "AD_GROUP_PAUSED_BY_USER"
         /// The system can’t process the ad group data.

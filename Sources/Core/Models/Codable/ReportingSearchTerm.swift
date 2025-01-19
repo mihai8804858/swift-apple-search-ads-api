@@ -1,9 +1,9 @@
 import Foundation
 
 /// The response to a request to fetch search term-level reports.
-public struct ReportingSearchTerm: Codable, Equatable, Sendable, CodingKeysContaining {
+public struct ReportingSearchTerm: Codable, Hashable, Sendable, CodingKeysContaining, Identifiable {
     /// The source of the keyword to use as a search term.
-    public enum Source: String, Codable, Equatable, Sendable {
+    public enum Source: String, Codable, Hashable, Sendable {
         /// The value to use to ensure Search Match automatically matches your ads.
         case auto = "AUTO"
         /// A bidded keyword.
@@ -44,6 +44,8 @@ public struct ReportingSearchTerm: Codable, Equatable, Sendable, CodingKeysConta
     public let searchTermSource: Source?
     /// The search terms to use for app searches.
     public let searchTermText: String?
+
+    public var id: Int? { keywordId }
 
     public init(
         adGroupDeleted: Bool? = nil,

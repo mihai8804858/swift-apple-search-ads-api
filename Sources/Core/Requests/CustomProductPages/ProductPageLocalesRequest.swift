@@ -1,4 +1,4 @@
-public struct ProductPageLocalesParameters: Equatable, Encodable, Sendable {
+public struct ProductPageLocalesParameters: Hashable, Encodable, Sendable {
     /// Filters by device type.
     public let deviceClasses: DeviceClass?
     /// Filters by ISO alpha-2 country code, such as `US`.

@@ -1,7 +1,7 @@
 import Foundation
 
 /// The payload properties to clear geotargeting from a campaign.
-public struct CampaignUpdate: Codable, Equatable, Sendable {
+public struct CampaignUpdate: Codable, Hashable, Sendable {
     /// The parameter to clear geotargeting from all ad groups in the campaign.
     ///
     /// To modify `countriesOrRegions` in a campaign,

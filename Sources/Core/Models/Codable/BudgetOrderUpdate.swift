@@ -1,9 +1,9 @@
 import Foundation
 
 /// The parent object response to a request to create a budget order.
-public struct BudgetOrderUpdate: Codable, Equatable, Sendable {
+public struct BudgetOrderUpdate: Codable, Hashable, Sendable {
     /// The response to a request to update a budget order.
-    public struct Bo: Codable, Equatable, Sendable {
+    public struct Bo: Codable, Hashable, Sendable {
         /// The primary buyer’s email address.
         ///
         /// This field is updatable.

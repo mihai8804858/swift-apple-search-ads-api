@@ -1,9 +1,9 @@
 import Foundation
 
 /// The parent object response to a request to create a budget order.
-public struct BudgetOrderCreate: Codable, Equatable, Sendable {
+public struct BudgetOrderCreate: Codable, Hashable, Sendable {
     /// The response to a request to create a budget order.
-    public struct Bo: Codable, Equatable, Sendable {
+    public struct Bo: Codable, Hashable, Sendable {
         /// The primary buyer’s email address.
         public let primaryBuyerEmail: String?
         /// The primary buyer’s name.

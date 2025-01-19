@@ -1,4 +1,4 @@
-public struct SupportedCountriesOrRegionsParameters: Equatable, Encodable, Sendable {
+public struct SupportedCountriesOrRegionsParameters: Hashable, Encodable, Sendable {
     /// Filters by ISO alpha-2 country codes.
     public let countriesOrRegions: String
 

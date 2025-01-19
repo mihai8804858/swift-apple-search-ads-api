@@ -1,5 +1,5 @@
 /// The parent object response to a request for budget order details.
-public struct BudgetOrderInfo: Codable, Equatable, Sendable {
+public struct BudgetOrderInfo: Codable, Hashable, Sendable {
     /// The details of the budget order.
     public let bo: BudgetOrder?
 

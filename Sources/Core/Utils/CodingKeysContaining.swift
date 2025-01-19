@@ -1,5 +1,5 @@
 public protocol CodingKeysContaining: Sendable {
-    associatedtype CodingKeys: CodingKey & Equatable
+    associatedtype CodingKeys: CodingKey & Hashable
 }
 
 extension KeyedDecodingContainer {

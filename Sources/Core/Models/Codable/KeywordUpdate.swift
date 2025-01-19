@@ -1,7 +1,7 @@
 import Foundation
 
 /// Targeting keyword parameters to use in requests and responses.
-public struct KeywordUpdate: Codable, Equatable, Sendable {
+public struct KeywordUpdate: Codable, Hashable, Sendable, Identifiable {
     /// A unique identifier for the targeting keyword in the payload to update keyword bids or statuses.
     /// This keywordId is specific to a particular ad group and match type that you use to update bid amounts.
     public let id: Int?

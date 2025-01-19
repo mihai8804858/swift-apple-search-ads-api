@@ -1,5 +1,5 @@
 /// Geolocation that includes the geoidentifier and entity type.
-public struct GeolocationSearchEntity: Codable, Equatable, Sendable {
+public struct GeolocationSearchEntity: Codable, Hashable, Sendable, Identifiable {
     /// The geographic location in the format of countryOrRegion|adminArea|locality.
     public let id: String
     /// A state or the equivalent according to its associated country.

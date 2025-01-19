@@ -1,4 +1,4 @@
-public struct CreativeParameters: Equatable, Encodable, Sendable {
+public struct CreativeParameters: Hashable, Encodable, Sendable {
     /// Include deleted assets in the response.
     ///
     /// By default deleted assets don’t return.
