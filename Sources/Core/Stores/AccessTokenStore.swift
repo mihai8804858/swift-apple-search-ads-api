@@ -1,6 +1,6 @@
 import Foundation
 
-actor AccessTokenStore: Sendable {
+actor AccessTokenStore {
     private let configuration: APIConfiguration
     private let provider: ProviderType
     private let jwtStore: JWTStore

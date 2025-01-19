@@ -1,6 +1,6 @@
 import Foundation
 
-actor JWTStore: Sendable {
+actor JWTStore {
     private let configuration: APIConfiguration
     private let jwtSigner: JWT
     private var cachedToken: String?

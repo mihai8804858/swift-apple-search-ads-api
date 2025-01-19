@@ -19,7 +19,7 @@ public struct MediaAppAsset: Codable, Hashable, Sendable, Identifiable {
     public let sourceHeight: Int?
     /// The width of the asset that you upload to App Store Connect.
     public let sourceWidth: Int?
-    
+
     public var id: String? { assetGenId }
 
     public init(

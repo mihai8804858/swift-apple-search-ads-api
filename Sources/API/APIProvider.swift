@@ -1,7 +1,7 @@
 import Foundation
 
 /// The main object used to interface with the Apple Search Ads API.
-public actor APIProvider: Sendable {
+public actor APIProvider {
     let configuration: APIConfiguration
     let accessTokenStore: AccessTokenStore
     let contextStore: ContextStore

@@ -1,6 +1,6 @@
 import Foundation
 
-actor ContextStore: Sendable {
+actor ContextStore {
     private let provider: ProviderType
     private var cachedUserACL: Response<[UserACL]>?
     private var cachedMeDetail: Response<MeDetail>?
