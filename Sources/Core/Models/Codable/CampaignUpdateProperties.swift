@@ -36,6 +36,19 @@ public struct CampaignUpdateProperties: Codable, Hashable, Sendable {
     public let countriesOrRegions: [String]?
     /// The standard invoice details you can set and edit using the `LOCInvoiceDetails` object.
     public let locInvoiceDetails: LOCInvoiceDetails?
+    /// The scheduled start date and time for the campaign.
+    ///
+    /// - The startTime must be greater than the current time, and before the campaign endTime, if you set it.
+    /// - If you don’t set a startTime, the campaign defaults to the campaign request timestamp and the startTime
+    /// is updatable until you reach the designated time.
+    /// - The startTime must be in UTC.
+    public let startTime: Date?
+    /// The scheduled end time and date for the campaign.
+    ///
+    /// - The endTime must be after the startTime.
+    /// - The endTime is updatable until you reach the designated time.
+    /// - The endTime must be in UTC.
+    public let endTime: Date?
 
     public init(
         name: String? = nil,
@@ -44,7 +57,9 @@ public struct CampaignUpdateProperties: Codable, Hashable, Sendable {
         budgetOrders: [Int]? = nil,
         dailyBudgetAmount: Money? = nil,
         countriesOrRegions: [String]? = nil,
-        locInvoiceDetails: LOCInvoiceDetails? = nil
+        locInvoiceDetails: LOCInvoiceDetails? = nil,
+        startTime: Date? = nil,
+        endTime: Date? = nil
     ) {
         self.name = name
         self.status = status
@@ -53,5 +68,7 @@ public struct CampaignUpdateProperties: Codable, Hashable, Sendable {
         self.dailyBudgetAmount = dailyBudgetAmount
         self.countriesOrRegions = countriesOrRegions
         self.locInvoiceDetails = locInvoiceDetails
+        self.startTime = startTime
+        self.endTime = endTime
     }
 }

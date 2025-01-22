@@ -129,7 +129,9 @@ final class CampaignsRequestsTests: SnapshotTestCase {
                         buyerName: "Buyer Name",
                         clientName: "Client Name",
                         orderNumber: "123abc"
-                    )
+                    ),
+                    startTime: Date(timeIntervalSince1970: 1_000_000),
+                    endTime: Date(timeIntervalSince1970: 2_000_000)
                 )
             )
         )) {
@@ -138,7 +140,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
-            Content-Length: 626
+            Content-Length: 714
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-Ap-Context: orgId=12345
@@ -161,6 +163,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
                   "amount" : "2",
                   "currency" : "USD"
                 },
+                "endTime" : "1970-01-24T03:33:20.000",
                 "locInvoiceDetails" : {
                   "billingContactEmail" : "billing@email.com",
                   "buyerEmail" : "buyer@email.com",
@@ -169,6 +172,7 @@ final class CampaignsRequestsTests: SnapshotTestCase {
                   "orderNumber" : "123abc"
                 },
                 "name" : "My Campaign",
+                "startTime" : "1970-01-12T13:46:40.000",
                 "status" : "PAUSED"
               },
               "clearGeoTargetingOnCountryOrRegionChange" : true
