@@ -31,9 +31,10 @@ extension Error {
 
     var isRetryableWithBackoff: Bool {
         let isTooManyRequests = statusCode == ResponseStatus.tooManyRequests
+        let isServiceUnavailable = statusCode == ResponseStatus.serviceUnavailable
         let isServerError = ResponseStatus.serverErrorRange.contains(statusCode)
 
-        return isTooManyRequests || isServerError
+        return isTooManyRequests || (isServerError && !isServiceUnavailable)
     }
 
     var isRetryable: Bool {

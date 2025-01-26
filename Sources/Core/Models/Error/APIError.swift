@@ -57,6 +57,11 @@ public enum APIError: Swift.Error, Hashable, Sendable {
         statusCode == ResponseStatus.tooManyRequests
     }
 
+    /// Verify if API request failed with "serviceUnavailable" (503) status code.
+    public var isServiceUnavailable: Bool {
+        statusCode == ResponseStatus.serviceUnavailable
+    }
+
     /// Error response that was returned by the API.
     public var errorResponse: APIErrorResponse? {
         switch self {

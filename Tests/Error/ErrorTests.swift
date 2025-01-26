@@ -42,9 +42,11 @@ final class ErrorTests: XCTestCase {
         let badRequest = APIError(response: Response(model: Data(), statusCode: 400))
         let tooManyRequests = APIError(response: Response(model: Data(), statusCode: 429))
         let serverError = APIError(response: Response(model: Data(), statusCode: 500))
+        let serviceUnavailable = APIError(response: Response(model: Data(), statusCode: 503))
         XCTAssert(tooManyRequests.isRetryableWithBackoff)
         XCTAssert(serverError.isRetryableWithBackoff)
         XCTAssertFalse(badRequest.isRetryableWithBackoff)
+        XCTAssertFalse(serviceUnavailable.isRetryableWithBackoff)
     }
 
     func testDecodeErrorResponse() throws {

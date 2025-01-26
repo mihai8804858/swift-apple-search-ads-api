@@ -32,5 +32,6 @@ public struct ResponseStatus: RawRepresentable, Hashable, Comparable, Sendable, 
     public static let forbidden = ResponseStatus(rawValue: 403)
     public static let tooManyRequests = ResponseStatus(rawValue: 429)
     public static let serverError = ResponseStatus(rawValue: 500)
+    public static let serviceUnavailable = ResponseStatus(rawValue: 503)
     public static let networkConnectTimeoutError = ResponseStatus(rawValue: 599)
 }
