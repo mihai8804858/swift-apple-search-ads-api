@@ -34,7 +34,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
                     ),
                     gender: GenderCriteria(included: [.female], excluded: [.male]),
                     appCategories: AppCategoryCriteria(included: [13579], excluded: [2468]),
-                    appDownloaders: AppDownloaderCriteria(included: [2468], excluded: [13579]),
+                    appDownloaders: AppDownloaderCriteria(included: ["2468"], excluded: ["13579"]),
                     country: CountryCriteria(included: ["US"], excluded: ["GB"]),
                     adminArea: AdminAreaCriteria(included: ["California"], excluded: ["New York"]),
                     locality: LocalityCriteria(included: ["San Jose"], excluded: ["San Francisco"]),
@@ -48,7 +48,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
-            Content-Length: 1859
+            Content-Length: 1863
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-Ap-Context: orgId=12345
@@ -113,10 +113,10 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
                 },
                 "appDownloaders" : {
                   "excluded" : [
-                    13579
+                    "13579"
                   ],
                   "included" : [
-                    2468
+                    "2468"
                   ]
                 },
                 "country" : {
@@ -303,7 +303,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
                     ),
                     gender: GenderCriteria(included: [.female], excluded: [.male]),
                     appCategories: AppCategoryCriteria(included: [13579], excluded: [2468]),
-                    appDownloaders: AppDownloaderCriteria(included: [2468], excluded: [13579]),
+                    appDownloaders: AppDownloaderCriteria(included: ["2468"], excluded: ["13579"]),
                     country: CountryCriteria(included: ["US"], excluded: ["GB"]),
                     adminArea: AdminAreaCriteria(included: ["California"], excluded: ["New York"]),
                     locality: LocalityCriteria(included: ["San Jose"], excluded: ["San Francisco"]),
@@ -317,7 +317,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
             Accept-Encoding: gzip;q=1.0, compress;q=0.5
             Accept-Language: en-US;q=1.0
             Authorization: Bearer token
-            Content-Length: 1541
+            Content-Length: 1545
             Content-Type: application/json
             Host: api.searchads.apple.com
             X-Ap-Context: orgId=12345
@@ -369,10 +369,10 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
                 },
                 "appDownloaders" : {
                   "excluded" : [
-                    13579
+                    "13579"
                   ],
                   "included" : [
-                    2468
+                    "2468"
                   ]
                 },
                 "country" : {
