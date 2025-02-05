@@ -21,7 +21,7 @@ public struct Keyword: Codable, Hashable, Sendable, CodingKeysContaining, Identi
     /// If the bidAmount field is null, the bidAmount uses the defaultBidAmount of the corresponding ad group.
     /// If you set `automatedKeywordsOptIn=true` in Update an Ad Group,
     /// the bid uses optimized keywords with the `defaultBidAmount`.
-    public let bidAmount: Money
+    public let bidAmount: Money?
     /// An indicator of whether the keyword is soft-deleted.
     public let deleted: Bool?
     /// The date and time of the creation of the keyword object.
@@ -36,7 +36,7 @@ public struct Keyword: Codable, Hashable, Sendable, CodingKeysContaining, Identi
         text: String,
         matchType: KeywordMatchType,
         status: KeywordStatus? = nil,
-        bidAmount: Money,
+        bidAmount: Money? = nil,
         deleted: Bool? = nil,
         creationTime: Date? = nil,
         modificationTime: Date? = nil
