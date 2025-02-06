@@ -11,8 +11,8 @@ public extension APIProvider {
     func createCampaignNegativeKeywords(
         campaignId: Int,
         keywords: [NegativeKeyword]
-    ) async throws -> Response<Paginated<NegativeKeyword>> {
-        try await provider.requestPaginatedModel(from: CampaignNegativeKeywordsCreateRequest(
+    ) async throws -> Response<[NegativeKeyword]> {
+        try await provider.requestDataModel(from: CampaignNegativeKeywordsCreateRequest(
             campaignId: campaignId,
             keywords: keywords
         ))
@@ -30,8 +30,8 @@ public extension APIProvider {
     func updateCampaignNegativeKeywords(
         campaignId: Int,
         keywords: [NegativeKeyword]
-    ) async throws -> Response<Paginated<NegativeKeyword>> {
-        try await provider.requestPaginatedModel(from: CampaignNegativeKeywordsUpdateRequest(
+    ) async throws -> Response<[NegativeKeyword]> {
+        try await provider.requestDataModel(from: CampaignNegativeKeywordsUpdateRequest(
             campaignId: campaignId,
             keywords: keywords
         ))

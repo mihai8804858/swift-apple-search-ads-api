@@ -13,8 +13,8 @@ public extension APIProvider {
         campaignId: Int,
         adGroupId: Int,
         keywords: [Keyword]
-    ) async throws -> Response<Paginated<Keyword>> {
-        try await provider.requestPaginatedModel(from: TargetingKeywordsCreateRequest(
+    ) async throws -> Response<[Keyword]> {
+        try await provider.requestDataModel(from: TargetingKeywordsCreateRequest(
             campaignId: campaignId,
             adGroupId: adGroupId,
             keywords: keywords
@@ -35,8 +35,8 @@ public extension APIProvider {
         campaignId: Int,
         adGroupId: Int,
         keywords: [KeywordUpdate]
-    ) async throws -> Response<Paginated<Keyword>> {
-        try await provider.requestPaginatedModel(from: TargetingKeywordsUpdateRequest(
+    ) async throws -> Response<[Keyword]> {
+        try await provider.requestDataModel(from: TargetingKeywordsUpdateRequest(
             campaignId: campaignId,
             adGroupId: adGroupId,
             keywords: keywords
