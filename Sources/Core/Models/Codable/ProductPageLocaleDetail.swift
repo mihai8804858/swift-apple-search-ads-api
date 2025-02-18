@@ -6,7 +6,7 @@ public struct ProductPageLocaleDetail: Codable, Hashable, Sendable {
     /// The app name on App Store Connect.
     public let appName: String?
     /// The device classes assigned to a custom product page on App Store Connect.
-    public let deviceClasses: DeviceClass?
+    public let deviceClasses: [DeviceClass]?
     /// The language associated with the ISO alpha-2 country code, such as US.
     public let language: String?
     /// The ISO 639-1 language code appended to the ISO 3166-1 alpha-2 country code, such as en-US.
@@ -25,7 +25,7 @@ public struct ProductPageLocaleDetail: Codable, Hashable, Sendable {
     public init(
         adamId: Int? = nil,
         appName: String? = nil,
-        deviceClasses: DeviceClass? = nil,
+        deviceClasses: [DeviceClass]? = nil,
         language: String? = nil,
         languageCode: String? = nil,
         productPageId: String? = nil,

@@ -1,6 +1,6 @@
 public struct ProductPageLocalesParameters: Hashable, Encodable, Sendable {
     /// Filters by device type.
-    public let deviceClasses: DeviceClass?
+    public let deviceClasses: [DeviceClass]?
     /// Filters by ISO alpha-2 country code, such as `US`.
     private let languages: String?
     /// Filters by ISO 639-1 language code appended to the ISO alpha-2 country code.
@@ -11,7 +11,7 @@ public struct ProductPageLocalesParameters: Hashable, Encodable, Sendable {
     public let expand: Bool?
 
     public init(
-        deviceClasses: DeviceClass? = nil,
+        deviceClasses: [DeviceClass]? = nil,
         languages: [String]? = nil,
         languageCodes: [String]? = nil,
         expand: Bool? = nil

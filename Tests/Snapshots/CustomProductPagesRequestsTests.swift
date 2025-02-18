@@ -21,7 +21,7 @@ final class CustomProductPagesRequestsTests: SnapshotTestCase {
             adamId: 123,
             productPageId: "page-id",
             parameters: ProductPageLocalesParameters(
-                deviceClasses: .iPhone,
+                deviceClasses: [.iPhone],
                 languages: ["US", "GB"],
                 languageCodes: ["en-US", "en-GB"],
                 expand: true
