@@ -4,7 +4,7 @@ public struct CreativeParameters: Hashable, Encodable, Sendable {
     /// By default deleted assets don’t return.
     public let includeDeletedCreativeSetAssets: Bool?
 
-    init(includeDeletedCreativeSetAssets: Bool? = nil) {
+    public init(includeDeletedCreativeSetAssets: Bool? = nil) {
         self.includeDeletedCreativeSetAssets = includeDeletedCreativeSetAssets
     }
 }
