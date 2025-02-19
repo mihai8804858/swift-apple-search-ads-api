@@ -47,7 +47,7 @@ public extension APIProvider {
     /// - Returns: An `Empty` response.
     ///
     /// - Throws: An error of type `APIError`.
-    func deleteAd(campaignId: Int, adGroupId: Int, adId: Int, ad: AdUpdate) async throws -> Response<Empty> {
+    func deleteAd(campaignId: Int, adGroupId: Int, adId: Int) async throws -> Response<Empty> {
         try await provider.requestDataModel(from: AdDeleteRequest(
             campaignId: campaignId,
             adGroupId: adGroupId,
