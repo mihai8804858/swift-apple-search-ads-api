@@ -14,6 +14,7 @@ struct RequestQuery: Sendable {
         guard let value = value else { return nil }
         let encoder = URLQueryEncoder.default
         encoder.encode(value, forKey: "value")
-        return encoder.queryItems
+        let items = encoder.queryItems
+        return items.isEmpty ? nil : items
     }
 }

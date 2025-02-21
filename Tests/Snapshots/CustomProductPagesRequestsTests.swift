@@ -53,6 +53,21 @@ final class CustomProductPagesRequestsTests: SnapshotTestCase {
         }
     }
 
+    func testSupportedCountriesOrRegionsNoQueryRequest() async throws {
+        try await assertRequest(SupportedCountriesOrRegionsRequest(
+            parameters: SupportedCountriesOrRegionsParameters()
+        )) {
+            """
+            GET https://api.searchads.apple.com/api/v5/countries-or-regions
+            Accept-Encoding: gzip;q=1.0, compress;q=0.5
+            Accept-Language: en-US;q=1.0
+            Authorization: Bearer token
+            Host: api.searchads.apple.com
+            X-Ap-Context: orgId=12345
+            """
+        }
+    }
+
     func testProductPageRequest() async throws {
         try await assertRequest(ProductPageRequest(adamId: 123, productPageId: "page-id")) {
             """
