@@ -33,4 +33,12 @@ extension ProviderType {
     ) async throws -> Response<Paginated<Model>> {
         try await requestModel(from: request, type: Paginated<Model>.self)
     }
+
+    func requestPaginatedObject<Request: RequestType, Model: Decodable>(
+        from request: Request,
+        type: Model.Type = Model.self,
+        decoder: JSONDecoder = .default
+    ) async throws -> Response<PaginatedObject<Model>> {
+        try await requestModel(from: request, type: PaginatedObject<Model>.self)
+    }
 }

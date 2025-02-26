@@ -7,7 +7,7 @@ public extension APIProvider {
     ///     `ReportingRequest.selector.fields` property. Omit this if no fields are being filtered out,
     ///     which will result in decoding `ReportingCampaign` type.
     ///
-    /// - Returns: An object of type `Reporting<Empty, Model>`.
+    /// - Returns: A paginated object of type `Reporting<Empty, Model>`.
     ///
     /// - Throws: An error of type `APIError`.
     ///
@@ -21,8 +21,8 @@ public extension APIProvider {
     func getCampaignsReport<Model: Decodable & Sendable>(
         request: ReportingRequest<ReportingCampaign>,
         decoding: Model.Type = ReportingCampaign.self
-    ) async throws -> Response<Paginated<Reporting<Empty, Model>>> {
-        try await provider.requestPaginatedModel(from: CampaignReportRequest(request: request))
+    ) async throws -> Response<PaginatedObject<Reporting<Empty, Model>>> {
+        try await provider.requestPaginatedObject(from: CampaignReportRequest(request: request))
     }
 
     /// Fetches reports for ad groups within a campaign.
@@ -34,7 +34,7 @@ public extension APIProvider {
     ///     `ReportingRequest.selector.fields` property. Omit this if no fields are being filtered out,
     ///     which will result in decoding `ReportingAdGroup` type.
     ///
-    /// - Returns: An object of type `Reporting<Empty, Model>`.
+    /// - Returns: A paginated object of type `Reporting<Empty, Model>`.
     ///
     /// - Throws: An error of type `APIError`.
     ///
@@ -47,8 +47,8 @@ public extension APIProvider {
         campaignId: Int,
         request: ReportingRequest<ReportingAdGroup>,
         decoding: Model.Type = ReportingAdGroup.self
-    ) async throws -> Response<Paginated<Reporting<Empty, Model>>> {
-        try await provider.requestPaginatedModel(from: AdGroupReportRequest(campaignId: campaignId, request: request))
+    ) async throws -> Response<PaginatedObject<Reporting<Empty, Model>>> {
+        try await provider.requestPaginatedObject(from: AdGroupReportRequest(campaignId: campaignId, request: request))
     }
 
     /// Fetches reports for targeting keywords within a campaign and / or ad group.
@@ -61,7 +61,7 @@ public extension APIProvider {
     ///     `ReportingRequest.selector.fields` property. Omit this if no fields are being filtered out,
     ///     which will result in decoding `ReportingKeyword` type.
     ///
-    /// - Returns: An object of type `Reporting<KeywordInsights, Model>`.
+    /// - Returns: A paginated object of type `Reporting<KeywordInsights, Model>`.
     ///
     /// - Throws: An error of type `APIError`.
     ///
@@ -74,8 +74,8 @@ public extension APIProvider {
         adGroupId: Int? = nil,
         request: ReportingRequest<ReportingKeyword>,
         decoding: Model.Type = ReportingKeyword.self
-    ) async throws -> Response<Paginated<Reporting<KeywordInsights, Model>>> {
-        try await provider.requestPaginatedModel(from: KeywordReportRequest(
+    ) async throws -> Response<PaginatedObject<Reporting<KeywordInsights, Model>>> {
+        try await provider.requestPaginatedObject(from: KeywordReportRequest(
             campaignId: campaignId,
             adGroupId: adGroupId,
             request: request
@@ -92,7 +92,7 @@ public extension APIProvider {
     ///     `ReportingRequest.selector.fields` property. Omit this if no fields are being filtered out,
     ///     which will result in decoding `ReportingSearchTerm` type.
     ///
-    /// - Returns: An object of type `Reporting<Empty, Model>`.
+    /// - Returns: A paginated object of type `Reporting<Empty, Model>`.
     ///
     /// - Throws: An error of type `APIError`.
     ///
@@ -107,8 +107,8 @@ public extension APIProvider {
         adGroupId: Int? = nil,
         request: ReportingRequest<ReportingSearchTerm>,
         decoding: Model.Type = ReportingSearchTerm.self
-    ) async throws -> Response<Paginated<Reporting<Empty, Model>>> {
-        try await provider.requestPaginatedModel(from: SearchTermReportRequest(
+    ) async throws -> Response<PaginatedObject<Reporting<Empty, Model>>> {
+        try await provider.requestPaginatedObject(from: SearchTermReportRequest(
             campaignId: campaignId,
             adGroupId: adGroupId,
             request: request
@@ -124,7 +124,7 @@ public extension APIProvider {
     ///     `ReportingRequest.selector.fields` property. Omit this if no fields are being filtered out,
     ///     which will result in decoding `ReportingAd` type.
     ///
-    /// - Returns: An object of type `Reporting<Empty, Model>`.
+    /// - Returns: A paginated object of type `Reporting<Empty, Model>`.
     ///
     /// - Throws: An error of type `APIError`.
     ///
@@ -137,8 +137,8 @@ public extension APIProvider {
         campaignId: Int,
         request: ReportingRequest<ReportingAd>,
         decoding: Model.Type = ReportingAd.self
-    ) async throws -> Response<Paginated<Reporting<Empty, Model>>> {
-        try await provider.requestPaginatedModel(from: AdReportRequest(campaignId: campaignId, request: request))
+    ) async throws -> Response<PaginatedObject<Reporting<Empty, Model>>> {
+        try await provider.requestPaginatedObject(from: AdReportRequest(campaignId: campaignId, request: request))
     }
 
     /// Obtain a report ID.
