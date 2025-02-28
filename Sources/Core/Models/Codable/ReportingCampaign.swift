@@ -49,8 +49,8 @@ public struct ReportingCampaign: Codable, Hashable, Sendable, CodingKeysContaini
     public let gender: Gender?
     /// Reporting age range.
     public let ageRange: AgeRange?
-    /// Reporting country code.
-    public let countryCode: String?
+    /// Reporting country or region.
+    public let countryOrRegion: String?
     /// Reporting administrative area.
     public let adminArea: String?
     /// Reporting locality.
@@ -78,7 +78,7 @@ public struct ReportingCampaign: Codable, Hashable, Sendable, CodingKeysContaini
         deviceClass: DeviceClass? = nil,
         gender: Gender? = nil,
         ageRange: AgeRange? = nil,
-        countryCode: String? = nil,
+        countryOrRegion: String? = nil,
         adminArea: String? = nil,
         locality: String? = nil
     ) {
@@ -101,7 +101,7 @@ public struct ReportingCampaign: Codable, Hashable, Sendable, CodingKeysContaini
         self.deviceClass = deviceClass
         self.gender = gender
         self.ageRange = ageRange
-        self.countryCode = countryCode
+        self.countryOrRegion = countryOrRegion
         self.adminArea = adminArea
         self.locality = locality
     }
@@ -126,7 +126,7 @@ public struct ReportingCampaign: Codable, Hashable, Sendable, CodingKeysContaini
         case deviceClass
         case gender
         case ageRange
-        case countryCode
+        case countryOrRegion
         case adminArea
         case locality
     }

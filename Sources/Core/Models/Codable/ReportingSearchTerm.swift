@@ -50,8 +50,8 @@ public struct ReportingSearchTerm: Codable, Hashable, Sendable, CodingKeysContai
     public let gender: Gender?
     /// Reporting age range.
     public let ageRange: AgeRange?
-    /// Reporting country code.
-    public let countryCode: String?
+    /// Reporting country or region.
+    public let countryOrRegion: String?
     /// Reporting administrative area.
     public let adminArea: String?
     /// Reporting locality.
@@ -78,7 +78,7 @@ public struct ReportingSearchTerm: Codable, Hashable, Sendable, CodingKeysContai
         deviceClass: DeviceClass? = nil,
         gender: Gender? = nil,
         ageRange: AgeRange? = nil,
-        countryCode: String? = nil,
+        countryOrRegion: String? = nil,
         adminArea: String? = nil,
         locality: String? = nil
     ) {
@@ -100,7 +100,7 @@ public struct ReportingSearchTerm: Codable, Hashable, Sendable, CodingKeysContai
         self.deviceClass = deviceClass
         self.gender = gender
         self.ageRange = ageRange
-        self.countryCode = countryCode
+        self.countryOrRegion = countryOrRegion
         self.adminArea = adminArea
         self.locality = locality
     }
@@ -124,7 +124,7 @@ public struct ReportingSearchTerm: Codable, Hashable, Sendable, CodingKeysContai
         case deviceClass
         case gender
         case ageRange
-        case countryCode
+        case countryOrRegion
         case adminArea
         case locality
     }
