@@ -32,6 +32,18 @@ public struct ReportingKeyword: Codable, Hashable, Sendable, CodingKeysContainin
     public let orgId: Int?
     /// The date and time of the most recent modification of the object.
     public let modificationTime: Date?
+    /// Reporting device class.
+    public let deviceClass: DeviceClass?
+    /// Reporting gender.
+    public let gender: Gender?
+    /// Reporting age range.
+    public let ageRange: AgeRange?
+    /// Reporting country code.
+    public let countryCode: String?
+    /// Reporting administrative area.
+    public let adminArea: String?
+    /// Reporting locality.
+    public let locality: String?
 
     public var id: Int? { keywordId }
 
@@ -48,7 +60,13 @@ public struct ReportingKeyword: Codable, Hashable, Sendable, CodingKeysContainin
         keywordDisplayStatus: KeywordDisplayStatus? = nil,
         matchType: KeywordMatchType? = nil,
         orgId: Int? = nil,
-        modificationTime: Date? = nil
+        modificationTime: Date? = nil,
+        deviceClass: DeviceClass? = nil,
+        gender: Gender? = nil,
+        ageRange: AgeRange? = nil,
+        countryCode: String? = nil,
+        adminArea: String? = nil,
+        locality: String? = nil
     ) {
         self.adGroupDeleted = adGroupDeleted
         self.adGroupId = adGroupId
@@ -63,6 +81,12 @@ public struct ReportingKeyword: Codable, Hashable, Sendable, CodingKeysContainin
         self.matchType = matchType
         self.orgId = orgId
         self.modificationTime = modificationTime
+        self.deviceClass = deviceClass
+        self.gender = gender
+        self.ageRange = ageRange
+        self.countryCode = countryCode
+        self.adminArea = adminArea
+        self.locality = locality
     }
 
     public enum CodingKeys: String, CodingKey {
@@ -79,5 +103,11 @@ public struct ReportingKeyword: Codable, Hashable, Sendable, CodingKeysContainin
         case matchType
         case orgId
         case modificationTime
+        case deviceClass
+        case gender
+        case ageRange
+        case countryCode
+        case adminArea
+        case locality
     }
 }

@@ -43,6 +43,18 @@ public struct ReportingCampaign: Codable, Hashable, Sendable, CodingKeysContaini
     ///
     /// This is the equivalent of `budgetAmount` in your `Campaign`.
     public let totalBudget: Money?
+    /// Reporting device class.
+    public let deviceClass: DeviceClass?
+    /// Reporting gender.
+    public let gender: Gender?
+    /// Reporting age range.
+    public let ageRange: AgeRange?
+    /// Reporting country code.
+    public let countryCode: String?
+    /// Reporting administrative area.
+    public let adminArea: String?
+    /// Reporting locality.
+    public let locality: String?
 
     public var id: Int? { campaignId }
 
@@ -62,7 +74,13 @@ public struct ReportingCampaign: Codable, Hashable, Sendable, CodingKeysContaini
         servingStateReasons: [Campaign.ServingStateReason]? = nil,
         servingStatus: Campaign.ServingStatus? = nil,
         supplySources: [SupplySource]? = nil,
-        totalBudget: Money? = nil
+        totalBudget: Money? = nil,
+        deviceClass: DeviceClass? = nil,
+        gender: Gender? = nil,
+        ageRange: AgeRange? = nil,
+        countryCode: String? = nil,
+        adminArea: String? = nil,
+        locality: String? = nil
     ) {
         self.adChannelType = adChannelType
         self.app = app
@@ -80,6 +98,12 @@ public struct ReportingCampaign: Codable, Hashable, Sendable, CodingKeysContaini
         self.servingStatus = servingStatus
         self.supplySources = supplySources
         self.totalBudget = totalBudget
+        self.deviceClass = deviceClass
+        self.gender = gender
+        self.ageRange = ageRange
+        self.countryCode = countryCode
+        self.adminArea = adminArea
+        self.locality = locality
     }
 
     public enum CodingKeys: String, CodingKey {
@@ -99,5 +123,11 @@ public struct ReportingCampaign: Codable, Hashable, Sendable, CodingKeysContaini
         case servingStatus
         case supplySources
         case totalBudget
+        case deviceClass
+        case gender
+        case ageRange
+        case countryCode
+        case adminArea
+        case locality
     }
 }

@@ -44,6 +44,18 @@ public struct ReportingSearchTerm: Codable, Hashable, Sendable, CodingKeysContai
     public let searchTermSource: Source?
     /// The search terms to use for app searches.
     public let searchTermText: String?
+    /// Reporting device class.
+    public let deviceClass: DeviceClass?
+    /// Reporting gender.
+    public let gender: Gender?
+    /// Reporting age range.
+    public let ageRange: AgeRange?
+    /// Reporting country code.
+    public let countryCode: String?
+    /// Reporting administrative area.
+    public let adminArea: String?
+    /// Reporting locality.
+    public let locality: String?
 
     public var id: Int? { keywordId }
 
@@ -62,7 +74,13 @@ public struct ReportingSearchTerm: Codable, Hashable, Sendable, CodingKeysContai
         orgId: Int? = nil,
         modificationTime: Date? = nil,
         searchTermSource: Source? = nil,
-        searchTermText: String? = nil
+        searchTermText: String? = nil,
+        deviceClass: DeviceClass? = nil,
+        gender: Gender? = nil,
+        ageRange: AgeRange? = nil,
+        countryCode: String? = nil,
+        adminArea: String? = nil,
+        locality: String? = nil
     ) {
         self.adGroupDeleted = adGroupDeleted
         self.adGroupId = adGroupId
@@ -79,6 +97,12 @@ public struct ReportingSearchTerm: Codable, Hashable, Sendable, CodingKeysContai
         self.modificationTime = modificationTime
         self.searchTermSource = searchTermSource
         self.searchTermText = searchTermText
+        self.deviceClass = deviceClass
+        self.gender = gender
+        self.ageRange = ageRange
+        self.countryCode = countryCode
+        self.adminArea = adminArea
+        self.locality = locality
     }
 
     public enum CodingKeys: String, CodingKey {
@@ -97,5 +121,11 @@ public struct ReportingSearchTerm: Codable, Hashable, Sendable, CodingKeysContai
         case modificationTime
         case searchTermSource
         case searchTermText
+        case deviceClass
+        case gender
+        case ageRange
+        case countryCode
+        case adminArea
+        case locality
     }
 }

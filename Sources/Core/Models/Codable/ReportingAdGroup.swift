@@ -36,6 +36,18 @@ public struct ReportingAdGroup: Codable, Hashable, Sendable, CodingKeysContainin
     ///
     /// Your `orgId` is the same as your account in the Apple Search Ads UI.
     public let orgId: Int?
+    /// Reporting device class.
+    public let deviceClass: DeviceClass?
+    /// Reporting gender.
+    public let gender: Gender?
+    /// Reporting age range.
+    public let ageRange: AgeRange?
+    /// Reporting country code.
+    public let countryCode: String?
+    /// Reporting administrative area.
+    public let adminArea: String?
+    /// Reporting locality.
+    public let locality: String?
 
     public var id: Int? { adGroupId }
 
@@ -54,7 +66,13 @@ public struct ReportingAdGroup: Codable, Hashable, Sendable, CodingKeysContainin
         startTime: Date? = nil,
         endTime: Date? = nil,
         modificationTime: Date? = nil,
-        orgId: Int? = nil
+        orgId: Int? = nil,
+        deviceClass: DeviceClass? = nil,
+        gender: Gender? = nil,
+        ageRange: AgeRange? = nil,
+        countryCode: String? = nil,
+        adminArea: String? = nil,
+        locality: String? = nil
     ) {
         self.adGroupDisplayStatus = adGroupDisplayStatus
         self.adGroupId = adGroupId
@@ -71,6 +89,12 @@ public struct ReportingAdGroup: Codable, Hashable, Sendable, CodingKeysContainin
         self.endTime = endTime
         self.modificationTime = modificationTime
         self.orgId = orgId
+        self.deviceClass = deviceClass
+        self.gender = gender
+        self.ageRange = ageRange
+        self.countryCode = countryCode
+        self.adminArea = adminArea
+        self.locality = locality
     }
 
     public enum CodingKeys: String, CodingKey {
@@ -89,5 +113,11 @@ public struct ReportingAdGroup: Codable, Hashable, Sendable, CodingKeysContainin
         case endTime
         case modificationTime
         case orgId
+        case deviceClass
+        case gender
+        case ageRange
+        case countryCode
+        case adminArea
+        case locality
     }
 }
