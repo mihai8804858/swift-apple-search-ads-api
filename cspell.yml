@@ -50,3 +50,4 @@ ignoreWords:
   - pubout
   - noout
   - struct
+  - uppercased

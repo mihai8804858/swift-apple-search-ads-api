@@ -45,11 +45,11 @@ public struct ReportingSearchTerm: Codable, Hashable, Sendable, CodingKeysContai
     /// The search terms to use for app searches.
     public let searchTermText: String?
     /// Reporting device class.
-    public let deviceClass: DeviceClass?
+    public let deviceClass: String?
     /// Reporting gender.
-    public let gender: Gender?
+    public let gender: String?
     /// Reporting age range.
-    public let ageRange: AgeRange?
+    public let ageRange: String?
     /// Reporting country or region.
     public let countryOrRegion: String?
     /// Reporting administrative area.
@@ -75,9 +75,9 @@ public struct ReportingSearchTerm: Codable, Hashable, Sendable, CodingKeysContai
         modificationTime: Date? = nil,
         searchTermSource: Source? = nil,
         searchTermText: String? = nil,
-        deviceClass: DeviceClass? = nil,
-        gender: Gender? = nil,
-        ageRange: AgeRange? = nil,
+        deviceClass: String? = nil,
+        gender: String? = nil,
+        ageRange: String? = nil,
         countryOrRegion: String? = nil,
         adminArea: String? = nil,
         locality: String? = nil

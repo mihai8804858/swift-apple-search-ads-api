@@ -33,11 +33,11 @@ public struct ReportingKeyword: Codable, Hashable, Sendable, CodingKeysContainin
     /// The date and time of the most recent modification of the object.
     public let modificationTime: Date?
     /// Reporting device class.
-    public let deviceClass: DeviceClass?
+    public let deviceClass: String?
     /// Reporting gender.
-    public let gender: Gender?
+    public let gender: String?
     /// Reporting age range.
-    public let ageRange: AgeRange?
+    public let ageRange: String?
     /// Reporting country or region.
     public let countryOrRegion: String?
     /// Reporting administrative area.
@@ -61,9 +61,9 @@ public struct ReportingKeyword: Codable, Hashable, Sendable, CodingKeysContainin
         matchType: KeywordMatchType? = nil,
         orgId: Int? = nil,
         modificationTime: Date? = nil,
-        deviceClass: DeviceClass? = nil,
-        gender: Gender? = nil,
-        ageRange: AgeRange? = nil,
+        deviceClass: String? = nil,
+        gender: String? = nil,
+        ageRange: String? = nil,
         countryOrRegion: String? = nil,
         adminArea: String? = nil,
         locality: String? = nil
