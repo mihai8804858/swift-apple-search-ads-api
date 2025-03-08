@@ -68,4 +68,33 @@ final class AppsRequestsTests: SnapshotTestCase {
             """
         }
     }
+
+    func testDetailsRequest() async throws {
+        try await assertRequest(AppDetailsRequest(adamId: 12345)) {
+            """
+            GET https://api.searchads.apple.com/api/v5/apps/12345
+            Accept-Encoding: gzip;q=1.0, compress;q=0.5
+            Accept-Language: en-US;q=1.0
+            Authorization: Bearer token
+            Host: api.searchads.apple.com
+            X-Ap-Context: orgId=12345
+            """
+        }
+    }
+
+    func testLocaleDetailsRequest() async throws {
+        try await assertRequest(AppLocaleDetailsRequest(
+            adamId: 12345,
+            parameters: AppLocaleDetailsParameters(expand: true)
+        )) {
+            """
+            GET https://api.searchads.apple.com/api/v5/apps/12345/locale-details?expand=true
+            Accept-Encoding: gzip;q=1.0, compress;q=0.5
+            Accept-Language: en-US;q=1.0
+            Authorization: Bearer token
+            Host: api.searchads.apple.com
+            X-Ap-Context: orgId=12345
+            """
+        }
+    }
 }

@@ -32,4 +32,35 @@ public extension APIProvider {
             selector: selector
         ))
     }
+
+    /// Fetches app metadata.
+    ///
+    /// - Parameters:
+    ///     - adamId: Your unique App Store app identifier.
+    ///
+    /// - Returns: An object of type `AppDetails`.
+    ///
+    /// - Throws: An error of type `APIError`.
+    func appDetails(adamId: Int) async throws -> Response<AppDetails> {
+        try await provider.requestDataModel(from: AppDetailsRequest(adamId: adamId))
+    }
+
+    /// Fetches the localized default product page for an app.
+    ///
+    /// - Parameters:
+    ///     - adamId: Your unique App Store app identifier.
+    ///     - parameters: Detailed app asset details of a device.
+    ///
+    /// - Returns: An object of type `AppLocaleDetails`.
+    ///
+    /// - Throws: An error of type `APIError`.
+    func appLocaleDetails(
+        adamId: Int,
+        parameters: AppLocaleDetailsParameters? = nil
+    ) async throws -> Response<AppLocaleDetails> {
+        try await provider.requestDataModel(from: AppLocaleDetailsRequest(
+            adamId: adamId,
+            parameters: parameters
+        ))
+    }
 }
