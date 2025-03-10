@@ -110,6 +110,8 @@ public struct CustomReport: Codable, Hashable, Sendable, CodingKeysContaining, I
         case metrics
         case selector
         case downloadUri
+        case adamId
+        case countryOrRegion
     }
 
     public init(from decoder: any Decoder) throws {
