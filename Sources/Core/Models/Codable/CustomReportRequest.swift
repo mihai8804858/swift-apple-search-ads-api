@@ -2,13 +2,6 @@ import Foundation
 
 /// The Impression Share report request body.
 public struct CustomReportRequest: Codable, Hashable, Sendable {
-    /// The date range of the report request.
-    public enum DateRange: String, Codable, Hashable, Sendable {
-        case lastWeek = "LAST_WEEK"
-        case last2Weeks = "LAST_2_WEEKS"
-        case last4Weeks = "LAST_4_WEEKS"
-    }
-
     /// A free-text field. The maximum length is 50 characters.
     public let name: String
     /// The start time of the report. The format is YYYY-MM-DD, such as 2024-06-01.
@@ -18,7 +11,7 @@ public struct CustomReportRequest: Codable, Hashable, Sendable {
     /// The date range of the report request.
     ///
     /// A date range is required only when using `WEEKLY` granularity in Impression Share Report.
-    public let dateRange: DateRange?
+    public let dateRange: CustomReportDateRange?
     /// The report data organized by day or week.
     ///
     /// Impression Share reports with a `WEEKLY` granularity value can’t have
@@ -35,7 +28,7 @@ public struct CustomReportRequest: Codable, Hashable, Sendable {
         name: String,
         startTime: Date? = nil,
         endTime: Date? = nil,
-        dateRange: DateRange? = nil,
+        dateRange: CustomReportDateRange? = nil,
         granularity: CustomReportGranularity? = nil,
         selector: CustomReportSelector? = nil
     ) {
@@ -62,7 +55,7 @@ public struct CustomReportRequest: Codable, Hashable, Sendable {
         name = try container.decode(String.self, forKey: .name)
         startTime = try container.decodeIfPresent(String.self, forKey: .startTime).flatMap(formatter.date(from:))
         endTime = try container.decodeIfPresent(String.self, forKey: .endTime).flatMap(formatter.date(from:))
-        dateRange = try container.decodeIfPresent(CustomReportRequest.DateRange.self, forKey: .dateRange)
+        dateRange = try container.decodeIfPresent(CustomReportDateRange.self, forKey: .dateRange)
         granularity = try container.decodeIfPresent(CustomReportGranularity.self, forKey: .granularity)
         selector = try container.decodeIfPresent(CustomReportSelector.self, forKey: .selector)
     }

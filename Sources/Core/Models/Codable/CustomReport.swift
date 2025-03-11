@@ -44,6 +44,10 @@ public struct CustomReport: Codable, Hashable, Sendable, CodingKeysContaining, I
     public let startTime: Date?
     /// The end time of the report. The format is YYYY-MM-DD, such as 2024-06-30.
     public let endTime: Date?
+    /// The date range of the report.
+    ///
+    /// A date range is required only when using `WEEKLY` granularity in Impression Share Report.
+    public let dateRange: CustomReportDateRange?
     /// The timestamp for the creation of the report.
     public let creationTime: Date?
     /// The most recent timestamp of report modifications
@@ -75,6 +79,7 @@ public struct CustomReport: Codable, Hashable, Sendable, CodingKeysContaining, I
         state: State? = nil,
         startTime: Date? = nil,
         endTime: Date? = nil,
+        dateRange: CustomReportDateRange? = nil,
         creationTime: Date? = nil,
         modificationTime: Date? = nil,
         granularity: CustomReportGranularity? = nil,
@@ -88,6 +93,7 @@ public struct CustomReport: Codable, Hashable, Sendable, CodingKeysContaining, I
         self.state = state
         self.startTime = startTime
         self.endTime = endTime
+        self.dateRange = dateRange
         self.creationTime = creationTime
         self.modificationTime = modificationTime
         self.granularity = granularity
@@ -103,6 +109,7 @@ public struct CustomReport: Codable, Hashable, Sendable, CodingKeysContaining, I
         case state
         case startTime
         case endTime
+        case dateRange
         case creationTime
         case modificationTime
         case granularity
@@ -122,6 +129,7 @@ public struct CustomReport: Codable, Hashable, Sendable, CodingKeysContaining, I
         state = try container.decodeIfPresent(CustomReport.State.self, forKey: .state)
         startTime = try container.decodeIfPresent(String.self, forKey: .startTime).flatMap(formatter.date(from:))
         endTime = try container.decodeIfPresent(String.self, forKey: .endTime).flatMap(formatter.date(from:))
+        dateRange = try container.decodeIfPresent(CustomReportDateRange.self, forKey: .dateRange)
         creationTime = try container.decodeIfPresent(Date.self, forKey: .creationTime)
         modificationTime = try container.decodeIfPresent(Date.self, forKey: .modificationTime)
         granularity = try container.decodeIfPresent(CustomReportGranularity.self, forKey: .granularity)
@@ -137,6 +145,7 @@ public struct CustomReport: Codable, Hashable, Sendable, CodingKeysContaining, I
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(state, forKey: .state)
+        try container.encodeIfPresent(dateRange, forKey: .dateRange)
         try container.encodeIfPresent(creationTime, forKey: .creationTime)
         try container.encodeIfPresent(modificationTime, forKey: .modificationTime)
         try container.encodeIfPresent(granularity, forKey: .granularity)
