@@ -51,13 +51,13 @@ public extension APIProvider {
     ///     - adamId: Your unique App Store app identifier.
     ///     - parameters: Detailed app asset details of a device.
     ///
-    /// - Returns: An object of type `AppLocaleDetails`.
+    /// - Returns: An array of `AppLocaleDetails` objects.
     ///
     /// - Throws: An error of type `APIError`.
     func appLocaleDetails(
         adamId: Int,
         parameters: AppLocaleDetailsParameters? = nil
-    ) async throws -> Response<AppLocaleDetails> {
+    ) async throws -> Response<[AppLocaleDetails]> {
         try await provider.requestDataModel(from: AppLocaleDetailsRequest(
             adamId: adamId,
             parameters: parameters
