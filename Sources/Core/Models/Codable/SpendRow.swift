@@ -25,6 +25,12 @@ public struct SpendRow: Codable, Hashable, Sendable {
     /// The API counts redownloads when someone downloads your app, deletes it,
     /// and downloads it again on the same device, or a different one, following an ad tap.
     public let tapRedownloads: Int?
+    /// The total number of pre-orders placed by users who tapped your ad.
+    /// A pre-order placed (tap-through) is counted when a user has tapped your ad and authenticated with
+    /// Face ID, Touch ID, or their passcode to allow the app to be downloaded on release day,
+    /// within a 30-day window of the ad tap, and within 60 days of the app download.
+    /// This does not account for any pre-orders canceled after the pre-order has been placed.
+    public let tapPreOrdersPlaced: Int?
     /// The number of times people tap your ad within the reporting period.
     public let taps: Int?
     /// The total campaign spend divided by the total number of installs within the reporting period.
@@ -37,6 +43,9 @@ public struct SpendRow: Codable, Hashable, Sendable {
     public let totalNewDownloads: Int?
     /// The total number of tap-through and view-through redownloads within the reporting period.
     public let totalRedownloads: Int?
+    /// The total number of tap-through and view-through pre-orders placed resulting from an ad
+    /// within the reporting period.
+    public let totalPreOrdersPlaced: Int?
     /// The tap-through rate (TTR) is the number of times people tap your ad divided
     /// by the total impressions your ad receives.
     public let ttr: Double?
@@ -51,6 +60,11 @@ public struct SpendRow: Codable, Hashable, Sendable {
     /// The API counts redownloads when someone downloads your app, deletes it,
     /// and downloads it again on the same device, or a different one, following an ad view.
     public let viewRedownloads: Int?
+    /// The total number of pre-orders placed from users who viewed your ad, but didn’t tap it.
+    /// A pre-order placed (view-through) is counted within 24 hours of viewing your ad, and within 60 days
+    /// of the app download.
+    /// This does not account for any pre-orders canceled after the pre-order has been placed.
+    public let viewPreOrdersPlaced: Int?
 
     public init(
         avgCPM: Money? = nil,
@@ -62,16 +76,19 @@ public struct SpendRow: Codable, Hashable, Sendable {
         tapInstalls: Int? = nil,
         tapNewDownloads: Int? = nil,
         tapRedownloads: Int? = nil,
+        tapPreOrdersPlaced: Int? = nil,
         taps: Int? = nil,
         totalAvgCPI: Money? = nil,
         totalInstallRate: Double? = nil,
         totalInstalls: Int? = nil,
         totalNewDownloads: Int? = nil,
         totalRedownloads: Int? = nil,
+        totalPreOrdersPlaced: Int? = nil,
         ttr: Double? = nil,
         viewInstalls: Int? = nil,
         viewNewDownloads: Int? = nil,
-        viewRedownloads: Int? = nil
+        viewRedownloads: Int? = nil,
+        viewPreOrdersPlaced: Int? = nil
     ) {
         self.avgCPM = avgCPM
         self.avgCPT = avgCPT
@@ -82,15 +99,18 @@ public struct SpendRow: Codable, Hashable, Sendable {
         self.tapInstalls = tapInstalls
         self.tapNewDownloads = tapNewDownloads
         self.tapRedownloads = tapRedownloads
+        self.tapPreOrdersPlaced = tapPreOrdersPlaced
         self.taps = taps
         self.totalAvgCPI = totalAvgCPI
         self.totalInstallRate = totalInstallRate
         self.totalInstalls = totalInstalls
         self.totalNewDownloads = totalNewDownloads
         self.totalRedownloads = totalRedownloads
+        self.totalPreOrdersPlaced = totalPreOrdersPlaced
         self.ttr = ttr
         self.viewInstalls = viewInstalls
         self.viewNewDownloads = viewNewDownloads
         self.viewRedownloads = viewRedownloads
+        self.viewPreOrdersPlaced = viewPreOrdersPlaced
     }
 }
