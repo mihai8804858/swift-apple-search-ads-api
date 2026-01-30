@@ -40,19 +40,18 @@ jobs:
         run: cspell-cli lint --no-progress
 
   build:
-    name: Build (${{ matrix.os }}, swift ${{ matrix.swift }}, ${{ matrix.config }})
+    name: Build (${{ matrix.os }}, ${{ matrix.config }})
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: ['ubuntu-latest', 'macos-latest']
-        swift: ['5.10', '6.0', 'latest']
         config: ['debug', 'release']
     steps:
       - uses: actions/checkout@v4
 
       - uses: SwiftyLab/setup-swift@latest
         with:
-          swift-version: ${{ matrix.swift }}
+          swift-version: 'latest'
 
       - name: Build
         run: swift build -c ${{ matrix.config }}
