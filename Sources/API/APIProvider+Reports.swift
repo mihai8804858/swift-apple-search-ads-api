@@ -21,7 +21,7 @@ public extension APIProvider {
     func getCampaignsReport<Model: Decodable & Sendable>(
         request: ReportingRequest<ReportingCampaign>,
         decoding: Model.Type = ReportingCampaign.self
-    ) async throws -> Response<PaginatedObject<Reporting<Empty, Model>>> {
+    ) async throws -> Response<PaginatedObject<Reporting<Empty, Model>, PageDetail>> {
         try await provider.requestPaginatedObject(from: CampaignReportRequest(request: request))
     }
 
@@ -47,7 +47,7 @@ public extension APIProvider {
         campaignId: Int,
         request: ReportingRequest<ReportingAdGroup>,
         decoding: Model.Type = ReportingAdGroup.self
-    ) async throws -> Response<PaginatedObject<Reporting<Empty, Model>>> {
+    ) async throws -> Response<PaginatedObject<Reporting<Empty, Model>, PageDetail>> {
         try await provider.requestPaginatedObject(from: AdGroupReportRequest(campaignId: campaignId, request: request))
     }
 
@@ -74,7 +74,7 @@ public extension APIProvider {
         adGroupId: Int? = nil,
         request: ReportingRequest<ReportingKeyword>,
         decoding: Model.Type = ReportingKeyword.self
-    ) async throws -> Response<PaginatedObject<Reporting<KeywordInsights, Model>>> {
+    ) async throws -> Response<PaginatedObject<Reporting<KeywordInsights, Model>, PageDetail>> {
         try await provider.requestPaginatedObject(from: KeywordReportRequest(
             campaignId: campaignId,
             adGroupId: adGroupId,
@@ -107,7 +107,7 @@ public extension APIProvider {
         adGroupId: Int? = nil,
         request: ReportingRequest<ReportingSearchTerm>,
         decoding: Model.Type = ReportingSearchTerm.self
-    ) async throws -> Response<PaginatedObject<Reporting<Empty, Model>>> {
+    ) async throws -> Response<PaginatedObject<Reporting<Empty, Model>, PageDetail>> {
         try await provider.requestPaginatedObject(from: SearchTermReportRequest(
             campaignId: campaignId,
             adGroupId: adGroupId,
@@ -137,7 +137,7 @@ public extension APIProvider {
         campaignId: Int,
         request: ReportingRequest<ReportingAd>,
         decoding: Model.Type = ReportingAd.self
-    ) async throws -> Response<PaginatedObject<Reporting<Empty, Model>>> {
+    ) async throws -> Response<PaginatedObject<Reporting<Empty, Model>, PageDetail>> {
         try await provider.requestPaginatedObject(from: AdReportRequest(campaignId: campaignId, request: request))
     }
 
@@ -186,7 +186,7 @@ public extension APIProvider {
     /// The rate limit for this endpoint is 150 reports within 15 minutes.
     func listImpressionShareReports(
         parameters: ImpressionShareReportListParameters
-    ) async throws -> Response<Paginated<CustomReport>> {
+    ) async throws -> Response<Paginated<CustomReport, PaginationDetail>> {
         try await provider.requestPaginatedModel(from: ImpressionShareReportListRequest(parameters: parameters))
     }
 }

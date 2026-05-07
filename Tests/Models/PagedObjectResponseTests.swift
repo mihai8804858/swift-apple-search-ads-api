@@ -123,14 +123,14 @@ final class PagedObjectResponseTests: XCTestCase {
     private func simulateResponses(
         pageSize: Int,
         totalResults: Int
-    ) async throws -> (pages: [Pagination], responses: [Response<PaginatedObject<Int>>]) {
+    ) async throws -> (pages: [Pagination], responses: [Response<PaginatedObject<Int, PageDetail>>]) {
         nonisolated(unsafe) var pages: [Pagination] = []
-        nonisolated(unsafe) var responses: [Response<PaginatedObject<Int>>] = []
+        nonisolated(unsafe) var responses: [Response<PaginatedObject<Int, PageDetail>>] = []
         let stream = PagedObjectResponse(size: pageSize) { pagination in
             pages.append(pagination)
             if pagination.offset < totalResults {
-                return Response<PaginatedObject<Int>>(
-                    model: PaginatedObject<Int>(
+                return Response<PaginatedObject<Int, PageDetail>>(
+                    model: PaginatedObject<Int, PageDetail>(
                         data: min(pagination.offset + pageSize, totalResults),
                         pagination: PageDetail(
                             totalResults: totalResults,
@@ -141,8 +141,8 @@ final class PagedObjectResponseTests: XCTestCase {
                     statusCode: .success
                 )
             } else {
-                return Response<PaginatedObject<Int>>(
-                    model: PaginatedObject<Int>(
+                return Response<PaginatedObject<Int, PageDetail>>(
+                    model: PaginatedObject<Int, PageDetail>(
                         data: 0,
                         pagination: PageDetail(
                             totalResults: totalResults,

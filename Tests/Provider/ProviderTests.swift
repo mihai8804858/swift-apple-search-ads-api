@@ -183,7 +183,7 @@ final class ProviderTests: XCTestCase {
         ))
         let data = try JSONEncoder.default.encode(model)
         session.dataStub = .success((data, httpResponse))
-        let response: Result<Response<Paginated<MockModel>>, Error> = await Result {
+        let response: Result<Response<Paginated<MockModel, PageDetail>>, Error> = await Result {
             try await provider.requestPaginatedModel(from: request)
         }
 

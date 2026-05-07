@@ -101,7 +101,7 @@ public extension APIProvider {
         campaignId: Int,
         adGroupId: Int,
         pagination: Pagination? = nil
-    ) async throws -> Response<Paginated<NegativeKeyword>> {
+    ) async throws -> Response<Paginated<NegativeKeyword, PageDetail>> {
         try await provider.requestPaginatedModel(from: AdGroupNegativeKeywordsListRequest(
             campaignId: campaignId,
             adGroupId: adGroupId,
@@ -124,7 +124,7 @@ public extension APIProvider {
         campaignId: Int,
         selector: Selector<NegativeKeyword>? = nil,
         decoding: Model.Type = NegativeKeyword.self
-    ) async throws -> Response<Paginated<Model>> {
+    ) async throws -> Response<Paginated<Model, PageDetail>> {
         try await provider.requestPaginatedModel(from: AdGroupNegativeKeywordsFindRequest(
             campaignId: campaignId,
             selector: selector

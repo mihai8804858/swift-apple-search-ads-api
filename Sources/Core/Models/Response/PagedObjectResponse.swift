@@ -4,11 +4,11 @@ import Foundation
 ///
 /// If the endpoint generates more than a single page of responses the sequence will emit each response page in turn
 /// until all have been received.
-public struct PagedObjectResponse<T: Sendable>: AsyncSequence, AsyncIteratorProtocol, Sendable {
-    public typealias Request = @Sendable (Pagination) async throws -> Response<PaginatedObject<T>>
-    public typealias Element = Response<PaginatedObject<T>>
+public struct PagedObjectResponse<T: Sendable, P: Page>: AsyncSequence, AsyncIteratorProtocol, Sendable {
+    public typealias Request = @Sendable (Pagination) async throws -> Response<PaginatedObject<T, P>>
+    public typealias Element = Response<PaginatedObject<T, P>>
 
-    private var currentPageDetail: PageDetail?
+    private var currentPageDetail: P?
 
     let size: Int
     let request: Request
@@ -20,7 +20,7 @@ public struct PagedObjectResponse<T: Sendable>: AsyncSequence, AsyncIteratorProt
 
     public func makeAsyncIterator() -> Self { self }
 
-    public mutating func next() async throws -> Response<PaginatedObject<T>>? {
+    public mutating func next() async throws -> Response<PaginatedObject<T, P>>? {
         guard !Task.isCancelled else { return nil }
         if let current = currentPageDetail {
             guard current.startIndex + size < current.totalResults else { return nil }

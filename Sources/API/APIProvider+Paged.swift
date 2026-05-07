@@ -8,10 +8,10 @@ public extension APIProvider {
     /// - Returns: An async sequence of type `PagedResponse`.
     ///
     /// - Throws: An error of type `APIError`.
-    func pages<T: Sendable>(
+    func pages<T: Sendable, P: Page>(
         size: Int = 20,
-        request: @escaping @Sendable (APIProvider, Pagination) async throws -> Response<Paginated<T>>
-    ) -> PagedResponse<T> {
+        request: @escaping @Sendable (APIProvider, Pagination) async throws -> Response<Paginated<T, P>>
+    ) -> PagedResponse<T, P> {
         PagedResponse(size: size) { pagination in
             try await request(self, pagination)
         }
@@ -26,10 +26,10 @@ public extension APIProvider {
     /// - Returns: An async sequence of type `PagedObjectResponse`.
     ///
     /// - Throws: An error of type `APIError`.
-    func pages<T: Sendable>(
+    func pages<T: Sendable, P: Page>(
         size: Int = 20,
-        request: @escaping @Sendable (APIProvider, Pagination) async throws -> Response<PaginatedObject<T>>
-    ) -> PagedObjectResponse<T> {
+        request: @escaping @Sendable (APIProvider, Pagination) async throws -> Response<PaginatedObject<T, P>>
+    ) -> PagedObjectResponse<T, P> {
         PagedObjectResponse(size: size) { pagination in
             try await request(self, pagination)
         }

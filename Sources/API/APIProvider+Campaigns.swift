@@ -77,7 +77,7 @@ public extension APIProvider {
     /// - Throws: An error of type `APIError`.
     ///
     /// This endpoint returns data for all of an organization’s assigned campaigns.
-    func listCampaigns(pagination: Pagination? = nil) async throws -> Response<Paginated<Campaign>> {
+    func listCampaigns(pagination: Pagination? = nil) async throws -> Response<Paginated<Campaign, PageDetail>> {
         try await provider.requestPaginatedModel(from: CampaignListRequest(pagination: pagination))
     }
 
@@ -94,7 +94,7 @@ public extension APIProvider {
     func findCampaigns<Model: Decodable & Sendable>(
         selector: Selector<Campaign>? = nil,
         decoding: Model.Type = Campaign.self
-    ) async throws -> Response<Paginated<Model>> {
+    ) async throws -> Response<Paginated<Model, PageDetail>> {
         try await provider.requestPaginatedModel(from: CampaignFindRequest(selector: selector))
     }
 }

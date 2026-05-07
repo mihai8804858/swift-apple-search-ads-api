@@ -111,7 +111,7 @@ public extension APIProvider {
         campaignId: Int,
         adGroupId: Int,
         pagination: Pagination? = nil
-    ) async throws -> Response<Paginated<Keyword>> {
+    ) async throws -> Response<Paginated<Keyword, PageDetail>> {
         try await provider.requestPaginatedModel(from: TargetingKeywordsListRequest(
             campaignId: campaignId,
             adGroupId: adGroupId,
@@ -134,7 +134,7 @@ public extension APIProvider {
         campaignId: Int,
         selector: Selector<Keyword>? = nil,
         decoding: Model.Type = Keyword.self
-    ) async throws -> Response<Paginated<Model>> {
+    ) async throws -> Response<Paginated<Model, PageDetail>> {
         try await provider.requestPaginatedModel(from: TargetingKeywordsFindRequest(
             campaignId: campaignId,
             selector: selector

@@ -35,7 +35,9 @@ public extension APIProvider {
     /// - Returns: A paginated list of `CreativeCustomProductPage`.
     ///
     /// - Throws: An error of type `APIError`.
-    func listCreatives(pagination: Pagination? = nil) async throws -> Response<Paginated<CreativeCustomProductPage>> {
+    func listCreatives(
+        pagination: Pagination? = nil
+    ) async throws -> Response<Paginated<CreativeCustomProductPage, PageDetail>> {
         try await provider.requestPaginatedModel(from: CreativesListRequest(pagination: pagination))
     }
 
@@ -53,7 +55,7 @@ public extension APIProvider {
     func findCreatives<Model: Decodable & Sendable>(
         selector: Selector<CreativeCustomProductPage>? = nil,
         decoding: Model.Type = CreativeCustomProductPage.self
-    ) async throws -> Response<Paginated<Model>> {
+    ) async throws -> Response<Paginated<Model, PageDetail>> {
         try await provider.requestPaginatedModel(from: CreativesFindRequest(selector: selector))
     }
 }

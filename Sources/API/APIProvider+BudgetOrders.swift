@@ -44,7 +44,9 @@ public extension APIProvider {
     /// - Returns: A paginated list of `BudgetOrderInfo`.
     ///
     /// - Throws: An error of type `APIError`.
-    func listBudgetOrders(pagination: Pagination? = nil) async throws -> Response<Paginated<BudgetOrderInfo>> {
+    func listBudgetOrders(
+        pagination: Pagination? = nil
+    ) async throws -> Response<Paginated<BudgetOrderInfo, PageDetail>> {
         try await provider.requestPaginatedModel(from: BudgetOrderListRequest(pagination: pagination))
     }
 }

@@ -14,7 +14,7 @@ public extension APIProvider {
         adamId: Int,
         selector: Selector<AppAsset>? = nil,
         decoding: Model.Type = AppAsset.self
-    ) async throws -> Response<Paginated<Model>> {
+    ) async throws -> Response<Paginated<Model, PageDetail>> {
         try await provider.requestPaginatedModel(from: AppAssetsFindRequest(adamId: adamId, selector: selector))
     }
 
@@ -29,7 +29,7 @@ public extension APIProvider {
     /// - Throws: An error of type `APIError`.
     func getAdCreativeRejectionReasons(
         productPageReasonId: Int
-    ) async throws -> Response<Paginated<ProductPageReason>> {
+    ) async throws -> Response<Paginated<ProductPageReason, PageDetail>> {
         try await provider.requestPaginatedModel(from: AdCreativeRejectionReasonsRequest(
             productPageReasonId: productPageReasonId
         ))
@@ -48,7 +48,7 @@ public extension APIProvider {
     func findAdCreativeRejectionReasons<Model: Decodable & Sendable>(
         selector: Selector<ProductPageReason>? = nil,
         decoding: Model.Type = ProductPageReason.self
-    ) async throws -> Response<Paginated<Model>> {
+    ) async throws -> Response<Paginated<Model, PageDetail>> {
         try await provider.requestPaginatedModel(from: AdCreativeRejectionReasonsFindRequest(
             selector: selector
         ))

@@ -7,7 +7,7 @@ public extension APIProvider {
     /// - Returns: A paginated list of `AppInfo`.
     ///
     /// - Throws: An error of type `APIError`.
-    func searchApps(parameters: SearchAppsRequestParameters) async throws -> Response<Paginated<AppInfo>> {
+    func searchApps(parameters: SearchAppsRequestParameters) async throws -> Response<Paginated<AppInfo, PageDetail>> {
         try await provider.requestPaginatedModel(from: SearchAppsRequest(parameters: parameters))
     }
 
@@ -26,7 +26,7 @@ public extension APIProvider {
         adamId: Int,
         selector: Selector<EligibilityRecord>? = nil,
         decoding: Model.Type = EligibilityRecord.self
-    ) async throws -> Response<Paginated<Model>> {
+    ) async throws -> Response<Paginated<Model, PageDetail>> {
         try await provider.requestPaginatedModel(from: AppEligibilityRequest(
             adamId: adamId,
             selector: selector

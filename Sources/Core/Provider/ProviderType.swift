@@ -26,19 +26,19 @@ extension ProviderType {
         try await requestModel(from: request, type: DataResponse<Model>.self).map(\.data)
     }
 
-    func requestPaginatedModel<Request: RequestType, Model: Decodable>(
+    func requestPaginatedModel<Request: RequestType, Model: Decodable, P: Page>(
         from request: Request,
         type: Model.Type = Model.self,
         decoder: JSONDecoder = .default
-    ) async throws -> Response<Paginated<Model>> {
-        try await requestModel(from: request, type: Paginated<Model>.self)
+    ) async throws -> Response<Paginated<Model, P>> {
+        try await requestModel(from: request, type: Paginated<Model, P>.self)
     }
 
-    func requestPaginatedObject<Request: RequestType, Model: Decodable>(
+    func requestPaginatedObject<Request: RequestType, Model: Decodable, P: Page>(
         from request: Request,
         type: Model.Type = Model.self,
         decoder: JSONDecoder = .default
-    ) async throws -> Response<PaginatedObject<Model>> {
-        try await requestModel(from: request, type: PaginatedObject<Model>.self)
+    ) async throws -> Response<PaginatedObject<Model, P>> {
+        try await requestModel(from: request, type: PaginatedObject<Model, P>.self)
     }
 }
