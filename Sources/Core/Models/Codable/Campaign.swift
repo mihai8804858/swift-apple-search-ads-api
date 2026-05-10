@@ -178,6 +178,14 @@ public struct Campaign: Codable, Hashable, Sendable, CodingKeysContaining, Ident
         case sapinLawFrenchBiz = "SAPIN_LAW_FRENCH_BIZ"
     }
 
+    /// The bidding strategy for the campaign.
+    public enum BiddingStrategy: String, Codable, Hashable, Sendable {
+        /// The manual cost-per-tap bidding.
+        case manualCPT = "MANUAL_CPT"
+        /// Maximize Conversions bidding strategy with automated bid optimization.
+        case maxConversions = "MAX_CONVERSIONS"
+    }
+
     /// A unique identifier for the campaign that you can use as a campaignid in endpoint resources.
     public let id: Int?
     /// The identifier of the organization that owns the campaign.
@@ -264,6 +272,14 @@ public struct Campaign: Codable, Hashable, Sendable, CodingKeysContaining, Ident
     public let status: Status?
     /// The ad placements for a campaign.
     public let supplySources: [SupplySource]?
+    /// The bidding strategy for the campaign.
+    public let biddingStrategy: BiddingStrategy?
+    /// The target cost-per-acquisition for `MAX_CONVERSIONS` campaigns.
+    ///
+    /// This field is required if the `biddingStrategy` is `MAX_CONVERSIONS`. The Target CPA is the average amount
+    /// you want to spend per tap-through install. This amount is used to calculate optimal bids for each search query,
+    /// with the goal of maximizing the number of installs near your target CPA.
+    public let targetCpa: Money?
 
     public init(
         id: Int? = nil,
@@ -288,7 +304,9 @@ public struct Campaign: Codable, Hashable, Sendable, CodingKeysContaining, Ident
         servingStateReasons: [ServingStateReason]? = nil,
         startTime: Date? = nil,
         status: Status? = nil,
-        supplySources: [SupplySource]? = nil
+        supplySources: [SupplySource]? = nil,
+        biddingStrategy: BiddingStrategy? = nil,
+        targetCpa: Money? = nil
     ) {
         self.id = id
         self.orgId = orgId
@@ -313,6 +331,8 @@ public struct Campaign: Codable, Hashable, Sendable, CodingKeysContaining, Ident
         self.modificationTime = modificationTime
         self.startTime = startTime
         self.endTime = endTime
+        self.biddingStrategy = biddingStrategy
+        self.targetCpa = targetCpa
     }
 
     public enum CodingKeys: String, CodingKey {
@@ -339,5 +359,7 @@ public struct Campaign: Codable, Hashable, Sendable, CodingKeysContaining, Ident
         case modificationTime
         case startTime
         case endTime
+        case biddingStrategy
+        case targetCpa
     }
 }

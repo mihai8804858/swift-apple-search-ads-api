@@ -60,6 +60,14 @@ public struct AdGroup: Codable, Hashable, Sendable, CodingKeysContaining, Identi
         case targetedDeviceClassNotSupportedSupplySource = "TARGETED_DEVICE_CLASS_NOT_SUPPORTED_SUPPLY_SOURCE"
     }
 
+    /// The bidding strategy for the campaign.
+    public enum BiddingStrategy: String, Codable, Hashable, Sendable {
+        /// The manual cost-per-tap bidding.
+        case manualCPT = "MANUAL_CPT"
+        /// Maximize Conversions bidding strategy with automated bid optimization.
+        case maxConversions = "MAX_CONVERSIONS"
+    }
+
     /// The unique identifier for the ad group that you can use as adGroupId in endpoint resources.
     public let id: Int?
     /// The identifier of the organization that owns the campaign.
@@ -91,9 +99,14 @@ public struct AdGroup: Codable, Hashable, Sendable, CodingKeysContaining, Identi
     public let cpaGoal: Money?
     /// The indicator of whether the ad group is soft-deleted. This includes keywords that belong to an ad group.
     public let deleted: Bool?
-    /// The parameter for enabling and disabling Search Match.
-    /// If true, the system automatically adds optimized keywords in addition to those you explicitly add to the group.
+    /// The parameter for enabling and disabling Search Match. If true, the system automatically adds
+    /// optimized keywords in addition to those you explicitly add to the ad group. Can be toggled true or false
+    /// for standard ad groups in MAX_CONVERSIONS campaigns.
+    /// Required to be true for automated ad groups.
     public let automatedKeywordsOptIn: Bool?
+    /// A read-only field indicating if this is the automated ad group. Defaults to false.
+    /// An automated ad group must exist for Maximize Conversions campaigns to run.
+    public let automatedKeywordsRequired: Bool?
     /// The date and time of the most recent modification of the object.
     public let modificationTime: Date?
     /// The scheduled start date and time for the ad group with the earliest start time in the campaign.
@@ -112,6 +125,8 @@ public struct AdGroup: Codable, Hashable, Sendable, CodingKeysContaining, Identi
     public let endTime: Date?
     /// The targeting criteria to narrow the audience.
     public let targetingDimensions: TargetingDimensions?
+    /// The bid strategy for the campaign.
+    public let biddingStrategy: BiddingStrategy?
 
     public init(
         id: Int? = nil,
@@ -128,10 +143,12 @@ public struct AdGroup: Codable, Hashable, Sendable, CodingKeysContaining, Identi
         cpaGoal: Money? = nil,
         deleted: Bool? = nil,
         automatedKeywordsOptIn: Bool? = nil,
+        automatedKeywordsRequired: Bool? = nil,
         modificationTime: Date? = nil,
         startTime: Date,
         endTime: Date? = nil,
-        targetingDimensions: TargetingDimensions? = nil
+        targetingDimensions: TargetingDimensions? = nil,
+        biddingStrategy: BiddingStrategy? = nil
     ) {
         self.id = id
         self.orgId = orgId
@@ -147,10 +164,12 @@ public struct AdGroup: Codable, Hashable, Sendable, CodingKeysContaining, Identi
         self.cpaGoal = cpaGoal
         self.deleted = deleted
         self.automatedKeywordsOptIn = automatedKeywordsOptIn
+        self.automatedKeywordsRequired = automatedKeywordsRequired
         self.modificationTime = modificationTime
         self.startTime = startTime
         self.endTime = endTime
         self.targetingDimensions = targetingDimensions
+        self.biddingStrategy = biddingStrategy
     }
 
     public enum CodingKeys: String, CodingKey {
@@ -168,9 +187,11 @@ public struct AdGroup: Codable, Hashable, Sendable, CodingKeysContaining, Identi
         case cpaGoal
         case deleted
         case automatedKeywordsOptIn
+        case automatedKeywordsRequired
         case modificationTime
         case startTime
         case endTime
         case targetingDimensions
+        case biddingStrategy
     }
 }

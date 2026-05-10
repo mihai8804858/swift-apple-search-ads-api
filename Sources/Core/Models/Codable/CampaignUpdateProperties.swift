@@ -49,6 +49,13 @@ public struct CampaignUpdateProperties: Codable, Hashable, Sendable {
     /// - The endTime is updatable until you reach the designated time.
     /// - The endTime must be in UTC.
     public let endTime: Date?
+    /// The bidding strategy for the campaign.
+    public let biddingStrategy: Campaign.BiddingStrategy?
+    /// The target cost-per-acquisition for `MAX_CONVERSIONS` campaigns.
+    ///
+    /// This field is required if the `biddingStrategy` is `MAX_CONVERSIONS`.
+    /// Returned as null for `MANUAL_CPT` campaigns.
+    public let targetCpa: Money?
 
     public init(
         name: String? = nil,
@@ -59,7 +66,9 @@ public struct CampaignUpdateProperties: Codable, Hashable, Sendable {
         countriesOrRegions: [String]? = nil,
         locInvoiceDetails: LOCInvoiceDetails? = nil,
         startTime: Date? = nil,
-        endTime: Date? = nil
+        endTime: Date? = nil,
+        biddingStrategy: Campaign.BiddingStrategy? = nil,
+        targetCpa: Money? = nil
     ) {
         self.name = name
         self.status = status
@@ -70,5 +79,7 @@ public struct CampaignUpdateProperties: Codable, Hashable, Sendable {
         self.locInvoiceDetails = locInvoiceDetails
         self.startTime = startTime
         self.endTime = endTime
+        self.biddingStrategy = biddingStrategy
+        self.targetCpa = targetCpa
     }
 }

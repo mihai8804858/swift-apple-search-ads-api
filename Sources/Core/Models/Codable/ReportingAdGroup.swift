@@ -18,6 +18,10 @@ public struct ReportingAdGroup: Codable, Hashable, Sendable, CodingKeysContainin
     ///
     /// If true, the system automatically adds optimized keywords in addition to those you explicitly add to the group.
     public let automatedKeywordsOptIn: Bool?
+    /// A read-only field validating an automated ad group.
+    ///
+    /// An automated ad group must exist for Maximize Conversions campaigns to run.
+    public let automatedKeywordsRequired: Bool?
     /// The unique identifier for the campaign.
     public let campaignId: Int?
     /// The cost-per-acquisition goal.
@@ -48,6 +52,8 @@ public struct ReportingAdGroup: Codable, Hashable, Sendable, CodingKeysContainin
     public let adminArea: String?
     /// Reporting locality.
     public let locality: String?
+    /// The bid strategy for the campaign.
+    public let biddingStrategy: AdGroup.BiddingStrategy?
 
     public var id: Int? { adGroupId }
 
@@ -59,6 +65,7 @@ public struct ReportingAdGroup: Codable, Hashable, Sendable, CodingKeysContainin
         adGroupServingStatus: AdGroup.ServingStatus? = nil,
         adGroupStatus: AdGroup.Status? = nil,
         automatedKeywordsOptIn: Bool? = nil,
+        automatedKeywordsRequired: Bool? = nil,
         campaignId: Int? = nil,
         cpaGoal: Money? = nil,
         defaultBidAmount: Money? = nil,
@@ -72,7 +79,8 @@ public struct ReportingAdGroup: Codable, Hashable, Sendable, CodingKeysContainin
         ageRange: String? = nil,
         countryOrRegion: String? = nil,
         adminArea: String? = nil,
-        locality: String? = nil
+        locality: String? = nil,
+        biddingStrategy: AdGroup.BiddingStrategy? = nil
     ) {
         self.adGroupDisplayStatus = adGroupDisplayStatus
         self.adGroupId = adGroupId
@@ -81,6 +89,7 @@ public struct ReportingAdGroup: Codable, Hashable, Sendable, CodingKeysContainin
         self.adGroupServingStatus = adGroupServingStatus
         self.adGroupStatus = adGroupStatus
         self.automatedKeywordsOptIn = automatedKeywordsOptIn
+        self.automatedKeywordsRequired = automatedKeywordsRequired
         self.campaignId = campaignId
         self.cpaGoal = cpaGoal
         self.defaultBidAmount = defaultBidAmount
@@ -95,6 +104,7 @@ public struct ReportingAdGroup: Codable, Hashable, Sendable, CodingKeysContainin
         self.countryOrRegion = countryOrRegion
         self.adminArea = adminArea
         self.locality = locality
+        self.biddingStrategy = biddingStrategy
     }
 
     public enum CodingKeys: String, CodingKey {
@@ -105,6 +115,7 @@ public struct ReportingAdGroup: Codable, Hashable, Sendable, CodingKeysContainin
         case adGroupServingStatus
         case adGroupStatus
         case automatedKeywordsOptIn
+        case automatedKeywordsRequired
         case campaignId
         case cpaGoal
         case defaultBidAmount
@@ -119,5 +130,6 @@ public struct ReportingAdGroup: Codable, Hashable, Sendable, CodingKeysContainin
         case countryOrRegion
         case adminArea
         case locality
+        case biddingStrategy
     }
 }

@@ -55,6 +55,10 @@ public struct ReportingCampaign: Codable, Hashable, Sendable, CodingKeysContaini
     public let adminArea: String?
     /// Reporting locality.
     public let locality: String?
+    /// The bid strategy for the campaign.
+    public let biddingStrategy: Campaign.BiddingStrategy?
+    /// The target cost-per-acquisition for `MAX_CONVERSIONS` campaigns.
+    public let targetCpa: Money?
 
     public var id: Int? { campaignId }
 
@@ -80,7 +84,9 @@ public struct ReportingCampaign: Codable, Hashable, Sendable, CodingKeysContaini
         ageRange: String? = nil,
         countryOrRegion: String? = nil,
         adminArea: String? = nil,
-        locality: String? = nil
+        locality: String? = nil,
+        biddingStrategy: Campaign.BiddingStrategy? = nil,
+        targetCpa: Money? = nil
     ) {
         self.adChannelType = adChannelType
         self.app = app
@@ -104,6 +110,8 @@ public struct ReportingCampaign: Codable, Hashable, Sendable, CodingKeysContaini
         self.countryOrRegion = countryOrRegion
         self.adminArea = adminArea
         self.locality = locality
+        self.biddingStrategy = biddingStrategy
+        self.targetCpa = targetCpa
     }
 
     public enum CodingKeys: String, CodingKey {
@@ -129,5 +137,7 @@ public struct ReportingCampaign: Codable, Hashable, Sendable, CodingKeysContaini
         case countryOrRegion
         case adminArea
         case locality
+        case biddingStrategy
+        case targetCpa
     }
 }
