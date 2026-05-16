@@ -182,19 +182,19 @@ final class AdsRequestsTests: SnapshotTestCase {
             adGroupId: 67890,
             adId: 13579,
             ad: AdUpdate(
-                id: 13579,
-                orgId: 24680,
-                adGroupId: 67890,
-                campaignId: 12345,
-                creativeId: 98765,
-                name: "My Ad",
-                creativeType: .customProductPage,
-                deleted: false,
-                status: .paused,
-                servingStatus: .notRunning,
-                servingStateReasons: [.pausedByUser],
-                creationTime: Date(timeIntervalSince1970: 1_000_000),
-                modificationTime: Date(timeIntervalSince1970: 2_000_000)
+                id: .init(13579),
+                orgId: .init(24680),
+                adGroupId: .init(67890),
+                campaignId: .init(12345),
+                creativeId: .init(98765),
+                name: .init("My Ad"),
+                creativeType: .init(.customProductPage),
+                deleted: .init(false),
+                status: .init(.paused),
+                servingStatus: .init(.notRunning),
+                servingStateReasons: .init([.pausedByUser]),
+                creationTime: .init(Date(timeIntervalSince1970: 1_000_000)),
+                modificationTime: .init(Date(timeIntervalSince1970: 2_000_000))
             )
         )) {
             """

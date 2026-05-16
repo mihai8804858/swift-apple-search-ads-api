@@ -6,12 +6,12 @@ public struct CampaignUpdate: Codable, Hashable, Sendable {
     ///
     /// To modify `countriesOrRegions` in a campaign,
     /// set the value of `clearGeoTargetingOnCountryOrRegionChange` to `true`.
-    public let clearGeoTargetingOnCountryOrRegionChange: Bool?
+    public let clearGeoTargetingOnCountryOrRegionChange: NullCodable<Bool>?
     /// The campaign properties to update.
     public let campaign: CampaignUpdateProperties?
 
     public init(
-        clearGeoTargetingOnCountryOrRegionChange: Bool? = nil,
+        clearGeoTargetingOnCountryOrRegionChange: NullCodable<Bool>? = nil,
         campaign: CampaignUpdateProperties? = nil
     ) {
         self.clearGeoTargetingOnCountryOrRegionChange = clearGeoTargetingOnCountryOrRegionChange

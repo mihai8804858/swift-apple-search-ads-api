@@ -61,15 +61,15 @@ final class BudgetOrdersRequestsTests: SnapshotTestCase {
         try await assertRequest(BudgetOrderUpdateRequest(boID: 12345, budgetOrder: BudgetOrderUpdate(
             orgIds: [12345, 67890],
             bo: BudgetOrderUpdate.Bo(
-                primaryBuyerEmail: "buyer@email.com",
-                primaryBuyerName: "Buyer Name",
-                billingEmail: "billing@email.com",
-                name: "Order Name",
-                clientName: "Client Name",
-                budget: Money(amount: "10", currency: "USD"),
-                startDate: Date(timeIntervalSince1970: 1_000_000),
-                endDate: Date(timeIntervalSince1970: 2_000_000),
-                orderNumber: "123"
+                primaryBuyerEmail: .init("buyer@email.com"),
+                primaryBuyerName: .init("Buyer Name"),
+                billingEmail: .init("billing@email.com"),
+                name: .init("Order Name"),
+                clientName: .init("Client Name"),
+                budget: .init(Money(amount: "10", currency: "USD")),
+                startDate: .init(Date(timeIntervalSince1970: 1_000_000)),
+                endDate: .init(Date(timeIntervalSince1970: 2_000_000)),
+                orderNumber: .init("123")
             )
         ))) {
             """

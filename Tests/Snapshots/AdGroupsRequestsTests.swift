@@ -289,14 +289,14 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
             campaignId: 12345,
             adGroupId: 67890,
             adGroup: AdGroupUpdate(
-                status: .paused,
-                name: "My Campaign Ad Group",
-                defaultBidAmount: Money(amount: "2", currency: "USD"),
-                cpaGoal: Money(amount: "10", currency: "USD"),
-                automatedKeywordsOptIn: false,
-                startTime: Date(timeIntervalSince1970: 1_000_000),
-                endTime: Date(timeIntervalSince1970: 2_000_000),
-                targetingDimensions: TargetingDimensions(
+                status: .init(.paused),
+                name: .init("My Campaign Ad Group"),
+                defaultBidAmount: .init(Money(amount: "2", currency: "USD")),
+                cpaGoal: .init(Money(amount: "10", currency: "USD")),
+                automatedKeywordsOptIn: .init(false),
+                startTime: .init(Date(timeIntervalSince1970: 1_000_000)),
+                endTime: .init(Date(timeIntervalSince1970: 2_000_000)),
+                targetingDimensions: .init(TargetingDimensions(
                     age: AgeCriteria(
                         included: [AgeRange(minAge: 18, maxAge: 30)],
                         excluded: [AgeRange(minAge: 24, maxAge: 26)]
@@ -309,7 +309,7 @@ final class AdGroupsRequestsTests: SnapshotTestCase {
                     locality: LocalityCriteria(included: ["San Jose"], excluded: ["San Francisco"]),
                     daypart: DaypartCriteria(userTime: DaypartDetail(included: [10], excluded: [20])),
                     deviceClass: DeviceClassCriteria(included: [.iPhone], excluded: [.iPad])
-                )
+                ))
             )
         )) {
             """

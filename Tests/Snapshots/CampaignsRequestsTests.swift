@@ -115,23 +115,23 @@ final class CampaignsRequestsTests: SnapshotTestCase {
         try await assertRequest(CampaignUpdateRequest(
             campaignId: 123,
             campaign: CampaignUpdate(
-                clearGeoTargetingOnCountryOrRegionChange: true,
+                clearGeoTargetingOnCountryOrRegionChange: .init(true),
                 campaign: CampaignUpdateProperties(
-                    name: "My Campaign",
-                    status: .paused,
-                    budgetAmount: Money(amount: "10", currency: "USD"),
-                    budgetOrders: [456, 789],
-                    dailyBudgetAmount: Money(amount: "2", currency: "USD"),
-                    countriesOrRegions: ["US", "GB"],
-                    locInvoiceDetails: LOCInvoiceDetails(
+                    name: .init("My Campaign"),
+                    status: .init(.paused),
+                    budgetAmount: .init(Money(amount: "10", currency: "USD")),
+                    budgetOrders: .init([456, 789]),
+                    dailyBudgetAmount: .init(Money(amount: "2", currency: "USD")),
+                    countriesOrRegions: .init(["US", "GB"]),
+                    locInvoiceDetails: .init(LOCInvoiceDetails(
                         billingContactEmail: "billing@email.com",
                         buyerEmail: "buyer@email.com",
                         buyerName: "Buyer Name",
                         clientName: "Client Name",
                         orderNumber: "123abc"
-                    ),
-                    startTime: Date(timeIntervalSince1970: 1_000_000),
-                    endTime: Date(timeIntervalSince1970: 2_000_000)
+                    )),
+                    startTime: .init(Date(timeIntervalSince1970: 1_000_000)),
+                    endTime: .init(Date(timeIntervalSince1970: 2_000_000))
                 )
             )
         )) {

@@ -6,22 +6,22 @@ public struct CampaignUpdateProperties: Codable, Hashable, Sendable {
     ///
     /// This field is updatable.
     /// Maximum Length: 200.
-    public let name: String?
+    public let name: NullCodable<String>?
     /// The user-controlled status to enable or pause the campaign.
     ///
     /// This field is updatable.
-    public let status: Campaign.Status?
+    public let status: NullCodable<Campaign.Status>?
     /// The lifetime budget amount available to a campaign.
     ///
     /// Campaigns require a `dailyBudgetAmount` or a `budgetAmount`, or both.
     /// If you update a `budgetAmount`, the updated amount must be greater than the previous
     /// `budgetAmount` and must exceed the lifetime spend of the campaign.
-    public let budgetAmount: Money?
+    public let budgetAmount: NullCodable<Money>?
     /// The budget orders that you assign to the campaign.
     ///
     /// This applies only to campaigns with a line-of-credit payment model.
     /// This field is updatable.
-    public let budgetOrders: [Int]?
+    public let budgetOrders: NullCodable<[Int]>?
     /// Your daily budget.
     ///
     /// - Campaigns require a `dailyBudgetAmount` or a `budgetAmount`, or both.
@@ -29,46 +29,46 @@ public struct CampaignUpdateProperties: Codable, Hashable, Sendable {
     /// - Your `dailyBudgetAmount` must be greater than or equal to the `defaultBidAmount` in your ad group.
     ///
     /// This field is updatable.
-    public let dailyBudgetAmount: Money?
+    public let dailyBudgetAmount: NullCodable<Money>?
     /// The App Store geoterritories where you’re promoting your app. The default value is US.
     ///
     /// This field requires an ISO country code value for the locations where you’re promoting.
-    public let countriesOrRegions: [String]?
+    public let countriesOrRegions: NullCodable<[String]>?
     /// The standard invoice details you can set and edit using the `LOCInvoiceDetails` object.
-    public let locInvoiceDetails: LOCInvoiceDetails?
+    public let locInvoiceDetails: NullCodable<LOCInvoiceDetails>?
     /// The scheduled start date and time for the campaign.
     ///
     /// - The startTime must be greater than the current time, and before the campaign endTime, if you set it.
     /// - If you don’t set a startTime, the campaign defaults to the campaign request timestamp and the startTime
     /// is updatable until you reach the designated time.
     /// - The startTime must be in UTC.
-    public let startTime: Date?
+    public let startTime: NullCodable<Date>?
     /// The scheduled end time and date for the campaign.
     ///
     /// - The endTime must be after the startTime.
     /// - The endTime is updatable until you reach the designated time.
     /// - The endTime must be in UTC.
-    public let endTime: Date?
+    public let endTime: NullCodable<Date>?
     /// The bidding strategy for the campaign.
-    public let biddingStrategy: Campaign.BiddingStrategy?
+    public let biddingStrategy: NullCodable<Campaign.BiddingStrategy>?
     /// The target cost-per-acquisition for `MAX_CONVERSIONS` campaigns.
     ///
     /// This field is required if the `biddingStrategy` is `MAX_CONVERSIONS`.
     /// Returned as null for `MANUAL_CPT` campaigns.
-    public let targetCpa: Money?
+    public let targetCpa: NullCodable<Money>?
 
     public init(
-        name: String? = nil,
-        status: Campaign.Status? = nil,
-        budgetAmount: Money? = nil,
-        budgetOrders: [Int]? = nil,
-        dailyBudgetAmount: Money? = nil,
-        countriesOrRegions: [String]? = nil,
-        locInvoiceDetails: LOCInvoiceDetails? = nil,
-        startTime: Date? = nil,
-        endTime: Date? = nil,
-        biddingStrategy: Campaign.BiddingStrategy? = nil,
-        targetCpa: Money? = nil
+        name: NullCodable<String>? = nil,
+        status: NullCodable<Campaign.Status>? = nil,
+        budgetAmount: NullCodable<Money>? = nil,
+        budgetOrders: NullCodable<[Int]>? = nil,
+        dailyBudgetAmount: NullCodable<Money>? = nil,
+        countriesOrRegions: NullCodable<[String]>? = nil,
+        locInvoiceDetails: NullCodable<LOCInvoiceDetails>? = nil,
+        startTime: NullCodable<Date>? = nil,
+        endTime: NullCodable<Date>? = nil,
+        biddingStrategy: NullCodable<Campaign.BiddingStrategy>? = nil,
+        targetCpa: NullCodable<Money>? = nil
     ) {
         self.name = name
         self.status = status

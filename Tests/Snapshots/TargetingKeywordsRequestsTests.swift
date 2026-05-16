@@ -86,24 +86,24 @@ final class TargetingKeywordsRequestsTests: SnapshotTestCase {
             adGroupId: 456,
             keywords: [
                 KeywordUpdate(
-                    id: 1_789,
-                    adGroupId: 1_246,
-                    text: "keyword 1",
-                    matchType: .broad,
-                    status: .active,
-                    bidAmount: Money(amount: "10", currency: "USD"),
-                    deleted: false,
-                    modificationTime: Date(timeIntervalSince1970: 1_000_000)
+                    id: .init(1_789),
+                    adGroupId: .init(1_246),
+                    text: .init("keyword 1"),
+                    matchType: .init(.broad),
+                    status: .init(.active),
+                    bidAmount: .init(Money(amount: "10", currency: "USD")),
+                    deleted: .init(false),
+                    modificationTime: .init(Date(timeIntervalSince1970: 1_000_000))
                 ),
                 KeywordUpdate(
-                    id: 2_789,
-                    adGroupId: 2_246,
-                    text: "keyword 2",
-                    matchType: .exact,
-                    status: .paused,
-                    bidAmount: Money(amount: "20", currency: "USD"),
-                    deleted: true,
-                    modificationTime: Date(timeIntervalSince1970: 2_000_000)
+                    id: .init(2_789),
+                    adGroupId: .init(2_246),
+                    text: .init("keyword 2"),
+                    matchType: .init(.exact),
+                    status: .init(.paused),
+                    bidAmount: .init(Money(amount: "20", currency: "USD")),
+                    deleted: .init(true),
+                    modificationTime: .init(Date(timeIntervalSince1970: 2_000_000))
                 )
             ]
         )) {
