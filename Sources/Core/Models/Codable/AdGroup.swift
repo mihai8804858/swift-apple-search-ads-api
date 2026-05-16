@@ -94,7 +94,7 @@ public struct AdGroup: Codable, Hashable, Sendable, CodingKeysContaining, Identi
     /// The payment model that you set through the Search Ads UI.
     public let paymentModel: PaymentModel?
     /// The default maximum cost-per-tap or cost-per-impression bid for the ad group.
-    public let defaultBidAmount: Money
+    public let defaultBidAmount: Money?
     /// The cost-per-acquisition goal.
     ///
     ///  You can update the cpaGoal only in campaigns that use the `APPSTORE_SEARCH_RESULTS` supply source.
@@ -141,7 +141,7 @@ public struct AdGroup: Codable, Hashable, Sendable, CodingKeysContaining, Identi
         name: String,
         pricingModel: PricingModel,
         paymentModel: PaymentModel? = nil,
-        defaultBidAmount: Money,
+        defaultBidAmount: Money? = nil,
         cpaGoal: Money? = nil,
         deleted: Bool? = nil,
         automatedKeywordsOptIn: Bool? = nil,
