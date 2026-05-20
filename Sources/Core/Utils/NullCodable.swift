@@ -5,10 +5,6 @@ public struct NullCodable<T: Codable>: Codable {
         self.wrappedValue = wrappedValue
     }
 
-    enum CodingKeys: CodingKey {
-        case wrappedValue
-    }
-
     public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         wrappedValue = container.decodeNil() ? nil : try container.decode(T.self)
@@ -16,9 +12,10 @@ public struct NullCodable<T: Codable>: Codable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        switch wrappedValue {
-        case .some(let value): try container.encode(value)
-        case .none: try container.encodeNil()
+        if let wrappedValue {
+            try container.encode(wrappedValue)
+        } else {
+            try container.encodeNil()
         }
     }
 }
